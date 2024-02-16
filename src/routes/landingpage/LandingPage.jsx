@@ -57,6 +57,37 @@ export default function LandingPage() {
        </Container>
        </header>
 
+      {/* About Section  */}
+        <Container className='mt-5 mb-5'>
+          <Row className={`justify-content-center mb-5`}>
+            <Col xs = 'auto' className={`${styles.about_it}`}>ABOUT CRACK IT FIND IT</Col>
+          </Row>
+         <Row className={`mb-3 justify-content-center justify-content-md-between`}>
+            <div className={`${styles.about_div_col}`}>
+              <div className={`${styles.about_div_row}`}>
+                  <div className={`${styles.about_div}`}></div>
+                  <p className={`${styles.about_text}`}>Innovative Cerebral Hunt show that seamlessly blends intellect and adventure</p>
+              </div>
+            </div>
+
+            <div className={`${styles.about_div_col}`}>
+              <div className={`${styles.about_div_row}`}>
+                  <div className={`${styles.about_div}`}></div>
+                  <p className={`${styles.about_text}`}> Hunters are invited to unravel the mysteries of challenging coded messages on a daily and weekly basis.</p>
+              </div>
+            </div>
+
+           <div className={`${styles.about_div_col}`}>
+              <div className={`${styles.about_div_row}`}>
+                  <div className={`${styles.about_div}`}></div>
+                  <p className={`${styles.about_text}`}>Decode first, find hidden treasure, secure victory in the hunt. Be the pioneer code-cracking conqueror!</p>
+              </div>
+            </div>
+         </Row>
+         <Row className={`justify-content-center`}>
+            <Link to='' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP</Link>
+         </Row>
+        </Container>
 
        
         
