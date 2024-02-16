@@ -32,13 +32,14 @@ export default function LandingPage() {
           <Container>
             <Row className={`justify-content-center mt-5 ${styles.header_row}`} >
                 <div className={`${styles.hero_title}`}>
-                  Unlock the Thrill of Adventure and Intellect 
+                  UNLOCK THE THRILL OF ADVENTURE AND INTELLECT
+                  
                 </div>
             </Row>
 
             <Row className={`mt-3 ${styles.header_row}`}>
                 <div className={`${styles.hero_text}`}>
-                  Unravel the mysteries of challenging coded messages on a daily and weekly basis.
+                  Unravel the mysteries of challenging coded messages on a <br className = "d-none d-sm-block"/> daily and weekly basis.
                 </div>
             </Row>
 
@@ -46,7 +47,7 @@ export default function LandingPage() {
                 <Link to = '/' className={`${styles.video_watch} col-auto`}>
                     Watch full video here
                 </Link>
-                <Link to='/' className={`col-auto`}><img src={play} alt="" /></Link>
+                <Link to='/' className={`col-auto ${styles.play}` }><img src={play} alt="" /></Link>
             </Row>
 
             <Row className={`justify-content-center mt-5`}>
