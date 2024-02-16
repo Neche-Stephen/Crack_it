@@ -5,6 +5,11 @@
 .nav_logo_img{
     width: 135px !important;
 }
+@media(max-width:767px){
+    .nav_logo_img{
+        width: 105px !important;
+    }
+}
 .nav_links{
     gap: 20px;
 }
