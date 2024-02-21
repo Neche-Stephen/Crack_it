@@ -10,10 +10,19 @@ import Navbar from '../../components/navbar/Navbar';
 // import bg_video from '../../assets/videos/How_Computer_Vision_Works.mp4';
 import bg_video from '../../assets/videos/dangote.mp4';
 import bg_header from '../../assets/images/bg_header.png';
+import crack_logo from '../../assets/images/CRACK IT FIND IT LOGO 1.png';
 import play from '../../assets/images/play.png';
 import message from '../../assets/images/message.png';
 import earth from '../../assets/images/earth.png';
-import andriod from '../../assets/images/andriod.png'
+import andriod from '../../assets/images/andriod.png';
+import facebook from '../../assets/images/facebook.png';
+import instagram from '../../assets/images/instagram.png';
+import linkendin from '../../assets/images/linkendin.png';
+import telegram from '../../assets/images/telegram.png';
+import twitter from '../../assets/images/twitter.png';
+
+
+
 
 
 
@@ -132,6 +141,38 @@ export default function LandingPage() {
             </div>
           </Row>
        </Container>
+
+       {/* Footer Section */}
+     <div className={`${styles.footer_wrapper}`}>
+      <Container>
+              <div className={`${styles.footer_row} py-3 align-items-center justify-content-center justify-content-sm-between`}>
+                <div className={`${styles.image_wrapper} col-sm-auto mb-3 mb-sm-0`}>
+                  <img src={crack_logo} alt="" />
+                </div>
+                <div className={`col-9 col-lg-4 mb-3 mb-sm-0`}>
+                    <div className={`${styles.policy_row} `}>
+                        <p>Privacy Policy</p>
+                        <p>Terms of Use </p>
+                        <p>Cookie Policy</p>
+                    </div>
+                </div>
+                <div className={`col-5 col-lg-2 mb-3 mb-sm-0`}>
+                  <div className={`${styles.logos_row}`}>
+                    <div><img src={twitter} alt="" /></div>
+                    <div><img src={telegram} alt="" /></div>
+                    <div><img src={instagram} alt="" /></div>
+                    <div><img src={linkendin} alt="" /></div>
+                    <div><img src={facebook} alt="" /></div>
+                  </div>
+
+                </div>
+                <div className={`col-9 col-lg-2 mb-3 ${styles.rights}`}>
+                  {/* <p>© 2021 Tokners. All rights reserved.</p> */}
+                  © 2021 Tokners. All rights reserved.
+                </div>
+            </div>
+        </Container>
+     </div>
         
     </>
 
