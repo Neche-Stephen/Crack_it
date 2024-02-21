@@ -363,6 +363,10 @@
         display: flex;
         justify-content: center;
     }
+
+    .image_wrapper img{
+        width: 20%;
+    }
 }
 
 .policy_row{
