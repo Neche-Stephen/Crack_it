@@ -10,7 +10,11 @@ import Navbar from '../../components/navbar/Navbar';
 // import bg_video from '../../assets/videos/How_Computer_Vision_Works.mp4';
 import bg_video from '../../assets/videos/dangote.mp4';
 import bg_header from '../../assets/images/bg_header.png';
-import play from '../../assets/images/play.png'
+import play from '../../assets/images/play.png';
+import message from '../../assets/images/message.png';
+import earth from '../../assets/images/earth.png';
+import andriod from '../../assets/images/andriod.png'
+
 
 
 
@@ -63,34 +67,71 @@ export default function LandingPage() {
           <Row className={`justify-content-center mb-5`}>
             <Col xs = 'auto' className={`${styles.about_it}`}>ABOUT CRACK IT FIND IT</Col>
           </Row>
-         <Row className={`mb-3 justify-content-center justify-content-md-between`}>
-            <div className={`${styles.about_div_col}`}>
-              <div className={`${styles.about_div_row}`}>
-                  <div className={`${styles.about_div}`}></div>
-                  <p className={`${styles.about_text}`}>Innovative Cerebral Hunt show that seamlessly blends intellect and adventure</p>
+          <Row className={`mb-3 justify-content-center justify-content-md-around`}>
+              <div className={`${styles.about_div_col}`}>
+                <div className={`${styles.about_div_row}`}>
+                    <div className={`${styles.about_div}`}></div>
+                    <p className={`${styles.about_text}`}>Innovative Cerebral Hunt show that seamlessly blends intellect and adventure</p>
+                </div>
               </div>
-            </div>
+
+              <div className={`${styles.about_div_col}`}>
+                <div className={`${styles.about_div_row}`}>
+                    <div className={`${styles.about_div}`}></div>
+                    <p className={`${styles.about_text}`}> Hunters are invited to unravel the mysteries of challenging coded messages on a daily and weekly basis.</p>
+                </div>
+              </div>
 
             <div className={`${styles.about_div_col}`}>
-              <div className={`${styles.about_div_row}`}>
-                  <div className={`${styles.about_div}`}></div>
-                  <p className={`${styles.about_text}`}> Hunters are invited to unravel the mysteries of challenging coded messages on a daily and weekly basis.</p>
+                <div className={`${styles.about_div_row}`}>
+                    <div className={`${styles.about_div}`}></div>
+                    <p className={`${styles.about_text}`}>Decode first, find hidden treasure, secure victory in the hunt. Be the pioneer code-cracking conqueror!</p>
+                </div>
               </div>
-            </div>
-
-           <div className={`${styles.about_div_col}`}>
-              <div className={`${styles.about_div_row}`}>
-                  <div className={`${styles.about_div}`}></div>
-                  <p className={`${styles.about_text}`}>Decode first, find hidden treasure, secure victory in the hunt. Be the pioneer code-cracking conqueror!</p>
-              </div>
-            </div>
-         </Row>
-         <Row className={`justify-content-center`}>
-            <Link to='' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP</Link>
-         </Row>
+          </Row>
+          <Row className={`justify-content-center`}>
+              <Link to='' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP</Link>
+          </Row>
         </Container>
 
-       
+        {/* Contact Section */}
+       <Container className='mb-5'>
+          <Row className={`align-items-center justify-content-center justify-content-sm-between`}>
+            <div className={`${styles.small_purple_box}`}>
+
+            </div>
+
+            <div className={`${styles.get_in_touch} mb-5`}>
+              <p className={`${styles.get_in_touch_title}`}>Get in touch with Us</p>
+              <p className={`${styles.get_in_touch_text}`}>We're here to assist you. Reach out for any Questions or support.</p>
+              <input className='mb-3' type="text" placeholder='Your Name'/>
+              <input className='mb-3'type="email" placeholder='Your email'/>
+              <textarea className='mb-4' name="" id="" cols="30" rows="3" placeholder='Type your message'></textarea>
+              <button className='py-2 mb-2'>Send Message</button>
+            </div>
+
+            <div className={`${styles.info}`}>
+              <div>
+              <p className={`${styles.info_title} mb-4`}>Info</p>
+              <div className={`${styles.info_row} d-flex mb-3`}>
+                <div><img src={andriod} alt="" /></div>
+                <p>(843) 555-0130</p>
+              </div>
+              <div className={`${styles.info_row} d-flex mb-3`}>
+                <div><img src={message} alt="" /></div>
+                <p>willie.jennings@example.com</p>
+              </div>
+              <div className={`${styles.info_row} d-flex mb-3`}>
+                <div><img src={earth} alt="" /></div>
+                <p>willie.jennings@example.com</p>
+              </div>
+              </div>
+            </div>
+            <div className={`${styles.big_purple_box}`}>
+
+            </div>
+          </Row>
+       </Container>
         
     </>
 
