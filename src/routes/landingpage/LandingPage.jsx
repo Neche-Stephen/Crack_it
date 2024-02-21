@@ -149,7 +149,7 @@ export default function LandingPage() {
                 <div className={`${styles.image_wrapper} col-sm-auto mb-3 mb-sm-0`}>
                   <img src={crack_logo} alt="" />
                 </div>
-                <div className={`col-9 col-lg-4 mb-3 mb-sm-0`}>
+                <div className={`col-10 col-lg-4 mb-3 mb-sm-0`}>
                     <div className={`${styles.policy_row} `}>
                         <p>Privacy Policy</p>
                         <p>Terms of Use </p>
