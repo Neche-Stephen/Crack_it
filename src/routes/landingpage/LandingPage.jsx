@@ -99,7 +99,7 @@ export default function LandingPage() {
               </div>
           </Row>
           <Row className={`justify-content-center`}>
-              <Link to='' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP</Link>
+              <Link to='/signup' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP</Link>
           </Row>
         </Container>
 
