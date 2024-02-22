@@ -356,7 +356,7 @@
     justify-content: space-between;
     color: #fff;
 }
-@media(max-width:575px){
+@media(max-width:991px){
     
     .image_wrapper{
         width: 100%;
@@ -365,9 +365,17 @@
     }
 
     .image_wrapper img{
+        width: 50%;
+    }
+}
+
+@media(max-width:575px){
+    .image_wrapper img{
         width: 20%;
     }
 }
+
+
 
 .policy_row{
     display: flex;
@@ -412,7 +420,7 @@
     /* text-align: right; */
 }
 
-@media(max-width:575px){
+@media(max-width:991px){
     .rights{
          text-align: center;
     }

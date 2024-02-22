@@ -145,18 +145,18 @@ export default function LandingPage() {
        {/* Footer Section */}
      <div className={`${styles.footer_wrapper}`}>
       <Container>
-              <div className={`${styles.footer_row} py-3 align-items-center justify-content-center justify-content-sm-between`}>
-                <div className={`${styles.image_wrapper} col-sm-auto mb-3 mb-sm-0`}>
+              <div className={`${styles.footer_row} py-3 align-items-center justify-content-center justify-content-lg-between`}>
+                <div className={`${styles.image_wrapper} col-sm-auto mb-3 mb-lg-0`}>
                   <img src={crack_logo} alt="" />
                 </div>
-                <div className={`col-10 col-lg-4 mb-3 mb-sm-0`}>
+                <div className={`col-10 col-lg-4 mb-3 mb-lg-0`}>
                     <div className={`${styles.policy_row} `}>
                         <p>Privacy Policy</p>
                         <p>Terms of Use </p>
                         <p>Cookie Policy</p>
                     </div>
                 </div>
-                <div className={`col-5 col-lg-2 mb-3 mb-sm-0`}>
+                <div className={`col-5 col-lg-2 mb-3 mb-lg-0`}>
                   <div className={`${styles.logos_row}`}>
                     <div><img src={twitter} alt="" /></div>
                     <div><img src={telegram} alt="" /></div>
@@ -166,7 +166,7 @@ export default function LandingPage() {
                   </div>
 
                 </div>
-                <div className={`col-9 col-lg-2 mb-3 ${styles.rights}`}>
+                <div className={`col-9 col-lg-2 mb-3 mb-lg-0 ${styles.rights}`}>
                   {/* <p>© 2021 Tokners. All rights reserved.</p> */}
                   © 2021 Tokners. All rights reserved.
                 </div>
