@@ -30,13 +30,13 @@ export default function SignUp() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs = "5">
+                        <Col xs = "5" lg ="3">
                              <label htmlFor="">Phone Number*</label>
                              <select name="" id="">
                                 <option value="+234">+234</option>
                              </select>
                         </Col>
-                        <Col xs = "6" className='align-self-end'>
+                        <Col xs = "6" lg = "7" className='align-self-end'>
                             <input type="text" />
                         </Col>
                     </Row>
@@ -88,7 +88,7 @@ export default function SignUp() {
                         <Col xs = '10' className={`${styles.privacy_policy}`}>I have read and agreed to Crack It Find It Terms of Service and Privacy Policy </Col>
                     </Row>
                     <Row>
-                        <Col xs ="8">
+                        <Col xs ="11" lg = "8">
                             <button>Sign Up</button>
                         </Col>
                     </Row>

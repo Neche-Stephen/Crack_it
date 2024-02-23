@@ -104,6 +104,11 @@
     width: 100%;
     padding: 8px 0px;
     border-radius: 12px;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: -0.02em;
 }
 
 .login{
