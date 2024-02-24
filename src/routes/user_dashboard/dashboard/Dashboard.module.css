@@ -1,0 +1,120 @@
+
+
+.dashboard_card{
+    border: 1px solid red;
+    position: relative;
+    height: 235px;
+
+}
+
+.dashboard_card img{
+    /* border: 2px solid pink; */
+    position: absolute;
+}
+
+.dashboard_card_ellipse{
+    position: absolute;
+    left: 36.5%;
+    width: 79px;
+}
+
+.dashboard_card_partcipate{
+    position: absolute;
+    top: 20px;
+    left: 42.5%;
+    width: 39px;
+}
+
+.dashboard_card_box{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+}
+
+.dashboard_card_hunt{
+    position: absolute;
+    top: 30px;
+    left: 42.5%;
+    width: 39px;
+}
+
+.hunt h3{
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: center;   
+    color: #660066; 
+}
+
+.hunt :nth-child(2){
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: #666666;
+    text-align: center;    
+}
+
+.hunt :nth-child(3){
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #A1A5C5;
+}
+
+.notification h3{
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 23px;
+    letter-spacing: 0em;
+    /* text-align: left; */
+    
+}
+
+.avatar{
+    position: relative;
+    bottom: 4px;
+}
+
+.notification_title{
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    /* text-align: left;     */
+}
+
+.notification_just_now{
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #A1A5C5;
+}
+
+.notification_sub_title{
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0em;    
+}
+
+.notification_text{
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #A1A5C5;
+}

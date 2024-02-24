@@ -1,0 +1,24 @@
+.sidebar_col{
+    min-height: 100vh;
+    border-top-right-radius: 58px;
+    background: #FDDFFD;
+    padding-top: 40px;
+    padding-bottom: 70px;
+}
+
+.sidebar_col > * {
+    justify-content: center;
+}
+
+.sidebar_item_col{
+    border-radius: 12px;
+}
+
+.sidebar_item{
+    font-family: Lato;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0em;
+    color: #660066;
+}
