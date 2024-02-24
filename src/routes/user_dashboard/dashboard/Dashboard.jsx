@@ -22,6 +22,9 @@ export default function UserDashboard() {
 
             <Col>
                 <Row>
+                    <Col></Col>
+                </Row>
+                <Row>
                     <Col xs = '4'>
                         <div className={`${styles.dashboard_card}`}>
                             <img src={dashboard_card} alt="" className='w-100'/>
