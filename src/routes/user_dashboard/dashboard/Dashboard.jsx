@@ -66,6 +66,14 @@ export default function UserDashboard() {
                     
                     </Col>
                     <Col lg = '4'>
+                        <div className={`${styles.hunt}`}>
+                            <h3>This week's hunt</h3>
+                            <p>You're to get the white box from under osisioma flyover...</p>
+                            <p>You'll be given a code to crack at the entrance to kilimanjaro at railway, after getting it, proceed to the next location ... </p>
+                        </div>
+                    
+                    </Col>
+                    <Col lg = '4'>
                         <div className={`${styles.notification}`}>
                             <Row className='justify-content-center'>
                                 <Col xs = 'auto'><h3>Notification</h3></Col>
@@ -82,17 +90,14 @@ export default function UserDashboard() {
 
                         </div>
                         <div className={`${styles.notification}`}>
-                            <Row>
-                                <Col><h3>Notification</h3></Col>
+                            <Row className = "">
+                               <Col xs = 'auto' className = "p-0"><img src={avatar2} alt="" className={`${styles.avatar}`}/></Col>
+                               <Col className = "p-0 ms-2"><p className={`${styles.notification_title}`}>Crack It, Find It</p></Col>
+                               <Col xs = "auto" className = "ms-auto"><p className={`${styles.notification_just_now}`}>Just now</p></Col>
                             </Row>
                             <Row>
-                               <Col><img src={avatar2} alt="" /></Col>
-                               <Col><p>Crack It, Find It</p></Col>
-                               <Col><p>Just now</p></Col>
-                            </Row>
-                            <Row>
-                                <Col><p>A new hunt is available in your location...</p></Col>
-                                <Col>This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...</Col>
+                                <Col xs = 'auto'><p className={`${styles.notification_sub_title}`}>A new hunt is available in your location...</p></Col>
+                                <Col xs ='auto'><p className={`${styles.notification_text}`}>This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...</p></Col>
                             </Row>
 
                         </div>
