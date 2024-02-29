@@ -18,7 +18,7 @@ export default function AdminHunts() {
             <Col className='ps-4 py-4'>
                 <DashboardNavbar />
                 <Row>
-                    <Col xs = '9'>
+                    <Col xs = '11' lg = '9'>
                         <Row className='mt-5'>
                         <Col><p className={`${styles.create_hunt}`}>Create Hunt</p></Col>
                         </Row>
@@ -63,7 +63,7 @@ export default function AdminHunts() {
                             </select>
                             </Col>
                         </Row>
-                        <Row className='justify-content-center mb-3'>
+                        <Row className='justify-content-center mb-5'>
                             <Col xs ='9' lg = '3'>
                                 <Link to = '/admin/hunts'><button className={`${styles.hunt_btn}`}>Create Hunts</button></Link>
                             </Col>
