@@ -21,7 +21,7 @@ export default function WeeklyQuestModal(props) {
           <img src={left_arrow} alt="" className='w-100' onClick={props.onHide}/>
         </div>
         <div className='col-auto mx-auto'>
-          <p className={`${styles.today_challenge_text}`}>This Week's Challenge</p>
+          <p className={`${styles.today_challenge_text}`}>Week's Challenge</p>
         </div>
 
       </div>
