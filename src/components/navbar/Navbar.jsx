@@ -10,7 +10,10 @@ import hamburger from '../../assets/images/hamburger.png'
 
 
 
-export default function Navbar() {
+export default function Navbar({setShowMobileNav, showMobileNav}) {
+  const handleNavClick = () => {
+      setShowMobileNav(!showMobileNav)
+  }
   return (
 
     <>
@@ -28,7 +31,7 @@ export default function Navbar() {
               <Link to='/' className={`${styles.nav_Link} ${styles.nav_button} col-auto`}>SIGNUP</Link>
             </div>
          </div>
-          <button className={`${styles.nav_menu} d-lg-none col-auto`}><img src={hamburger}/></button>
+          <button className={`${styles.nav_menu} d-lg-none col-auto`}><img src={hamburger} onClick={handleNavClick}/></button>
         </nav>
       </Container>
     </>

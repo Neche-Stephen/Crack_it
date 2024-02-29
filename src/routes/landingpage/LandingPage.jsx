@@ -23,10 +23,18 @@ import twitter from '../../assets/images/twitter.png';
 import about_1 from '../../assets/images/about_1.png';
 import about_2 from '../../assets/images/about_2.png';
 import about_3 from '../../assets/images/about_3.png';
+import exit from '../../assets/images/exit.png';
+
 
 
 
 export default function LandingPage() {
+  const [showMobileNav, setShowMobileNav] = React.useState(false);
+
+  const handleNavClick = () => {
+    setShowMobileNav(!showMobileNav)
+  };
+
   return (
     <>
        <header className={`${styles.header}`}>
@@ -35,9 +43,35 @@ export default function LandingPage() {
               <source src={bg_video} type="video/mp4" />
               Your browser does not support the video tag.
           </video> */}
-          <Navbar />
+          <Navbar showMobileNav = {showMobileNav} setShowMobileNav = {setShowMobileNav}/>
+
 
           {/* Mobile Navbar */}
+       {
+        showMobileNav &&    
+        <div className={`${styles.mobile_nav}`}>
+          <Row className='justify-content-end mb-1'>
+            <Col xs = 'auto'>
+              <img src={exit} alt="" className='w-100' onClick={handleNavClick} style={{cursor:'pointer'}}/>
+            </Col>
+          </Row>
+          <Row className='mb-4'>
+            <Col xs = 'auto'>
+              <p className={`${styles.mobile_nav_links}`}>HOME</p>
+            </Col>
+          </Row>
+          <Row className='mb-4'>
+            <Col xs = 'autos'>
+            <p className={`${styles.mobile_nav_links}`}>ABOUT US</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs = 'auto'>
+            <p className={`${styles.mobile_nav_links}`}>CONTACT US</p>
+            </Col>
+          </Row>
+        </div>
+       }
 
           <Container>
             <Row className={`justify-content-center mt-5 ${styles.header_row}`} >

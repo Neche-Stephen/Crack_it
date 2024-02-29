@@ -10,7 +10,7 @@ export default function SignIn() {
     <div className={`${styles.signin_div} py-3`}>
         <Container>
             <Row className={`${styles.signin_form_row}`}>
-                <Col className={`${styles.signin_animate} col-12 col-lg-6`}>
+                <Col className={`${styles.signin_animate} d-none d-lg-block col-12 col-lg-6`}>
                 
                 </Col>
                 <form className={`${styles.signin_form} col-12 col-lg-6`}>
