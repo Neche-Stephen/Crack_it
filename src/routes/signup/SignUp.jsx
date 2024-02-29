@@ -93,7 +93,7 @@ export default function SignUp() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col  xs = 'auto' className={`${styles.login}`}>Already have an account? <Link to ='/'>Log In</Link></Col>
+                        <Col  xs = 'auto' className={`${styles.login}`}>Already have an account? <Link to ='/login'>Log In</Link></Col>
                     </Row>
                 </form>
             </Row>

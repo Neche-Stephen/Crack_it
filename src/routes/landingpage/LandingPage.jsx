@@ -20,12 +20,9 @@ import instagram from '../../assets/images/instagram.png';
 import linkendin from '../../assets/images/linkendin.png';
 import telegram from '../../assets/images/telegram.png';
 import twitter from '../../assets/images/twitter.png';
-
-
-
-
-
-
+import about_1 from '../../assets/images/about_1.png';
+import about_2 from '../../assets/images/about_2.png';
+import about_3 from '../../assets/images/about_3.png';
 
 
 
@@ -64,7 +61,7 @@ export default function LandingPage() {
             </Row>
 
             <Row className={`justify-content-center mt-5`}>
-                <Link to='/' className={`${styles.join_hunt} col-auto py-2 px-4`}>
+                <Link to='/signup' className={`${styles.join_hunt} col-auto py-2 px-4`}>
                   JOIN THE HUNT
                 </Link>
             </Row>
@@ -79,21 +76,21 @@ export default function LandingPage() {
           <Row className={`mb-3 justify-content-center justify-content-md-around`}>
               <div className={`${styles.about_div_col}`}>
                 <div className={`${styles.about_div_row}`}>
-                    <div className={`${styles.about_div}`}></div>
+                    <div className={`${styles.about_div} ${styles.about_div_1}`}></div>
                     <p className={`${styles.about_text}`}>Innovative Cerebral Hunt show that seamlessly blends intellect and adventure</p>
                 </div>
               </div>
 
               <div className={`${styles.about_div_col}`}>
                 <div className={`${styles.about_div_row}`}>
-                    <div className={`${styles.about_div}`}></div>
+                    <div className={`${styles.about_div} ${styles.about_div_2}`}></div>
                     <p className={`${styles.about_text}`}> Hunters are invited to unravel the mysteries of challenging coded messages on a daily and weekly basis.</p>
                 </div>
               </div>
 
             <div className={`${styles.about_div_col}`}>
                 <div className={`${styles.about_div_row}`}>
-                    <div className={`${styles.about_div}`}></div>
+                    <div className={`${styles.about_div} ${styles.about_div_3}`}></div>
                     <p className={`${styles.about_text}`}>Decode first, find hidden treasure, secure victory in the hunt. Be the pioneer code-cracking conqueror!</p>
                 </div>
               </div>

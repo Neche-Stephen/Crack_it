@@ -1,0 +1,68 @@
+
+
+.profile input{
+    height: 30px;
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    border: 2px solid #D9D9D9;
+    padding-left: 30px;
+    letter-spacing: 0em;
+    border-radius: 18px;
+    background-color:#D9D9D9 ;
+}
+
+.profile input::placeholder{
+    color: #B4B2B2;
+}
+
+.count{
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #474342;
+}
+
+.profile_title{
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 37px;
+    letter-spacing: 0em;
+    color: #660066;
+}
+
+.profile_name{
+    font-family: Lato;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 12px;
+    letter-spacing: 0em;
+    color: #660066;
+}
+
+.profile_desc{
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 10px;
+    letter-spacing: 0em;
+    color: #660066;
+}
+
+.profile_btn{
+    border: 1px solid #FF6600;
+    border-radius: 12px;
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    color: #FF6600;
+}

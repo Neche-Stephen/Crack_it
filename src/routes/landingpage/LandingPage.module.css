@@ -145,11 +145,22 @@
 }
 
 .about_div{
-    background: #D9D9D9;
-    border: 2px solid #660066;
+    /* background: #D9D9D9; */
+    /* border: 2px solid #660066; */
     width: 90%;
     height: 196px;
     border-radius: 12px;
+}
+.about_div_1{
+    background-image: url('../../assets/images/about_1.png');
+}
+
+.about_div_2{
+    background-image: url('../../assets/images/about_2.png');
+}
+
+.about_div_3{
+    background-image: url('../../assets/images/about_3.png')
 }
 .about_text{
     font-family: Lato;
@@ -177,7 +188,7 @@
 .small_purple_box{
     width: 9.42% !important;
     height: 100px;
-    background: #660066;
+    background: #FDDFFD;
     /* margin-right: 105px; */
     margin-right: 9%;
 }
@@ -332,7 +343,7 @@
 .big_purple_box{
     width: 24.04% !important;
     height: 466px;
-    background: #660066;
+    background: #FDDFFD;
     /* margin-right: 105px; */
     /* border: 1px solid red; */
 

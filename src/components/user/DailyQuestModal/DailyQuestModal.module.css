@@ -1,0 +1,82 @@
+.daily_quest_modal_body{
+    background-image: url('./asset/daily_bg.png');
+    /* height: 877px; */
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.calendar_hook{
+    position: relative;
+    bottom: 30px;
+    background-image: url('./asset/calendar_hook.png');
+   height: 233px;
+   background-repeat: no-repeat;
+   background-size: 100% 233px;
+   /* border: 1px solid red; */
+}
+
+.calendar_month{
+    position: relative;
+    top: 60%;
+    text-align: center;
+    font-family: Lato;
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 52px;
+    letter-spacing: 0em;
+    color: #660066;   
+
+}
+
+.daily_quest_days_container{
+    overflow-y: scroll;
+    height: 326px;
+    direction: rtl;
+    /* border: 1px solid red; */
+}
+
+.daily_quest_days{
+    background-image: url('./asset/daily_quest_days.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    direction: ltr;
+}
+
+.daily_quest_day{
+    background-image: url('./asset/day_box.png');
+    background-repeat: no-repeat;
+    background-size: 100% 167px;
+    /* border: 2px solid red; */
+    height: 167px;
+}
+
+.daily_quest_day_text{
+    font-family: Nunito;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+/* For Webkit browsers (Chrome, Safari) */
+.daily_quest_days_container::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  /* Track (the area the thumb moves along) */
+.daily_quest_days_container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the track */
+  }
+  
+  /* Handle (the draggable part of the scrollbar) */
+.daily_quest_days_container::-webkit-scrollbar-thumb {
+    background-color: #FF6600; /* Color of the thumb */
+    border-radius: 6px; /* Roundness of the thumb */
+  }
+  
+  /* Handle on hover */
+.daily_quest_days_container::-webkit-scrollbar-thumb:hover {
+    /* background-color: #555; */
+  }
+

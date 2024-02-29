@@ -15,9 +15,13 @@
     border-radius:58px ;
 }
 .signin_animate{
-    border: 1px solid black;
-    background: black;
+    /* border: 1px solid black; */
+    /* background: black; */
     border-radius:58px ;
+    background-image: url('../../assets/images/login_box.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* background-size: contain; */
 }
 
 @media(max-width:991px){

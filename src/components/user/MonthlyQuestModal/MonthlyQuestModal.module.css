@@ -1,0 +1,55 @@
+.today_challenge_text{
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40px;
+    letter-spacing: 0em;
+    color: #660066;
+    /* text-align: center; */   
+}
+
+.today_challenge_task{
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 10px;
+    letter-spacing: 0em;
+    color: #660066;
+}
+
+.today_challenge_body span{
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    /* text-align: center; */
+    color: #660066;
+}
+
+.today_challenge_body button{
+    border: unset;
+    background-color: #FF6600;
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 42px;
+    letter-spacing: 0em;
+    color: #fff;  
+    border-radius: 18px; 
+    width: 100%; 
+}
+
+.details{
+    font-family: Lato;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 17px;
+    letter-spacing: 0em;
+    /* text-align: center; */
+    /* color: #660066; */
+}
+
+.details p{
+    text-align: center;
+}
