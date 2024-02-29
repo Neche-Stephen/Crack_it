@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import crack_it_logo from '../../../assets/images/Crack It, Find It Logo 8.png'
 
 import styles from "./Sidebar.module.css";
+import logout from '../../../assets/images/logout_side.png';
 
 export default function ({sidebarItems, active}) {
     const [activeItem, setActiveItem] = React.useState(active);
@@ -59,6 +60,17 @@ export default function ({sidebarItems, active}) {
                 })
             }
 
+                        <Row  style={{marginTop:'100px'}}>
+                            <Col xs = '10' lg ='8' className={`${styles.sidebar_item_col} p-0 py-2`}>
+                            <Row className='justify-content-center align-items-center m-0'>
+                                <Col xs = "auto" className={`${styles.sidebar_item_icon_col} p-0`}>
+                                    <img src={logout} alt="" className={`${styles.sidebar_item_icon}`}/>
+                                </Col>
+                                <Col xs = "auto" className={`${styles.sidebar_item} d-sm-none d-lg-block px-2 px-lg-`}>Log out</Col>
+
+                            </Row>
+                            </Col>
+                        </Row>
             <button className={`${styles.sidebar_col_Mob_btn} d-none`} onClick={handleMobileClick}>
 
             </button>
