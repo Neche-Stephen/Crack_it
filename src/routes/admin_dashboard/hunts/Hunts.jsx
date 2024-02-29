@@ -73,7 +73,7 @@ export default function AdminHunts() {
                         </Row>
                         <Row className='mb-4'>
                             <Col xs = '12' className='mb-3'>
-                                <input type="text" placeholder='Iwuanyanwu Claire'/>
+                                <input type="text" placeholder='Iwuanyanwu Claire' className={`${styles.admin_hunts_containerinput}`}/>
                             </Col>
                             <Col xs = '12' >
                             <select name="" id="">
