@@ -25,13 +25,25 @@
 }
 
 @media(max-width:575px){
+    .sidebar_item_icon_col{
+        /* border: 1px solid purple; */
+
+    }
+    .sidebar_item_icon{
+        /* height: 32px; */
+        /* border: 1px solid red; */
+        /* height: 11.59px; */
+        /* width: 11.59px; */
+    }
     .sidebar_item{
         font-family: Lato;
-        font-size: 10px;
+        font-size: 14px;
         font-weight: 600;
         line-height: 32px;
         letter-spacing: 0em;
         color: #660066;
+        /* border: 1px solid red; */
+
         /* border: 1px solid red; */
 
     }   

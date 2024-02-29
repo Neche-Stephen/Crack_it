@@ -31,8 +31,8 @@ export default function ({sidebarItems, active}) {
     }
   return (
     <>
-        <div className={`${styles.sidebar_col} col-4 col-sm-2 col-md-2 col-lg-3`} ref={tabDeskRef}>
-            <Row className='mb-5'>
+        <div className={`${styles.sidebar_col} col-6 col-sm-2 col-md-2 col-lg-3`} ref={tabDeskRef}>
+            <Row className='mb-5 d-none d-sm-flex'>
                 <Col lg = "4">
                     <Link to='/'><img src={crack_it_logo} alt="" className='w-100'/></Link>
                 </Col>
@@ -41,15 +41,14 @@ export default function ({sidebarItems, active}) {
             {
                 sidebarItems.map((item, index) =>{
                     return (
-                        <Row key={index} className='mb-5'>
-                            {/* <Col xs = "2" className='p-0' style={{border:"1px solid red"}}>
-                                        <img src={item.icon} alt="" style={{border:"1px solid green"}}/>
-                                    </Col>
-                                    <Col xs = "1">{item.itemName}</Col> */}
-                            <Col xs = '10' lg ='8' className={`${styles.sidebar_item_col} p-0 py-2`} style={{border: item.itemName === activeItem ? "2px solid #FF6600":"", cursor:"pointer"}} onClick={()=>{handleSideBarClick(item.itemName, item.itemLink)}}>
+                        <Row key={index} className='mb-5 mt-5 mt-sm-0'>
+                            <Col xs = '10' lg ='8' 
+                            className={`${styles.sidebar_item_col} p-0 py-2`} 
+                            style={{border: item.itemName === activeItem ? "2px solid #FF6600":"", cursor:"pointer"}} 
+                            onClick={()=>{handleSideBarClick(item.itemName, item.itemLink)}}>
                             <Row className='justify-content-center align-items-center m-0'>
-                                    <Col xs = "auto" className={`${styles.sidebar_item_icon_col} p-0`}>
-                                        <img src={item.icon} alt="" className={`${styles.sidebar_item_icon}`}/>
+                                    <Col xs = "2"  lg ="auto" className={`${styles.sidebar_item_icon_col} p-0`}>
+                                        <img src={item.icon} alt="" className={`${styles.sidebar_item_icon} w-100`}/>
                                     </Col>
                                     <Col xs = "auto" className={`${styles.sidebar_item} d-sm-none d-lg-block px-2 px-lg-`}>{item.itemName}</Col>
 
@@ -63,8 +62,8 @@ export default function ({sidebarItems, active}) {
                         <Row  style={{marginTop:'100px'}}>
                             <Col xs = '10' lg ='8' className={`${styles.sidebar_item_col} p-0 py-2`}>
                             <Row className='justify-content-center align-items-center m-0'>
-                                <Col xs = "auto" className={`${styles.sidebar_item_icon_col} p-0`}>
-                                    <img src={logout} alt="" className={`${styles.sidebar_item_icon}`}/>
+                                <Col xs = "2"  lg ="auto"  className={`${styles.sidebar_item_icon_col} p-0`}>
+                                    <img src={logout} alt="" className={`${styles.sidebar_item_icon} w-100`}/>
                                 </Col>
                                 <Col xs = "auto" className={`${styles.sidebar_item} d-sm-none d-lg-block px-2 px-lg-`}>Log out</Col>
 

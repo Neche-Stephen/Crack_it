@@ -8,6 +8,13 @@
     color: #660066;
 }
 
+@media(max-width:767px){
+    .welcome{
+        font-size: 20px;
+
+    }
+}
+
 .parent_dashboard_card{
     height: 210px;
     /* border: 1px solid purple; */

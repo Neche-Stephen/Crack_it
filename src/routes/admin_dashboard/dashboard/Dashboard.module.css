@@ -12,6 +12,12 @@
     color: #660066;
 }
 
+/* @media(max-width:767px){
+    .welcome{
+        font-size: 10px;
+    }
+} */
+
 .dashboard_card{
     background-image: url('../../../assets/images/dashboard_card_2.png');
     background-repeat: no-repeat;
