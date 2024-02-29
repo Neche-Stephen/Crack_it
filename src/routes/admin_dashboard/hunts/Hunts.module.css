@@ -42,7 +42,7 @@ textarea::placeholder{
     color: #B4B2B2;
 }
 
-.admin_hunts_container button{
+.admin_hunts_container .hunt_btn{
     border: unset;
     background-color: #FF6600;
     border-radius: 12px;

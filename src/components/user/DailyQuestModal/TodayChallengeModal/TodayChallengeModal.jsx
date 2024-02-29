@@ -16,8 +16,8 @@ export default function TodayChallengeModal(props) {
   >
     
     <Modal.Body className={`${styles.today_challenge_body}`}>
-      <div className={`${styles.today_challenge_row} row mb-3`}>
-        <div className='col-1' >
+      <div className={`${styles.today_challenge_row} row mb-3 align-items-center` }>
+        <div className='col-2 col-lg-1' >
           <img src={left_arrow} alt="" className='w-100' onClick={props.onHide}/>
         </div>
         <div className='col-auto mx-auto'>
@@ -38,7 +38,7 @@ export default function TodayChallengeModal(props) {
       </Row>
 
       <Row className={`${styles.details} justify-content-center`}>
-        <Col xs = "6">
+        <Col xs = "10" lg = "6">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi iusto, eaque eius ullam aliquid, obcaecati qui quasi ab deleniti molestias dignissimos recusandae harum quo, sint placeat! Eligendi alias laborum fugit.</p>
         </Col>
       </Row>
@@ -50,7 +50,7 @@ export default function TodayChallengeModal(props) {
       </Row>
 
       <Row className={`${styles.details} justify-content-center`}>
-        <Col xs = "6">
+        <Col xs = "10" lg = "6">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi iusto, eaque eius ullam aliquid, obcaecati qui quasi ab deleniti molestias dignissimos recusandae harum quo, sint placeat! Eligendi alias laborum fugit.</p>
         </Col>
       </Row>
@@ -62,13 +62,13 @@ export default function TodayChallengeModal(props) {
       </Row>
 
       <Row className={`${styles.details} justify-content-center`}>
-        <Col xs = "6">
+        <Col xs = "10" lg = "6">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi iusto, eaque eius ullam aliquid, obcaecati qui quasi ab deleniti molestias dignissimos recusandae harum quo, sint placeat! Eligendi alias laborum fugit.</p>
         </Col>
       </Row>
 
        <Row className='justify-content-center'>
-        <Col xs = '3'>
+        <Col xs = '10' lg = '3'>
           <button>Finish</button>
         </Col>
       </Row>
@@ -79,3 +79,5 @@ export default function TodayChallengeModal(props) {
   )
 }
 
+// MonthlyQuestModal
+// WeeklyQuestModal

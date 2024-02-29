@@ -18,7 +18,7 @@ export default function AdminDashboard() {
                 <Row className='mt-4'>
                     <Col><p className={`${styles.welcome}`}>Welcome Claire,</p></Col>
                 </Row>
-                <Row>
+                <Row className='d-none'>
                   <Col xs = "4" className=''>
                     <div className={`${styles.dashboard_card}`}>
                         

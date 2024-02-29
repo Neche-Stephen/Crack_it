@@ -29,13 +29,13 @@ export default function Hunts() {
             <Col>
                 <DashboardNavbar />
                 <Row>
-                    <Col xs = '6'>
+                    <Col xs = '12' lg = '6'>
                         <img src={hunt_day} alt="" className='w-100' onClick={() => setTodayDailyChallenge(true)}/>
                     </Col>
-                    <Col xs = '6'>
+                    <Col xs = '12' lg = '6'>
                         <img src={hunt_week} alt="" className='w-100' onClick={() => setWeeklyQuestModalShow(true)}/>
                     </Col>
-                    <Col xs = '6'>
+                    <Col xs = '12' lg = '6'>
                         <img src={hunt_month} alt="" className='w-100' onClick={() => setMonthlyQuestModalShow(true)}/>
                     </Col>
                 </Row>

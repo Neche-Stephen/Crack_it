@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
+import { Link } from 'react-router-dom';
+
 import styles from './Hunts.module.css';
 
 import AdminSidebar from '../../../components/admin/adminSidebar/AdminSidebar';
@@ -32,7 +34,7 @@ export default function AdminHunts() {
                         </Row>
                         <Row className='mb-3'>
                             <Col>
-                            <input type="text" placeholder='Hunt Title' />
+                             <input type="text" placeholder='Hunt Title' className={`${styles.admin_hunts_containerinput}`}/>
                             </Col>
                         </Row>
                         <Row className='mb-3'>
@@ -62,8 +64,8 @@ export default function AdminHunts() {
                             </Col>
                         </Row>
                         <Row className='justify-content-center mb-3'>
-                            <Col xs = '3'>
-                                <button>Create Hunt</button>
+                            <Col xs ='9' lg = '3'>
+                                <Link to = '/admin/hunts'><button className={`${styles.hunt_btn}`}>Create Hunts</button></Link>
                             </Col>
                         </Row>
                         <Row>
@@ -80,8 +82,8 @@ export default function AdminHunts() {
                             </Col>
                         </Row>
                         <Row className='justify-content-center'>
-                            <Col xs = '3'>
-                                <button>Reward</button>
+                            <Col xs ='9' lg = '3'>
+                                 <Link to = '/admin/hunts'><button className={`${styles.hunt_btn}`}>Reward</button></Link>
                             </Col>
                         </Row>
                     </Col>

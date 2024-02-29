@@ -59,7 +59,7 @@
 .sidebar_col_button{
     width: 1% !important;
     display: none;
-    min-height: 100vh;
+    /* border: 2px solid red; */
 }
 
 .sidebar_col_button button{
@@ -79,6 +79,7 @@
         z-index: 1000;
         position: absolute;
         min-height: auto;
+        min-height: 1000px !important;
     }
     .sidebar_col_button{
         border-top-right-radius: 58px;
