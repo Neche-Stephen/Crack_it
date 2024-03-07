@@ -62,17 +62,31 @@ export default function LandingPage() {
           </Row>
           <Row className='mb-4'>
             <Col xs = 'auto'>
-              <p className={`${styles.mobile_nav_links}`}>HOME</p>
+              <Link to = '/'  className={`${styles.mobile_nav_links}`}>HOME</Link>
             </Col>
           </Row>
           <Row className='mb-4'>
             <Col xs = 'autos'>
-            <p className={`${styles.mobile_nav_links}`}>ABOUT US</p>
+              <ScrollLink
+                      to="about"
+                      className={`${styles.mobile_nav_links}`}
+                      smooth={true}
+                      duration={500}
+                    >
+                    ABOUT US 
+                </ScrollLink>
             </Col>
           </Row>
           <Row>
             <Col xs = 'auto'>
-            <p className={`${styles.mobile_nav_links}`}>CONTACT US</p>
+              <ScrollLink
+                      to="contact"
+                      smooth={true}
+                      duration={500}
+                      className={`${styles.mobile_nav_links}`}
+                    >
+                    CONTACT US 
+              </ScrollLink>
             </Col>
           </Row>
         </div>

@@ -26,17 +26,11 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
           </div>
          <div className={`col d-none d-lg-block`}>
             <div className={`${styles.nav_links} row m-0 align-items-center justify-content-between`}>
-            <ScrollLink
-                to="top"
-                className={`${styles.video_watch} col-auto`}
-                smooth={true}
-                duration={500}
-                ></ScrollLink>
+            
               <div className={`${styles.nav_Link} col-auto`}><Link to='/'>HOME</Link></div>
               <div className={`${styles.nav_Link} col-auto`}>
                 <ScrollLink
                     to="about"
-                    className={`${styles.video_watch} col-auto`}
                     smooth={true}
                     duration={500}
                   >
@@ -46,7 +40,6 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
               <div className={`${styles.nav_Link} col-auto`}>
                   <ScrollLink
                     to="contact"
-                    className={`${styles.video_watch} col-auto`}
                     smooth={true}
                     duration={500}
                   >
