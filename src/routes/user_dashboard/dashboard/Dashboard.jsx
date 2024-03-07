@@ -21,7 +21,7 @@ export default function UserDashboard() {
         <Row>
             <UserSidebar active = 'Dashboard'/>
 
-            <Col className='ps-4 pe-5'>
+            <Col className='ps-4 pe-5 pb-5 offset-3'>
                 <DashboardNavbar />
                 <Row className='mt-3 mb-2'>
                     <Col><p className={`${styles.welcome}`}>Welcome Claire,</p></Col>
@@ -46,41 +46,7 @@ export default function UserDashboard() {
                   
                   </Col>
                 </Row>
-                {/* <Row className='mb-3'>
-                    <Col xs = '4'>
-                        <div className={`${styles.dashboard_card}`}>
-                            <img src={dashboard_card} alt="" className='w-100'/>
-                            <img src={Ellipse} alt="" className={`${styles.dashboard_card_ellipse}`}/>
-                            <img src={partcipate} alt="" className={`${styles.dashboard_card_partcipate}`}/>
-                            <img src={box} alt="" className={`${styles.dashboard_card_box}`} />
-                            <Row>
-                                <Col><p className={`${styles.partcipated_hunt_No}`}>45</p></Col>
-                            </Row>
-                            <Row>
-                                <Col><p className={`${styles.dashboard_card_text}`}>Participated <br />Hunts </p></Col>
-                            </Row>
-                            <Row>
-                                <Col><p className={`${styles.dashboard_card_small_text}`}>Completed within one week</p></Col>
-                            </Row>
-                        </div>
-                    </Col>
-                    <Col xs = '4'>
-                        <div className={`${styles.dashboard_card}`}>
-                            <img src={dashboard_card} alt="" className='w-100'/>
-                            <img src={Ellipse} alt="" className={`${styles.dashboard_card_ellipse}`}/>
-                            <img src={earnings} alt="" className={`${styles.dashboard_card_partcipate}`}/>
-                            <img src={box} alt="" className={`${styles.dashboard_card_box}`} />
-                        </div>
-                    </Col>
-                    <Col xs = '4'>
-                        <div className={`${styles.dashboard_card}`}>
-                            <img src={dashboard_card} alt="" className='w-100'/>
-                            <img src={Ellipse} alt="" className={`${styles.dashboard_card_ellipse}`}/>
-                            <img src={hunt} alt="" className={`${styles.dashboard_card_hunt}`}/>
-                            <img src={box} alt="" className={`${styles.dashboard_card_box}`} />
-                        </div>
-                    </Col>
-                </Row> */}
+               
                 <Row>
                     <Col lg = '4' className='mb-lg-4'>
                         <div className={`${styles.hunt} `}>

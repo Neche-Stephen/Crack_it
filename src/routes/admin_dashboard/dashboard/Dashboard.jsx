@@ -13,7 +13,7 @@ export default function AdminDashboard() {
     <Container fluid className={`${styles.admin_dashboard}`}>
         <Row>
             <AdminSidebar active="Dashboard"/>
-            <Col>
+            <Col className='offset-3'>
                <DashboardNavbar />
                 <Row className='mt-4'>
                     <Col><p className={`${styles.welcome}`}>Welcome Claire,</p></Col>
@@ -39,7 +39,7 @@ export default function AdminDashboard() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md = '6' lg = '4' className='mb-lg-4'>
+                  <Col md = '6' lg = '4' className='mb-lg-4' style={{border:'1px solid red'}}>
                     <div className={`${styles.todays_hunt}`}>
                         <h3 className='mb-4'>Today's hunt</h3>
                         <Row className='justify-content-center'>

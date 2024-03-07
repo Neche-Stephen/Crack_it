@@ -26,7 +26,7 @@ export default function Hunts() {
     <Container fluid>
         <Row>
             <UserSidebar active = "Hunts"/>
-            <Col>
+            <Col className='offset-3'>
                 <DashboardNavbar />
                 <Row>
                     <Col xs = '12' lg = '6'>

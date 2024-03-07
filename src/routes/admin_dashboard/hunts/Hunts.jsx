@@ -15,7 +15,7 @@ export default function AdminHunts() {
     <Container fluid className={`${styles.admin_hunts_container}`}>
         <Row>
             <AdminSidebar active = 'Hunts'/>
-            <Col className='ps-4 py-4'>
+            <Col className='ps-4 py-4 offset-3'>
                 <DashboardNavbar />
                 <Row>
                     <Col xs = '11' lg = '9'>

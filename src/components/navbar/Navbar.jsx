@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container} from 'react-bootstrap';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+
 import styles from "./Navbar.module.css";
 
 import {Link} from 'react-router-dom';
@@ -24,11 +26,36 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
           </div>
          <div className={`col d-none d-lg-block`}>
             <div className={`${styles.nav_links} row m-0 align-items-center justify-content-between`}>
-              <div className={`${styles.nav_Link} col-auto`}>HOME</div>
-              <div className={`${styles.nav_Link} col-auto`}>ABOUT US</div>
-              <div className={`${styles.nav_Link} col-auto`}>CONTACT US</div>
-              <div className={`${styles.nav_Link} col-auto ms-auto`}>LOG IN</div>
-              <Link to='/' className={`${styles.nav_Link} ${styles.nav_button} col-auto`}>SIGNUP</Link>
+            <ScrollLink
+                to="top"
+                className={`${styles.video_watch} col-auto`}
+                smooth={true}
+                duration={500}
+                ></ScrollLink>
+              <div className={`${styles.nav_Link} col-auto`}><Link to='/'>HOME</Link></div>
+              <div className={`${styles.nav_Link} col-auto`}>
+                <ScrollLink
+                    to="about"
+                    className={`${styles.video_watch} col-auto`}
+                    smooth={true}
+                    duration={500}
+                  >
+                   ABOUT US 
+                  </ScrollLink>
+              </div>
+              <div className={`${styles.nav_Link} col-auto`}>
+                  <ScrollLink
+                    to="contact"
+                    className={`${styles.video_watch} col-auto`}
+                    smooth={true}
+                    duration={500}
+                  >
+                   CONTACT US 
+                  </ScrollLink>
+                
+                </div>
+              <div className={`${styles.nav_Link} col-auto ms-auto`}><Link to = '/login'>LOG IN</Link></div>
+              <Link to='/signup' className={`${styles.nav_Link} ${styles.nav_button} col-auto`}>SIGNUP</Link>
             </div>
          </div>
           <button className={`${styles.nav_menu} d-lg-none col-auto`}><img src={hamburger} onClick={handleNavClick}/></button>

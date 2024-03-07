@@ -41,7 +41,7 @@ export default function ({sidebarItems, active}) {
             {
                 sidebarItems.map((item, index) =>{
                     return (
-                        <Row key={index} className='mb-5 mt-5 mt-sm-0'>
+                        <Row key={index} className='mb-1 mt-5 mt-sm-0'>
                             <Col xs = '10' lg ='8' 
                             className={`${styles.sidebar_item_col} p-0 py-2`} 
                             style={{border: item.itemName === activeItem ? "2px solid #FF6600":"", cursor:"pointer"}} 

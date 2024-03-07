@@ -82,6 +82,7 @@
     letter-spacing: 0em;
     text-align: left;
     color: #FF6600;    
+    cursor: pointer;
 }
 
 @media (max-width:767px){
@@ -203,6 +204,23 @@
     text-decoration: none;    
     border-radius: 12px;
     color: white;
+}
+
+/* Crack it Video */
+
+.crack_video_container{
+
+}
+
+.crack_video{
+    width: 100%;
+    height: 511px;
+}
+
+@media(max-width:575px){
+    .crack_video{
+        height:311px ;
+    }
 }
 
 /* Contact Section */

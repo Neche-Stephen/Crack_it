@@ -16,7 +16,7 @@ export default function Profile() {
     <Container fluid className={`${styles.profile}`}>
         <Row>
             <AdminSidebar active = 'Profile'/>
-            <Col>
+            <Col className='offset-3'>
                 <DashboardNavbar />
 
                 <Row className='align-items-center mb-5 pe-2'>

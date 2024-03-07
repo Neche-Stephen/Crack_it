@@ -4,7 +4,13 @@
     background: #FDDFFD;
     padding-top: 40px;
     padding-bottom: 70px;
+    position: fixed;
+    /* overflow: auto; */
+    /* position: sticky; */
     /* position: relative; */
+    /* z-index: -1; */
+    /* width: 500px !important; */
+    /* position: sticky; */
 }
 
 .sidebar_col > * {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 
 import styles from './LandingPage.module.css'
@@ -30,6 +31,10 @@ import exit from '../../assets/images/exit.png';
 
 export default function LandingPage() {
   const [showMobileNav, setShowMobileNav] = React.useState(false);
+
+  const scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   const handleNavClick = () => {
     setShowMobileNav(!showMobileNav)
@@ -88,9 +93,14 @@ export default function LandingPage() {
             </Row>
 
             <Row className={`align-items-center justify-content-center mt-5 `}>
-                <Link to = '/' className={`${styles.video_watch} col-auto`}>
-                    Watch full video here
-                </Link>
+            <ScrollLink
+                to="top"
+                className={`${styles.video_watch} col-auto`}
+                smooth={true}
+                duration={500}
+                >
+                  Watch full video here
+              </ScrollLink>
                 <Link to='/' className={`col-auto ${styles.play}` }><img src={play} alt="" /></Link>
             </Row>
 
@@ -103,7 +113,7 @@ export default function LandingPage() {
        </header>
 
       {/* About Section  */}
-        <Container className='mt-5 mb-5'>
+        <Container id='about' className='mt-5 mb-5'>
           <Row className={`justify-content-center mb-5`}>
             <Col xs = 'auto' className={`${styles.about_it}`}>ABOUT CRACK IT FIND IT</Col>
           </Row>
@@ -134,8 +144,18 @@ export default function LandingPage() {
           </Row>
         </Container>
 
+        {/* Crack it Video Section */}
+
+        <Container fluid className={`${styles.crack_video_container} mb-5`} >
+          <Row id="top" className='m-0'>
+             <Col className='p-0'>
+               <iframe width="560" height="315" className={`${styles.crack_video}`} src="https://www.youtube.com/embed/hUaUdUyamEc?si=eQ2Tg9wOICSt2oYL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+             </Col>
+          </Row>
+        </Container>
+
         {/* Contact Section */}
-       <Container className='mb-5'>
+       <Container className='mb-5' id='contact'>
           <Row className={`align-items-center justify-content-center justify-content-sm-between`}>
             <div className={`${styles.small_purple_box}`}>
 
