@@ -1,5 +1,30 @@
 
 
+/* Mobile Navbar */
+.mobile_nav{
+    width: 189px;
+    height: 100vh;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.mobile_nav_links{
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: -0.02em;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 .signup_div{
     /* background: #FDDFFD; */
     margin-top: 30px;
@@ -16,20 +41,25 @@
     border-radius:58px ;
     box-shadow: 0.8720112442970276px 7.848101615905762px 13.428973197937012px 0.8720112442970276px #08479E40;
 }
-@media(max-width:575px){
+@media(max-width:991px){
     .signup_form_row{
         border-radius:unset;
-
+        box-shadow: unset;
     }
 }
 .signup_animate{
     /* border: 1px solid black; */
     /* background: black; */
     border-radius:58px ;
-    background-image: url('../../assets/images/login_box.png');
+    background-image: url('./jonny_3_30.jpg');
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
+    /* background-color: #660066;
+    background-blend-mode: multiply;
+    opacity: 0.4; */
 }
+
+
 
 .signup_form{
     /* background-color: #fff; */

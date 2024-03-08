@@ -4,8 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../../components/navbar/Navbar';
 
+
 import styles from './SignIn.module.css';
-import google from '../../assets/images/google.png'
+import google from '../../assets/images/google.png';
+import exit from '../../assets/images/exit.png';
+
 
 const defaultUserDetails = {
     'email': ``,
@@ -25,6 +28,9 @@ export default function SignIn() {
 
     const {email, password} = userDetails
 
+    const handleNavClick = () => {
+        setShowMobileNav(!showMobileNav)
+      };
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
@@ -99,6 +105,45 @@ export default function SignIn() {
   return (
    <>
     <nav style={{backgroundColor:"#660066"}}> <Navbar showMobileNav = {showMobileNav} setShowMobileNav = {setShowMobileNav}/></nav>
+    
+          {/* Mobile Navbar */}
+          {
+        showMobileNav &&    
+        <div className={`${styles.mobile_nav}`}>
+          <Row className='justify-content-end mb-1'>
+            <Col xs = 'auto'>
+              <img src={exit} alt="" className='w-100' onClick={handleNavClick} style={{cursor:'pointer'}}/>
+            </Col>
+          </Row>
+          <Row className='mb-4'>
+            <Col xs = 'auto'>
+              <Link to = '/'  className={`${styles.mobile_nav_links}`}>HOME</Link>
+            </Col>
+          </Row>
+          <Row className='mb-4'>
+            <Col xs = 'auto'>
+              <Link
+                      to="/"
+                      className={`${styles.mobile_nav_links}`}
+                      
+                    >
+                    ABOUT US 
+                </Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs = 'auto'>
+              <Link
+                      to="/"
+                      
+                      className={`${styles.mobile_nav_links}`}
+                    >
+                    CONTACT US 
+              </Link>
+            </Col>
+          </Row>
+        </div>
+       }
     <div className={`${styles.signin_div} py-3`}>
         <Container>
             <Row className={`${styles.signin_form_row}`}>
@@ -141,7 +186,7 @@ export default function SignIn() {
 
                         </Col>
                     </Row>
-                    <Row>
+                    {/* <Row>
                         <Col className='p-0' xs = "auto">
                             <div className={`${styles.horizontal_line}`} />
                         </Col>
@@ -151,8 +196,8 @@ export default function SignIn() {
                         <Col className='p-0' xs = "auto">
                             <div className={`${styles.horizontal_line}`} />
                         </Col>
-                    </Row>
-                    <Row className='mb-4'>
+                    </Row> */}
+                    {/* <Row className='mb-4'>
                         <Col xs = "11" lg = "9">
                             <button className={`${styles.continue_google} row m-0 align-items-center justify-content-center`}>
                                 <div className={`col-auto p-0`}>
@@ -164,7 +209,7 @@ export default function SignIn() {
                                 </div>
                             </button>
                         </Col>
-                    </Row>
+                    </Row> */}
                     <Row>
                         <Col xs ="11" lg = "8">
                         {

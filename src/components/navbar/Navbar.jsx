@@ -8,8 +8,10 @@ import {Link} from 'react-router-dom';
 // import images from '../../assets/images';
 import hunt_logo from '../../assets/images/hunt.jpg';
 import crack_logo from '../../assets/images/CRACK IT FIND IT LOGO 1.png';
-import crack_logo2 from '../../assets/images/Crack It, Find It Logo1 1.png';
-import hamburger from '../../assets/images/hamburger.png'
+import crack_logo2 from '../../assets/images/Crack It, Find It Logo1 1.svg';
+import hamburger from '../../assets/images/hamburger.svg'
+// import hamburger from '../../assets/images/hamburger1.png'
+
 
 
 

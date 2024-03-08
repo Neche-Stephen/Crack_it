@@ -5,6 +5,10 @@ import axios from 'axios';
 import Navbar from '../../components/navbar/Navbar';
 
 import styles from './SignUp.module.css';
+import exit from '../../assets/images/exit.png';
+
+import animate_vid from './animate.mp4';
+
 
 const defaultUserDetails = {
     'fname': ``,
@@ -42,6 +46,9 @@ export default function SignUp() {
     } = userDetails;
 
  
+    const handleNavClick = () => {
+        setShowMobileNav(!showMobileNav)
+      };
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
@@ -51,7 +58,7 @@ export default function SignUp() {
     };
     
     const handleSubmit = (e)=> {
-        console.log('jk');
+        // console.log('jk');
 
         e.preventDefault();
         setSignupLoading(true);
@@ -157,12 +164,50 @@ useEffect(() =>{
   return (
    <>
    <nav style={{backgroundColor:"#660066"}}> <Navbar showMobileNav = {showMobileNav} setShowMobileNav = {setShowMobileNav}/></nav>
+   
+          {/* Mobile Navbar */}
+          {
+        showMobileNav &&    
+        <div className={`${styles.mobile_nav}`}>
+          <Row className='justify-content-end mb-1'>
+            <Col xs = 'auto'>
+              <img src={exit} alt="" className='w-100' onClick={handleNavClick} style={{cursor:'pointer'}}/>
+            </Col>
+          </Row>
+          <Row className='mb-4'>
+            <Col xs = 'auto'>
+              <Link to = '/'  className={`${styles.mobile_nav_links}`}>HOME</Link>
+            </Col>
+          </Row>
+          <Row className='mb-4'>
+            <Col xs = 'auto'>
+              <Link
+                      to="/"
+                      className={`${styles.mobile_nav_links}`}
+                    >
+                    ABOUT US 
+                </Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs = 'auto'>
+              <Link
+                      to="/"
+                      className={`${styles.mobile_nav_links}`}
+                    >
+                    CONTACT US 
+              </Link>
+            </Col>
+          </Row>
+        </div>
+       }
 
     <div className={`${styles.signup_div} py-3`}>
         
         <Container>
             <Row className={`${styles.signup_form_row}`}>
-                <Col className={`${styles.signup_animate} d-none d-lg-block`}>
+                <Col  className={`${styles.signup_animate} d-none d-lg-block`}>
+                    
                 </Col>
                 <form className={`${styles.signup_form} col`} onSubmit={handleSubmit}>
                     <Row><Col xs="11" lg ="10"><h1>Create New Account</h1></Col></Row>
