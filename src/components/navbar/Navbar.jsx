@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 // import images from '../../assets/images';
 import hunt_logo from '../../assets/images/hunt.jpg';
 import crack_logo from '../../assets/images/CRACK IT FIND IT LOGO 1.png';
+import crack_logo2 from '../../assets/images/Crack It, Find It Logo1 1.png';
 import hamburger from '../../assets/images/hamburger.png'
 
 
@@ -21,10 +22,10 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
     <>
       <Container className='py-4'>
         <nav className='row m-0 align-items-center'>
-          <div className={`${styles.nav_Logo} col`}>
-            <img className={`${styles.nav_logo_img}`} src={crack_logo} alt="Hunt Logo" />
+          <div className={`${styles.nav_Logo} col-auto me-auto`}>
+            <img className={`${styles.nav_logo_img} w-50`} src={crack_logo2} alt="Hunt Logo"/>
           </div>
-         <div className={`col d-none d-lg-block`}>
+         <div className={`col-6 d-none d-lg-block`}>
             <div className={`${styles.nav_links} row m-0 align-items-center justify-content-between`}>
             
               <div className={`${styles.nav_Link} col-auto`}><Link to='/'>HOME</Link></div>

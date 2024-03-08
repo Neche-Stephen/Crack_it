@@ -1,8 +1,9 @@
 
 
 .signin_div{
-    background: #FDDFFD;
+    /* background: #FDDFFD; */
     min-height: 100vh;
+    margin-top: 30px;
 }
 
 @media(max-width:991px){
@@ -13,6 +14,8 @@
 .signin_form_row{
     background-color: #fff;
     border-radius:58px ;
+    box-shadow: 0.8720112442970276px 7.848101615905762px 13.428973197937012px 0.8720112442970276px #08479E40;
+
 }
 .signin_animate{
     /* border: 1px solid black; */

@@ -1,7 +1,7 @@
 
 .welcome{
     font-family: Lato;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 800;
     line-height: 37px;
     letter-spacing: 0em;
@@ -194,4 +194,20 @@
     line-height: 14px;
     letter-spacing: 0em;
     color: #A1A5C5;
+}
+
+.no_hunt{
+    box-shadow: -3px 5px 31.299999237060547px -17px #B4B2B2;
+    padding-top: 40px;
+}
+
+.no_hunt p{
+    text-align: center;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 38px;
+    letter-spacing: 0em;
+    color: #660066;
+    height: 400px;
 }

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Row, Col, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../../components/navbar/Navbar';
 
 import styles from './SignUp.module.css';
 
@@ -24,10 +25,12 @@ const defaultUserDetails = {
 
 
 export default function SignUp() {
+    const [showMobileNav, setShowMobileNav] = React.useState(false);
     const [signupBtnLoading, setSignUpBtnLoading] = useState(false);
     const [userDetails, setUserDetails] = useState(defaultUserDetails);
     const [errorMessage, setErrorMessage] = useState('');
     const [errorMessageSentence, setErrorMessageSentence] = useState([]);
+    const [signupLoading , setSignupLoading ] = useState(false);
     const [border, setBorder] = useState(false)
 
     const navigate = useNavigate();
@@ -47,6 +50,8 @@ export default function SignUp() {
     
     const handleSubmit = (e)=> {
         e.preventDefault();
+        setSignupLoading(true);
+        setErrorMessageSentence([]);
         const requiredFields = ['fname', 'email', 'phone', 'password', 'confirm_password', 'gender', 'age', 'state', 'country_code'];
         const isEmpty = requiredFields.some((field) => userDetails[field] === '');
        
@@ -72,65 +77,66 @@ export default function SignUp() {
             // if (element) {
             // element.scrollIntoView({ behavior: 'smooth' });
             // }
+            setSignupLoading(false);
             return;
         }
 
         if(confirm_password !== password){
             // alert('ogini');
             setErrorMessageSentence(['Password and Confirm Password are not the same']);
+            setSignupLoading(false);
             return;
         }
 
         if(privacy_terms){
             // alert('baba');
             setErrorMessageSentence(['You must accept privacy terms']);
+            setSignupLoading(false);
             return;
         }
-        else{
-            alert('bato');
-            return
-        }
            
-            axios.post(api + '/api/user-reg', {
-                'name': `${fname}`,
-                'lname': `${lname}`,
-                'gender': `${gender}`,
-                'email': `${email}`,
-                'phone': `${country_code + phone}`,
-                'password': `${password}`,
-                'address': `${address}`,
-                'age': `${age}`,
-                'occupation': `${occupation}`,
-                'nationality' : `${nationality}`,
-                'state' : `${state}`
-            })
-            .then(function (response) {
-                // setLoading(false)
-                sessionStorage.setItem("Token", `${response.data.data.token}`);
-                console.log(response.data);
-                alert(response, response.data)
-                navigate("/user/dashboard");
-            })
-            .catch(function (error) {
-                alert(error, error.response);
-                if (error.response){
-                //   setLoading(false)
-                console.log(error.response.data);
-                console.log(error.response.data.message);
-                //   setSuccess(error.response.data.success)
-                //   setErrorMessage(error.response.data.message);
-                const sentences = error.response.data.message.split('.\n').filter(sentence => sentence.trim() !== '');
-                setErrorMessageSentence(sentences);
-                console.log(sentences);
-                }
-                else{
-                //   setLoading(false)
-                //   setSuccess(false)
-                //   setNetwork( network = 'Encountered an error, Please try again')
-                console.log('error')
-                }
-                
-            });
+        axios.post(api + '/api/user-reg', {
+            'name': `${fname}`,
+            'lname': `${lname}`,
+            'gender': `${gender}`,
+            'email': `${email}`,
+            'phone': `${country_code + phone}`,
+            'password': `${password}`,
+            'address': `${address}`,
+            'age': `${age}`,
+            'occupation': `${occupation}`,
+            'nationality' : `${nationality}`,
+            'state' : `${state}`
+        })
+        .then(function (response) {
+            // setLoading(false)
+            sessionStorage.setItem("Token", `${response.data.data.token}`);
+            console.log(response.data);
+            setSignupLoading(false);
+            navigate("/user/dashboard");
+        })
+        .catch(function (error) {
+            alert(error, error.response);
+            if (error.response){
+            //   setLoading(false)
+            console.log(error.response.data);
+            console.log(error.response.data.message);
+            //   setSuccess(error.response.data.success)
+            //   setErrorMessage(error.response.data.message);
+            setSignupLoading(false);
+            const sentences = error.response.data.message.split('.\n').filter(sentence => sentence.trim() !== '');
+            setErrorMessageSentence(sentences);
+            console.log(sentences);
+            }
+            else{
+            //   setLoading(false)
+            //   setSuccess(false)
+            //   setNetwork( network = 'Encountered an error, Please try again')
+            console.log('error');
+            setSignupLoading(false);
+            }
+            
+        });
         
     }
 
@@ -145,7 +151,11 @@ useEffect(() =>{
 }, [])
 
   return (
+   <>
+   <nav style={{backgroundColor:"#660066"}}> <Navbar showMobileNav = {showMobileNav} setShowMobileNav = {setShowMobileNav}/></nav>
+
     <div className={`${styles.signup_div} py-3`}>
+        
         <Container>
             <Row className={`${styles.signup_form_row}`}>
                 <Col className={`${styles.signup_animate} d-none d-lg-block`}>
@@ -291,7 +301,12 @@ useEffect(() =>{
                     </Row>
                     <Row>
                         <Col xs ="11" lg = "8">
-                            <button>Sign Up</button>
+                            <button>
+                                {
+                                signupLoading ? <Spinner animation="border" variant="warning" /> :
+                                "Sign Up"
+                                }
+                            </button>
                         </Col>
                     </Row>
                     <Row>
@@ -317,5 +332,6 @@ useEffect(() =>{
         </Container>
 
     </div>
+   </>
   )
 }

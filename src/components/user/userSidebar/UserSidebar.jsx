@@ -2,8 +2,8 @@ import React from 'react';
 
 import Sidebar from '../../general/sidebar/Sidebar';
 import { userSidebarItems } from '../../../utils/userSidebarItems';
-export default function UserSidebar({active}) {
+export default function UserSidebar({show, handleClose, active}) {
   return (
-    <Sidebar sidebarItems = {userSidebarItems} active={active}/>
+    <Sidebar show = {show} handleClose = {handleClose} sidebarItems = {userSidebarItems} active={active}/>
   )
 }

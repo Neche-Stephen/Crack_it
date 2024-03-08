@@ -1,7 +1,8 @@
 
 
 .signup_div{
-    background: #FDDFFD;
+    /* background: #FDDFFD; */
+    margin-top: 30px;
     height: auto;
 }
 
@@ -13,6 +14,7 @@
 .signup_form_row{
     background-color: #fff;
     border-radius:58px ;
+    box-shadow: 0.8720112442970276px 7.848101615905762px 13.428973197937012px 0.8720112442970276px #08479E40;
 }
 .signup_animate{
     /* border: 1px solid black; */

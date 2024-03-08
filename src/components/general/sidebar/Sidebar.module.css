@@ -1,10 +1,29 @@
+.sidebar_logo{
+    width: 50%;
+}
+
+
+.offcanvas_col{
+    position: fixed;
+    background: #FDDFFD !important;
+    border-top-right-radius: 30px;
+}
+
+.offcanvas_main{
+    /* position: fixed; */
+    background: #FDDFFD !important;
+    border-top-right-radius: 30px;
+
+}
+
+
 .sidebar_col{
     min-height: 100vh;
-    border-top-right-radius: 58px;
-    background: #FDDFFD;
-    padding-top: 40px;
+    border-top-right-radius: 30px;
+    /* background: #FDDFFD; */
+    /* padding-top: 40px; */
     padding-bottom: 70px;
-    position: fixed;
+    /* position: fixed; */
     /* overflow: auto; */
     /* position: sticky; */
     /* position: relative; */
@@ -13,7 +32,11 @@
     /* position: sticky; */
 }
 
-.sidebar_col > * {
+.sidebar_col_big{
+    
+}
+
+.sidebar_col .offcanvas_item {
     justify-content: center;
 }
 
@@ -23,43 +46,15 @@
 
 .sidebar_item{
     font-family: Lato;
-    font-size: 26px;
+    font-size: 17px;
     font-weight: 600;
     line-height: 32px;
     letter-spacing: 0em;
     color: #660066;
 }
 
-@media(max-width:575px){
-    .sidebar_item_icon_col{
-        /* border: 1px solid purple; */
-
-    }
-    .sidebar_item_icon{
-        /* height: 32px; */
-        /* border: 1px solid red; */
-        /* height: 11.59px; */
-        /* width: 11.59px; */
-    }
-    .sidebar_item{
-        font-family: Lato;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 32px;
-        letter-spacing: 0em;
-        color: #660066;
-        /* border: 1px solid red; */
-
-        /* border: 1px solid red; */
-
-    }   
-    .sidebar_item_icon_col{
-        /* border: 1px solid red; */
-    }
-    .sidebar_item_icon{
-        /* border: 1px solid red; */
-        width: 11.59px;
-    }
+.sidebar_item_icon_col{
+    width: 10% !important;
 }
 
 .sidebar_col .sidebar_col_Mob_btn{
@@ -91,6 +86,30 @@
     top: 50vh;
 }
 
+@media(max-width:991px){
+    .sidebar_logo{
+        width: 100%;
+
+   }
+    .sidebar_item_icon_col{
+        width: 100% !important;
+    }
+}
+
+@media(max-width:575px){
+    .sidebar_item_icon_col{
+        width: 20% !important;
+    }
+
+    .offcanvas_main{
+        width: 50% !important;
+    }
+
+    .sidebar_item{
+        font-size: 14px;
+    }
+}
+/* 
 @media(max-width:575px){
     .sidebar_col{
         display: none;
@@ -106,4 +125,4 @@
         padding-bottom: 70px;
         display: block;   
     }
-}
+} */
