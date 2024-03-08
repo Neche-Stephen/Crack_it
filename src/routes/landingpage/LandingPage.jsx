@@ -11,7 +11,7 @@ import Navbar from '../../components/navbar/Navbar';
 // import bg_video from '../../assets/videos/How_Computer_Vision_Works.mp4';
 import bg_video from '../../assets/videos/dangote.mp4';
 import bg_header from '../../assets/images/bg_header.png';
-import crack_logo from '../../assets/images/CRACK IT FIND IT LOGO 1.png';
+import crack_logo from '../../assets/images/Crack It, Find It Logo1 1.svg';
 import play from '../../assets/images/play.png';
 import message from '../../assets/images/message.svg';
 import earth from '../../assets/images/earth.svg';
