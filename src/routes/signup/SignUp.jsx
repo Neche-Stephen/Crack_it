@@ -11,7 +11,7 @@ const defaultUserDetails = {
     'lname': ``,
     'gender': ``,
     'email': ``,
-    'country_code':``,
+    'country_code':`+234`,
     'phone': ``,
     'password': ``,
     'confirm_password': ``,
@@ -39,7 +39,9 @@ export default function SignUp() {
     const {fname, lname, gender, email, phone, password, 
         confirm_password, country_code, address, age, occupation, nationality, state,
         privacy_terms
-    } = userDetails
+    } = userDetails;
+
+ 
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
@@ -49,6 +51,8 @@ export default function SignUp() {
     };
     
     const handleSubmit = (e)=> {
+        console.log('jk');
+
         e.preventDefault();
         setSignupLoading(true);
         setErrorMessageSentence([]);
@@ -88,7 +92,7 @@ export default function SignUp() {
             return;
         }
 
-        if(privacy_terms){
+        if(!privacy_terms){
             // alert('baba');
             setErrorMessageSentence(['You must accept privacy terms']);
             setSignupLoading(false);
@@ -106,7 +110,7 @@ export default function SignUp() {
             'age': `${age}`,
             'occupation': `${occupation}`,
             'nationality' : `${nationality}`,
-            'state' : `${state}`
+            'state_of_origin' : `${state}`
         })
         .then(function (response) {
             // setLoading(false)
@@ -116,7 +120,7 @@ export default function SignUp() {
             navigate("/user/dashboard");
         })
         .catch(function (error) {
-            alert(error, error.response);
+            // alert(error, error.response);
             if (error.response){
             //   setLoading(false)
             console.log(error.response.data);
@@ -192,11 +196,16 @@ useEffect(() =>{
                     <Row>
                         <Col xs = "5" lg ="3">
                              <label htmlFor="">Country Code<span>*</span></label>
-                             <select name="country_code" id="" onChange={handleChange} style={userDetails.borderRedFields && userDetails.country_code === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} >
+                             {/* <select name="country_code" id="" onChange={handleChange} style={userDetails.borderRedFields && userDetails.country_code === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} >
                                  <option value="">-- select one --</option>
                                  <option value="+254">+254</option>
                                  <option value="+234">+234</option>
-                             </select>
+                             </select> */}
+
+                             <input type="text" name='nationality' value={country_code} onChange={handleChange}   style={userDetails.borderRedFields && userDetails.country_code === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}   disabled/>
+                            {/* {userDetails.borderRedFields && userDetails.nationality === '' &&
+                             <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
+                           } */}
                              {/* <span className={`${styles.inputError} text-danger`}>{errorMessage}</span> */}
                         </Col>
                         <Col xs = "6" lg = "7" className='align-self-end'>
@@ -255,6 +264,7 @@ useEffect(() =>{
                         <Col xs = '11' lg = '5'>
                             <label htmlFor="">Gender*</label>
                             <select name="gender" id="" required onChange={handleChange} style={userDetails.borderRedFields && userDetails.gender === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}>
+                                  <option value="">-- select one --</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
