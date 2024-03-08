@@ -472,6 +472,12 @@
     /* width: 33%; */
 }
 
+@media(max-width:350px){
+    .policy_row{
+        gap: 9px;
+    }
+}
+
 .policy_row p{
     position: relative;
     top: 8px;
