@@ -149,6 +149,7 @@
     font-weight: 700;
     line-height: 39px;
     letter-spacing: -0.02em;
+    color: var(--primary-color);
 }
 @media(max-width:575px){
     .about_it{
@@ -498,6 +499,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     /* border: 1px solid red; */
+}
+
+.logos_row div{
+    /* width: ; */
+    /* border: 1px solid red; */
+    width: 16.5%;
 }
 
 .logos_row div{

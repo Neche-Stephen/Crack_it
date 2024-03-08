@@ -16,11 +16,11 @@ import play from '../../assets/images/play.png';
 import message from '../../assets/images/message.svg';
 import earth from '../../assets/images/earth.svg';
 import andriod from '../../assets/images/andriod.svg';
-import facebook from '../../assets/images/facebook.png';
-import instagram from '../../assets/images/instagram.png';
-import linkendin from '../../assets/images/linkendin.png';
-import telegram from '../../assets/images/telegram.png';
-import twitter from '../../assets/images/twitter.png';
+import facebook from '../../assets/images/facebook.svg';
+import instagram from '../../assets/images/instagram.svg';
+import linkendin from '../../assets/images/linkendin.svg';
+import telegram from '../../assets/images/telegram.svg';
+import twitter from '../../assets/images/twitter.svg';
 import about_1 from '../../assets/images/about_1.png';
 import about_2 from '../../assets/images/about_2.png';
 import about_3 from '../../assets/images/about_3.png';
@@ -223,11 +223,11 @@ export default function LandingPage() {
                 </div>
                 <div className={`col-5 col-lg-2 mb-3 mb-lg-0`}>
                   <div className={`${styles.logos_row}`}>
-                    <div><img src={twitter} alt="" /></div>
-                    <div><img src={telegram} alt="" /></div>
-                    <div><img src={instagram} alt="" /></div>
-                    <div><img src={linkendin} alt="" /></div>
-                    <div><img src={facebook} alt="" /></div>
+                    <div><img src={twitter} alt="" className='w-100'/></div>
+                    <div><img src={telegram} alt="" className='w-100'/></div>
+                    <div><img src={instagram} alt="" className='w-100'/></div>
+                    <div><img src={linkendin} alt="" className='w-100'/></div>
+                    <div><img src={facebook} alt="" className='w-100'/></div>
                   </div>
 
                 </div>
