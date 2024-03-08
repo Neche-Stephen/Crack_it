@@ -16,6 +16,12 @@
     border-radius:58px ;
     box-shadow: 0.8720112442970276px 7.848101615905762px 13.428973197937012px 0.8720112442970276px #08479E40;
 }
+@media(max-width:575px){
+    .signup_form_row{
+        border-radius:unset;
+
+    }
+}
 .signup_animate{
     /* border: 1px solid black; */
     /* background: black; */
