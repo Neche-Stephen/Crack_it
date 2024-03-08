@@ -221,7 +221,7 @@ export default function LandingPage() {
                         <p>Cookie Policy</p>
                     </div>
                 </div>
-                <div className={`col-5 col-lg-2 mb-3 mb-lg-0`}>
+                <div className={`col-6 col-lg-2 mb-3 mb-lg-0`}>
                   <div className={`${styles.logos_row}`}>
                     <div><img src={twitter} alt="" className='w-100'/></div>
                     <div><img src={telegram} alt="" className='w-100'/></div>

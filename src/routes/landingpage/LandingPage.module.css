@@ -507,6 +507,14 @@
     width: 16.5%;
 }
 
+@media(max-width:767px){
+    .logos_row div{
+        /* width: ; */
+        /* border: 1px solid red; */
+        /* width: 16.5%; */
+    }
+}
+
 .logos_row div{
 }
 
