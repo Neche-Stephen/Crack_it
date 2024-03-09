@@ -206,7 +206,7 @@ export default function LandingPage() {
               </div>
               <div className={`${styles.info_row} d-flex mb-3`}>
                 <div><img src={message} alt="" /></div>
-                <p>willie.jennings@example.com</p>
+                <p>contact@crackitfindit.com</p>
               </div>
               <div className={`${styles.info_row} d-flex mb-3`}>
                 <div><img src={earth} alt="" /></div>
