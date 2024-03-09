@@ -24,7 +24,7 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
     <>
       <Container className='py-4' style={{backgroundColor:'#FFFFFF'}}>
         <nav className='row m-0 align-items-center'>
-          <div className={`${styles.nav_Logo} col-3 col-sm-auto me-auto`}>
+          <div className={`${styles.nav_Logo} col-4 col-sm-auto me-auto`}>
             <img className={`${styles.nav_logo_img} w-100`} src={hunt_logo} alt="Hunt Logo"/>
           </div>
          <div className={`col-6 d-none d-lg-block`}>
