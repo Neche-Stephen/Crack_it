@@ -323,6 +323,12 @@
     padding: 0px 0px 5px 13px;
 }
 
+.get_in_touch input:focus, .get_in_touch textarea:focus{
+    outline: none;
+    border: 2px solid var(--primary-color);
+}
+
+
 .get_in_touch textarea{
     padding: 6px 0px 0px 13px;
 }
