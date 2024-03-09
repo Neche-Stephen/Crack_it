@@ -6,7 +6,7 @@ import styles from "./Navbar.module.css";
 
 import {Link} from 'react-router-dom';
 // import images from '../../assets/images';
-import hunt_logo from '../../assets/images/hunt.jpg';
+import hunt_logo from '../../assets/images/hunt.svg';
 import crack_logo from '../../assets/images/CRACK IT FIND IT LOGO 1.png';
 import crack_logo2 from '../../assets/images/Crack It, Find It Logo1 1.svg';
 import hamburger from '../../assets/images/hamburger.svg'
@@ -22,10 +22,10 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
   return (
 
     <>
-      <Container className='py-4'>
+      <Container className='py-4' style={{backgroundColor:'#FFFFFF'}}>
         <nav className='row m-0 align-items-center'>
-          <div className={`${styles.nav_Logo} col-auto me-auto`}>
-            <img className={`${styles.nav_logo_img} w-50`} src={crack_logo2} alt="Hunt Logo"/>
+          <div className={`${styles.nav_Logo} col-3 col-sm-auto me-auto`} style={{border:"1px solid red"}}>
+            <img className={`${styles.nav_logo_img} w-100`} src={hunt_logo} alt="Hunt Logo"/>
           </div>
          <div className={`col-6 d-none d-lg-block`}>
             <div className={`${styles.nav_links} row m-0 align-items-center justify-content-between`}>
@@ -54,7 +54,7 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
               <Link to='/signup' className={`${styles.nav_Link} ${styles.nav_button} col-auto`}>SIGNUP</Link>
             </div>
          </div>
-          <button className={`${styles.nav_menu} d-lg-none col-auto`}><img src={hamburger} onClick={handleNavClick}/></button>
+          <button  className={`${styles.nav_menu} d-lg-none col-1`}><img src={hamburger} onClick={handleNavClick} className='w-100'/></button>
         </nav>
       </Container>
     </>

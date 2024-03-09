@@ -179,8 +179,8 @@ export default function LandingPage() {
               <p className={`${styles.get_in_touch_title}`}>Get in touch with Us</p>
               <p className={`${styles.get_in_touch_text}`}>We're here to assist you. Reach out for any Questions or support.</p>
               <input className='mb-3' type="text" placeholder='Your Name'/>
-              <input className='mb-3'type="email" placeholder='Your email'/>
-              <textarea className='mb-4' name="" id="" cols="30" rows="3" placeholder='Type your message'></textarea>
+              <input className='mb-3'type="email" placeholder='Your Email'/>
+              <textarea className='mb-4' name="" id="" cols="30" rows="2" placeholder='Type Your Message'></textarea>
               <button className='py-2 mb-2'>Send Message</button>
             </div>
 
