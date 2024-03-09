@@ -1,10 +1,8 @@
-import dashboard_icon from "../assets/images/dashboard.png";
-import hunt_icon from "../assets/images/hunt_icon.png";
-import profile_icon from "../assets/images/profile_icon.png";
 
-import dashboard_new_icon from './utilsAsset/dashboard.png';
-import hunt_new_icon from './utilsAsset/hunt.png';
-import profile_new_icon from './utilsAsset/profile.png';
+
+import dashboard_new_icon from './utilsAsset/dashboard.svg';
+import hunt_new_icon from './utilsAsset/hunt.svg';
+import profile_new_icon from './utilsAsset/profile.svg';
 
 
 export const userSidebarItems = [
@@ -16,19 +14,19 @@ export const userSidebarItems = [
         itemLink: '/user/dashboard'
     },
 
-    // {
-    //     itemName : "Hunts",
-    //     active: false,
-    //     icon : hunt_new_icon,
-    //     // iconWidth: '13%',
-    //     itemLink: '/user/hunts'
-    // },
+    {
+        itemName : "Hunts",
+        active: false,
+        icon : hunt_new_icon,
+        // iconWidth: '13%',
+        itemLink: '/user/hunts'
+    },
 
-    // {
-    //     itemName : "Profile",
-    //     active: false,
-    //     icon : profile_icon,
-    //     itemLink: '/user/dashboard',
-    // }
+    {
+        itemName : "Profile",
+        active: false,
+        icon : profile_new_icon,
+        itemLink: '/user/dashboard',
+    }
 
 ]

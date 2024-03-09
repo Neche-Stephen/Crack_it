@@ -2,6 +2,7 @@ import React, {Fragment, useState, useRef, useEffect} from 'react';
 import { Container, Row, Col, Offcanvas} from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 
+// import crack_it_logo from '../../../assets/images/hunt.svg'
 import crack_it_logo from '../../../assets/images/Crack It, Find It Logo 8.png'
 
 import styles from "./Sidebar.module.css";
@@ -137,7 +138,7 @@ export default function ({sidebarItems, show, handleClose, active}) {
                                                 <div className={`${styles.sidebar_item_icon_col} p-0`} style={{border:'px solid red'}}>
                                                 <img src={item.icon} alt="" className={`${styles.sidebar_item_icon} w-100`} style={{border:'px solid red'}}/>
                                                 </div>
-                                                <Col xs = "auto" className={`${styles.sidebar_item} d-sm-none d-lg-block px-2 px-lg-`}>{item.itemName}</Col>
+                                                <div className={`${styles.sidebar_item} d-sm-none d-lg-block px-2`}>{item.itemName}</div>
 
                                         </Row>
                                         </Col>

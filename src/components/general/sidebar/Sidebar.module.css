@@ -52,6 +52,10 @@
     line-height: 32px;
     letter-spacing: 0em;
     color: #660066;
+    width: auto !important;
+    /* display: inline-block !important; */
+    /* border: 1px solid red; */
+    /* width: 30%; */
 }
 
 .sidebar_item_icon_col{
@@ -99,7 +103,7 @@
 
 @media(max-width:575px){
     .sidebar_item_icon_col{
-        width: 20% !important;
+        width: 14% !important;
     }
 
     .offcanvas_main{
@@ -110,6 +114,30 @@
         font-size: 14px;
     }
 }
+
+@media(max-width:380px){
+    .sidebar_item_icon_col{
+        width: 15% !important;
+        /* border: 1px solid red; */
+    }
+    .sidebar_item{
+        /* font-size: 10px; */
+        /* border: 1px solid #ff0000; */
+        width: 85% !important;
+
+    }
+}
+
+@media(max-width:331px){
+    .sidebar_item_icon_col{
+        width: 20% !important;
+    }
+    .sidebar_item{
+        font-size: 12px;
+        width: 80% !important;
+    }
+}
+
 /* 
 @media(max-width:575px){
     .sidebar_col{
