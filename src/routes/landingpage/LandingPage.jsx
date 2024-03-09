@@ -72,6 +72,8 @@ export default function LandingPage() {
                       className={`${styles.mobile_nav_links}`}
                       smooth={true}
                       duration={500}
+                      onClick = {handleNavClick}
+
                     >
                     ABOUT US 
                 </ScrollLink>
@@ -84,6 +86,7 @@ export default function LandingPage() {
                       smooth={true}
                       duration={500}
                       className={`${styles.mobile_nav_links}`}
+                      onClick = {handleNavClick}
                     >
                     CONTACT US 
               </ScrollLink>
