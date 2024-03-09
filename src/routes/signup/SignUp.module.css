@@ -83,15 +83,21 @@
 }
 
 .signup_form > *{
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     /* border: 1px solid red; */
     justify-content: center;
+    /* border: 1px solid red; */
+    /* height: 90px; */
+}
+
+.signup_form > * > *{
+   position: relative;
 }
 
 
 @media(max-width:991px){
     .signup_form > * > *{
-        margin-bottom: 10px;
+        margin-bottom: 22px;
     } 
     .signup_form > *{
         margin-bottom: unset;
@@ -138,9 +144,12 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 13px;
-    letter-spacing: 0em;    
-    /* color: #FF6600; */
+    letter-spacing: 0em;  
+    position: absolute;
+    bottom: -18px;
+    left: 19px;
 }
+
 
 .signup_form select{
     border: 2px solid #D9D9D9;
@@ -160,6 +169,15 @@
 .signup_form select:focus{
     outline: none;
     border: 2px solid #660066;
+}
+
+.password_view{
+    position: absolute;
+    /* border: 1px solid red; */
+    right: 20px;
+    bottom: 6px;
+    color: #660066;
+    cursor: pointer;
 }
 
 .privacy_checkbox{

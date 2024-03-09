@@ -2,6 +2,10 @@ import React, {useEffect, useState} from 'react';
 import { Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {Icon} from 'react-icons-kit';
+import {eyeOff} from 'react-icons-kit/feather/eyeOff';
+import {eye} from 'react-icons-kit/feather/eye'
+
 import Navbar from '../../components/navbar/Navbar';
 
 
@@ -21,12 +25,19 @@ export default function SignIn() {
     const [errorMessage, setErrorMessage] = useState('');
     const [errorMessageSentence, setErrorMessageSentence] = useState([]);
     const [signupLoading , setSignupLoading ] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [btnDisabledState, setBtnDisabledState] = useState(false);
+
 
     const navigate = useNavigate();
     const api = 'https://crackitfindit.rad5.com.ng';
 
 
     const {email, password} = userDetails
+
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
 
     const handleNavClick = () => {
         setShowMobileNav(!showMobileNav)
@@ -41,6 +52,7 @@ export default function SignIn() {
     const handleSubmit = (e) =>{
         e.preventDefault();
         setSignupLoading(true);
+        setBtnDisabledState(true);
         setErrorMessageSentence([]);
         const requiredFields = ['email','password'];
         const isEmpty = requiredFields.some((field) => userDetails[field] === '');
@@ -66,6 +78,8 @@ export default function SignIn() {
             // if (element) {
             // element.scrollIntoView({ behavior: 'smooth' });
             // }
+            setSignupLoading(false);
+            setBtnDisabledState(false);
             return;
         }
         axios.post( api + '/api/login', {
@@ -78,6 +92,7 @@ export default function SignIn() {
             console.log(response.data);
             sessionStorage.setItem("Token", `${response.data.data.token}`);
             setSignupLoading(false);
+            setBtnDisabledState(false);
             navigate("/user/dashboard");
             
           })
@@ -91,6 +106,7 @@ export default function SignIn() {
             setErrorMessageSentence(sentences);
             console.log(sentences);
             setSignupLoading(false);
+            setBtnDisabledState(false);
             }
             else{
             //   setLoading(false)
@@ -101,10 +117,12 @@ export default function SignIn() {
               {
                 setErrorMessageSentence(['There is a problem with your internet connection'])
                 setSignupLoading(false);
+                setBtnDisabledState(false);
               }
               else{
                 setErrorMessageSentence([error.message])
                 setSignupLoading(false);
+                setBtnDisabledState(false);
               }
              
             }
@@ -176,7 +194,7 @@ export default function SignIn() {
                             <span>Join the adventure with Crack It Find It.</span>
                         </Col>
                     </Row>
-                    <Row className='mb-4 mb-lg-5'>
+                    <Row className=''>
                         <Col xs = '11' lg = '9'>
                             <input type="email" placeholder='Email' name='email' value={email} onChange={handleChange} style={userDetails.borderRedFields && userDetails.email === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
                             {userDetails.borderRedFields && userDetails.email === '' &&
@@ -184,21 +202,24 @@ export default function SignIn() {
                         }
                         </Col>
                     </Row>
-                    <Row className='mb-2 mb-lg-3'>
-                        <Col xs = '11' lg = '9'>
-                            <input type="password" placeholder='Password'  name='password' value={password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
+                    <Row className=''>
+                        <Col xs = '11' lg = '9' style={{position:'relative'}}>
+                            <input type={showPassword? 'text' : 'password'} placeholder='Password'  name='password' value={password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
+                            <span className={`${styles.password_view}`} onClick={togglePasswordVisibility}>
+                                <Icon icon={showPassword ? eyeOff : eye} size={25}/>
+                            </span>
                             {userDetails.borderRedFields && userDetails.password === '' &&
                             <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
                         }
                             {/* <p className={`${styles.forgot_password}`}>Forgot password?</p> */}
                         </Col>
                     </Row>
-                    <Row className='mb-4'>
+                    <Row className=''>
                         <Col xs ="11" lg = "9">
                             
-                            <button>
+                            <button disabled = {btnDisabledState} style={{opacity:btnDisabledState ? '0.6' : '1'}}>
                                 {
-                                signupLoading ? <Spinner animation="border" variant="warning" /> :
+                                signupLoading ? <Spinner animation="border" variant="warning"/> :
                             "Log In"
                                 }
                             </button>

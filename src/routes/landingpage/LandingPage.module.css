@@ -487,13 +487,14 @@
     align-items: center;
     padding: 0 !important;
     /* width: 33%; */
+    /* border: 1px solid red; */
 }
 
-@media(max-width:350px){
+/* @media(max-width:350px){
     .policy_row{
         gap: 9px;
     }
-}
+} */
 
 .policy_row p{
     position: relative;
@@ -503,6 +504,17 @@
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0em;    
+}
+
+@media(max-width:991px){
+    .policy_row{
+        justify-content: center;
+        gap: 20px;
+    }
+    .policy_row p{
+         /* border: 1px solid red; */
+          /* width: 20%; */
+    }
 }
 
 .logos_row{

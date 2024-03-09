@@ -76,10 +76,26 @@
 }
 
 .signin_form > *{
-    /* margin-bottom: 20px; */
+    margin-bottom: 42px;
     /* border: 1px solid red; */
     justify-content: center;
 }
+
+.signin_form > * > *{
+    position: relative;
+}
+
+
+@media(max-width:991px){
+    .signin_form > * > *{
+        margin-bottom: 28px;
+    }
+    .signin_form > *{
+        margin-bottom: unset;
+    }
+    
+}
+ 
 
 .signin_form h1{
     font-family: Lato;
@@ -114,6 +130,18 @@
     border: 2px solid #660066;
 }
 
+.signin_form .inputError{
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 13px;
+    letter-spacing: 0em;  
+    position: absolute;
+    bottom: -18px;
+    left: 19px;
+}
+
+
 .signin_form input::placeholder{
     font-family: Lato;
     font-size: 14px;
@@ -122,6 +150,16 @@
     letter-spacing: -0.02em;
     color: var( --primary-color);
 }
+
+.password_view{
+    position: absolute;
+    /* border: 1px solid red; */
+    right: 20px;
+    bottom: 6px;
+    color: #660066;
+    cursor: pointer;
+}
+
 
 .forgot_password{
     font-family: Lato;

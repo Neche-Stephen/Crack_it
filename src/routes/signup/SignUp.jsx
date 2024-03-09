@@ -2,6 +2,10 @@ import React, {useEffect, useState, useMemo} from 'react';
 import { Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {Icon} from 'react-icons-kit';
+import {eyeOff} from 'react-icons-kit/feather/eyeOff';
+import {eye} from 'react-icons-kit/feather/eye'
+
 import Navbar from '../../components/navbar/Navbar';
 
 import styles from './SignUp.module.css';
@@ -37,7 +41,10 @@ export default function SignUp() {
     const [errorMessage, setErrorMessage] = useState('');
     const [errorMessageSentence, setErrorMessageSentence] = useState([]);
     const [signupLoading , setSignupLoading ] = useState(false);
-    const [border, setBorder] = useState(false)
+    const [border, setBorder] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [btnDisabledState, setBtnDisabledState] = useState(false);
+
 
     const navigate = useNavigate();
     const api = 'https://crackitfindit.rad5.com.ng'
@@ -58,12 +65,17 @@ export default function SignUp() {
         setUserDetails({ ...userDetails, [name]: value });
    
     };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      };
     
     const handleSubmit = (e)=> {
         // console.log('jk');
 
         e.preventDefault();
         setSignupLoading(true);
+        setBtnDisabledState(true);
         setErrorMessageSentence([]);
         const requiredFields = ['fname', 'email', 'phone', 'password', 'confirm_password', 'gender', 'age', 'state', 'country_code'];
         const isEmpty = requiredFields.some((field) => userDetails[field] === '');
@@ -91,6 +103,7 @@ export default function SignUp() {
             // element.scrollIntoView({ behavior: 'smooth' });
             // }
             setSignupLoading(false);
+            setBtnDisabledState(false);
             return;
         }
 
@@ -98,6 +111,7 @@ export default function SignUp() {
             // alert('ogini');
             setErrorMessageSentence(['Password and Confirm Password are not the same']);
             setSignupLoading(false);
+            setBtnDisabledState(false);
             return;
         }
 
@@ -105,6 +119,7 @@ export default function SignUp() {
         //     // alert('baba');
         //     setErrorMessageSentence(['You must accept privacy terms']);
         //     setSignupLoading(false);
+        //      setBtnDisabledState(false);
         //     return;
         // }
            
@@ -126,6 +141,7 @@ export default function SignUp() {
             sessionStorage.setItem("Token", `${response.data.data.token}`);
             console.log(response.data);
             setSignupLoading(false);
+            setBtnDisabledState(false);
             navigate("/user/dashboard");
         })
         .catch(function (error) {
@@ -137,6 +153,7 @@ export default function SignUp() {
             //   setSuccess(error.response.data.success)
             //   setErrorMessage(error.response.data.message);
             setSignupLoading(false);
+            setBtnDisabledState(false);
             const sentences = error.response.data.message.split('.\n').filter(sentence => sentence.trim() !== '');
             setErrorMessageSentence(sentences);
             console.log(sentences);
@@ -150,10 +167,12 @@ export default function SignUp() {
               {
                 setErrorMessageSentence(['There is a problem with your internet connection'])
                 setSignupLoading(false);
+                setBtnDisabledState(false);
               }
               else{
                 setErrorMessageSentence([error.message])
                 setSignupLoading(false);
+                setBtnDisabledState(false);
               }
              
             }
@@ -764,17 +783,26 @@ useEffect(() =>{
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs = '11' lg = '5'>
+                        <Col xs = '11' lg = '5' style={{position:'relative'}}>
                             <label htmlFor="">Password<span>*</span></label>
-                            <input type="password" name='password' value={password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
+                            <input type={showPassword? 'text' : 'password'} name='password' value={password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
+                            {/* <span className="view-password-icon" onClick={togglePasswordVisibility}>
+                                {showPassword ? '👁️' : '👁️'}
+                            </span> */}
+                            <span className={`${styles.password_view}`} onClick={togglePasswordVisibility}>
+                                <Icon icon={showPassword ? eyeOff : eye} size={25}/>
+                            </span>
                             {userDetails.borderRedFields && userDetails.password === '' &&
                              <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
                            }
                         </Col>
 
-                        <Col xs = '11' lg = '5'>
+                        <Col xs = '11' lg = '5' style={{position:'relative'}}>
                             <label htmlFor="">Confirm Password<span>*</span></label>
-                            <input type="password" name='confirm_password' value={confirm_password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.confirm_password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
+                            <input type={showPassword? 'text' : 'password'} name='confirm_password' value={confirm_password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.confirm_password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
+                            <span className={`${styles.password_view}`} onClick={togglePasswordVisibility}>
+                                <Icon icon={showPassword ? eyeOff : eye} size={25}/>
+                            </span>
                             {userDetails.borderRedFields && userDetails.confirm_password === '' &&
                              <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
                            }
@@ -797,21 +825,24 @@ useEffect(() =>{
                             </button>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col xs ="11" lg = "8">
+                   
                         {
-                            errorMessageSentence.length !== 0 && <Alert variant='danger'>
-                            <ul className={`${styles.signup_error}`}>
-                                {errorMessageSentence.map((sentence, index) => (
-                                    <li key={index}>
-                                        {sentence}
-                                    </li>
-                                ))}
-                             </ul>
-                            </Alert>
+                            errorMessageSentence.length !== 0 &&   
+                            <Row>
+                                <Col xs ="11" lg = "8">
+                                <Alert variant='danger'>
+                                    <ul className={`${styles.signup_error}`}>
+                                        {errorMessageSentence.map((sentence, index) => (
+                                            <li key={index}>
+                                                {sentence}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    </Alert>
+                                </Col>
+                            </Row>
                         }
-                        </Col>
-                    </Row>
+                  
                     <Row>
                         <Col  xs = 'auto' className={`${styles.login}`}>Already have an account? <Link to ='/login'>Log In</Link></Col>
                     </Row>

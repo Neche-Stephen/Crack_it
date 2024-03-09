@@ -224,7 +224,7 @@ export default function LandingPage() {
                 <div className={`${styles.image_wrapper} col-1 col-lg-1  mb-3 mb-lg-0`}>
                   <img src={crack_logo} alt="" className='w-100'/>
                 </div>
-                <div className={`offset-2 offset-lg-0 col-10 col-lg-4 mb-3 mb-lg-0`}>
+                <div className={`offset-lg-0 col-12 col-lg-4 mb-3 mb-lg-0`}>
                     <div className={`${styles.policy_row} `}>
                         <p>Privacy Policy</p>
                         <p>Terms of Use </p>
