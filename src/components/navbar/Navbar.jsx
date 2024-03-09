@@ -22,41 +22,43 @@ export default function Navbar({setShowMobileNav, showMobileNav}) {
   return (
 
     <>
-      <Container className='py-4' style={{backgroundColor:'#FFFFFF'}}>
-        <nav className='row m-0 align-items-center'>
-          <div className={`${styles.nav_Logo} col-4 col-sm-auto me-auto`}>
-            <img className={`${styles.nav_logo_img} w-100`} src={hunt_logo} alt="Hunt Logo"/>
-          </div>
-         <div className={`col-6 d-none d-lg-block`}>
-            <div className={`${styles.nav_links} row m-0 align-items-center justify-content-between`}>
-            
-              <div className={`${styles.nav_Link} col-auto`}><Link to='/'>HOME</Link></div>
-              <div className={`${styles.nav_Link} col-auto`}>
-                <ScrollLink
-                    to="about"
-                    smooth={true}
-                    duration={500}
-                  >
-                   ABOUT US 
-                  </ScrollLink>
-              </div>
-              <div className={`${styles.nav_Link} col-auto`}>
-                  <ScrollLink
-                    to="contact"
-                    smooth={true}
-                    duration={500}
-                  >
-                   CONTACT US 
-                  </ScrollLink>
-                
-                </div>
-              <div className={`${styles.nav_Link} col-auto ms-auto`}><Link to = '/login'>LOG IN</Link></div>
-              <Link to='/signup' className={`${styles.nav_Link} ${styles.nav_button} col-auto`}>SIGNUP</Link>
+     <div style={{backgroundColor:'#FFFFFF'}}>
+      <Container className='py-4'>
+          <nav className='row m-0 align-items-center'>
+            <div className={`${styles.nav_Logo} col-4 col-sm-auto me-auto`}>
+              <Link to = '/'><img className={`${styles.nav_logo_img} w-100`} src={hunt_logo} alt="Hunt Logo"/></Link>
             </div>
-         </div>
-          <button  className={`${styles.nav_menu} d-lg-none col-1`}><img src={hamburger} onClick={handleNavClick} className='w-100'/></button>
-        </nav>
-      </Container>
+          <div className={`col-6 d-none d-lg-block`}>
+              <div className={`${styles.nav_links} row m-0 align-items-center justify-content-between`}>
+              
+                <div className={`${styles.nav_Link} col-auto`}><Link to='/'>HOME</Link></div>
+                <div className={`${styles.nav_Link} col-auto`}>
+                  <ScrollLink
+                      to="about"
+                      smooth={true}
+                      duration={500}
+                    >
+                    ABOUT US 
+                    </ScrollLink>
+                </div>
+                <div className={`${styles.nav_Link} col-auto`}>
+                    <ScrollLink
+                      to="contact"
+                      smooth={true}
+                      duration={500}
+                    >
+                    CONTACT US 
+                    </ScrollLink>
+                  
+                  </div>
+                <div className={`${styles.nav_Link} col-auto ms-auto`}><Link to = '/login'>LOG IN</Link></div>
+                <Link to='/signup' className={`${styles.nav_Link} ${styles.nav_button} col-auto`}>SIGNUP</Link>
+              </div>
+          </div>
+            <button  className={`${styles.nav_menu} d-lg-none col-1`}><img src={hamburger} onClick={handleNavClick} className='w-100'/></button>
+          </nav>
+        </Container>
+     </div>
     </>
 
   )

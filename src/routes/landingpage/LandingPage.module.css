@@ -128,6 +128,7 @@
     padding-top: 30px;
     padding-right: 20px;
     padding-left: 20px;
+    background-color: #660066;
 }
 
 .mobile_nav_links{
@@ -136,7 +137,7 @@
     font-weight: 700;
     line-height: 14px;
     letter-spacing: -0.02em;
-    color: black;
+    color: #fff;
     text-decoration: none;
     cursor: pointer;
 }

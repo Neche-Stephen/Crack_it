@@ -12,16 +12,24 @@ export default function ({sidebarItems, show, handleClose, active}) {
     // const [mobileClicked, setMobileClicked] = React.useState(active);
     const [isSidebarOpen, setSidebarOpen] = useState(false);
      const sidebarRef = useRef(null);
+     const navigate = useNavigate();
 
     // const mobileRef = React.useRef();
     // const tabDeskRef = React.useRef();
 
     // const navigate = useNavigate();
    
-    // const handleSideBarClick = (item, link)=>{
-    //     setActiveItem(item);
-    //     navigate(link);
-    // }
+    const handleSideBarClick = (item, link)=>{
+        setActiveItem(item);
+        navigate(link);
+    }
+
+    const handleLogout = ()=>{
+      sessionStorage.removeItem("Token");
+      navigate('/login')
+    }
+
+    // const 
 
     // const handleMobileClick = () =>{
     //     tabDeskRef.current.style.display = tabDeskRef.current.style.display === 'block' ? 'none' : 'block';
@@ -138,7 +146,9 @@ export default function ({sidebarItems, show, handleClose, active}) {
                             })
                         }
                         <Row className={`${styles.offcanvas_item}`} style={{marginTop:'270px', justifyContent:'center'}}>
-                            <Col  xs = '10' sm = '9' md = '7' lg = '8' className={`${styles.sidebar_item_col} p-0 py-2`} >
+                            <Col  xs = '10' sm = '9' md = '7' lg = '8' className={`${styles.sidebar_item_col} p-0 py-2`} 
+                            onClick={handleLogout}
+                            >
                                 <Row className=' align-items-center m-0 px-3'>
                                         <div className={`${styles.sidebar_item_icon_col} p-0`} style={{border:'px solid red'}}>
                                                 <img src={logout} alt="" className={`${styles.sidebar_item_icon} w-100`} style={{border:'px solid red'}}/>

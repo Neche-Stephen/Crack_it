@@ -1,6 +1,8 @@
 import React from 'react';
 import { Row, Col, Container} from 'react-bootstrap';
 
+import { useNavigate } from 'react-router-dom';
+
 import styles from './DashboardNavbar.module.css';
 import notification from '../../../assets/images/notification.png';
 import profile from '../../../assets/images/profile.png';
@@ -10,6 +12,12 @@ import hamburger from './asset/Group (1).png';
 
 
 export default function DashboardNavbar({handleShow}) {
+  const navigate = useNavigate();
+
+  const handleLogout = ()=>{
+    sessionStorage.removeItem("Token");
+    navigate('/login')
+  }
   return (
     <Row className='align-items-center mt-4 px-2'>
         <Col xs = '3' className='p-0 d-sm-none' >
@@ -25,7 +33,7 @@ export default function DashboardNavbar({handleShow}) {
             <img src={profile} alt="" className='w-50'/>
         </Col>
         <Col xs = 'auto' className='p-0'>
-            <img src={logout} alt="" className='w-50'/>
+            <img src={logout} alt="" className='w-50' onClick={handleLogout} style={{cursor:'pointer'}}/>
         </Col>
     </Row>
   )

@@ -42,6 +42,7 @@
 
 .sidebar_item_col{
     border-radius: 12px;
+    cursor: pointer;
 }
 
 .sidebar_item{

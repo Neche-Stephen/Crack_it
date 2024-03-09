@@ -96,8 +96,17 @@ export default function SignIn() {
             //   setLoading(false)
             //   setSuccess(false)
             //   setNetwork( network = 'Encountered an error, Please try again')
-              console.log('error', error)
-              setSignupLoading(false);
+              console.log('error', error);
+              if (error.message === 'Network Error')
+              {
+                setErrorMessageSentence(['There is a problem with your internet connection'])
+                setSignupLoading(false);
+              }
+              else{
+                setErrorMessageSentence([error.message])
+                setSignupLoading(false);
+              }
+             
             }
           });
 
@@ -115,12 +124,12 @@ export default function SignIn() {
               <img src={exit} alt="" className='w-100' onClick={handleNavClick} style={{cursor:'pointer'}}/>
             </Col>
           </Row>
-          <Row className='mb-4'>
+          <Row className='mb-3'>
             <Col xs = 'auto'>
               <Link to = '/'  className={`${styles.mobile_nav_links}`}>HOME</Link>
             </Col>
           </Row>
-          <Row className='mb-4'>
+          <Row className='mb-3'>
             <Col xs = 'auto'>
               <Link
                       to="/"
@@ -131,7 +140,7 @@ export default function SignIn() {
                 </Link>
             </Col>
           </Row>
-          <Row>
+          <Row className='mb-3'>
             <Col xs = 'auto'>
               <Link
                       to="/"
@@ -140,6 +149,16 @@ export default function SignIn() {
                     >
                     CONTACT US 
               </Link>
+            </Col>
+          </Row>
+          <Row className='mb-3'>
+            <Col xs = 'auto'>
+             <Link to = '/login' className={`${styles.mobile_nav_links}`}>LOG IN</Link>
+            </Col>
+          </Row>
+          <Row className='mb-3'>
+            <Col xs = 'auto'>
+             <Link to='/signup' className={`${styles.mobile_nav_links}`}>SIGNUP</Link>
             </Col>
           </Row>
         </div>
@@ -171,7 +190,7 @@ export default function SignIn() {
                             {userDetails.borderRedFields && userDetails.password === '' &&
                             <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
                         }
-                            <p className={`${styles.forgot_password}`}>Forgot password?</p>
+                            {/* <p className={`${styles.forgot_password}`}>Forgot password?</p> */}
                         </Col>
                     </Row>
                     <Row className='mb-4'>
@@ -227,7 +246,7 @@ export default function SignIn() {
                     </Row>
                     <Row>
                         <Col xs = 'auto'>
-                        <p className={`${styles.signup}`}>Don't have an account <Link to='/signup'>Create now</Link></p>
+                        <p className={`${styles.signup}`}>Don't have an account? <Link to='/signup'>Create now</Link></p>
                         </Col>
                     </Row>
                 </form>

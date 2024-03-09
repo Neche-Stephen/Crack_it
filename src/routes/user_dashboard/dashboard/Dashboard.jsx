@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from './Dashboard.module.css';
@@ -15,6 +16,7 @@ export default function UserDashboard() {
     const [hunts, setHunts] = useState([]);
     const [loading, setLoading] = useState(true);
     const api = 'https://crackitfindit.rad5.com.ng';
+    const navigate = useNavigate();
 
     
      //Offcanvas
@@ -49,7 +51,7 @@ export default function UserDashboard() {
                  // handle error
                  console.log(error);
                  setLoading(false)
-                //  navigate('/login')
+                 navigate('/login')
              });
     
             // axios.get(api + '/api/hunts', { 
@@ -72,7 +74,7 @@ export default function UserDashboard() {
             // });
             }
         else{
-            // navigate('/login')
+            navigate('/login')
         }    
     }, []) 
   return (

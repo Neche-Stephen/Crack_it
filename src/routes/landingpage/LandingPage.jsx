@@ -60,13 +60,13 @@ export default function LandingPage() {
               <img src={exit} alt="" className='w-100' onClick={handleNavClick} style={{cursor:'pointer'}}/>
             </Col>
           </Row>
-          <Row className='mb-4'>
+          <Row className='mb-3'>
             <Col xs = 'auto'>
               <Link to = '/'  className={`${styles.mobile_nav_links}`}>HOME</Link>
             </Col>
           </Row>
-          <Row className='mb-4'>
-            <Col xs = 'autos'>
+          <Row className='mb-3'>
+            <Col xs = 'auto'>
               <ScrollLink
                       to="about"
                       className={`${styles.mobile_nav_links}`}
@@ -77,7 +77,7 @@ export default function LandingPage() {
                 </ScrollLink>
             </Col>
           </Row>
-          <Row>
+          <Row className='mb-3'>
             <Col xs = 'auto'>
               <ScrollLink
                       to="contact"
@@ -87,6 +87,16 @@ export default function LandingPage() {
                     >
                     CONTACT US 
               </ScrollLink>
+            </Col>
+          </Row>
+          <Row className='mb-3'>
+            <Col xs = 'auto'>
+             <Link to = '/login' className={`${styles.mobile_nav_links}`}>LOG IN</Link>
+            </Col>
+          </Row>
+          <Row className='mb-3'>
+            <Col xs = 'auto'>
+             <Link to='/signup' className={`${styles.mobile_nav_links}`}>SIGNUP</Link>
             </Col>
           </Row>
         </div>
@@ -211,10 +221,10 @@ export default function LandingPage() {
      <div className={`${styles.footer_wrapper}`}>
       <Container>
               <div className={`${styles.footer_row} py-3 align-items-center justify-content-center justify-content-lg-between`}>
-                <div className={`${styles.image_wrapper} col-sm-auto mb-3 mb-lg-0`}>
-                  <img src={crack_logo} alt="" />
+                <div className={`${styles.image_wrapper} col-1 col-lg-1  mb-3 mb-lg-0`}>
+                  <img src={crack_logo} alt="" className='w-100'/>
                 </div>
-                <div className={`col-10 col-lg-4 mb-3 mb-lg-0`}>
+                <div className={`offset-2 offset-lg-0 col-10 col-lg-4 mb-3 mb-lg-0`}>
                     <div className={`${styles.policy_row} `}>
                         <p>Privacy Policy</p>
                         <p>Terms of Use </p>
