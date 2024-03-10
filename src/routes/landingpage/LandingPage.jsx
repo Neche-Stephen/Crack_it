@@ -105,8 +105,10 @@ export default function LandingPage() {
         </div>
        }
 
-          <Container>
-            <Row className={`justify-content-center mt-5 ${styles.header_row}`} >
+          <Container style = {{height:'75vh'}}>
+           <Row className='align-items-center m-0' style = {{height:'75vh'}}>
+              <Col className='p-0'>
+              <Row className={`justify-content-center mt-5 ${styles.header_row}`} >
                 <div className={`${styles.hero_title}`}>
                   UNLOCK THE THRILL OF ADVENTURE AND INTELLECT
                   
@@ -126,7 +128,7 @@ export default function LandingPage() {
                 smooth={true}
                 duration={500}
                 >
-                  Watch full video here
+                  See how it works here
               </ScrollLink>
                 <Link to='/' className={`col-auto ${styles.play}` }><img src={play} alt="" /></Link>
             </Row>
@@ -136,16 +138,18 @@ export default function LandingPage() {
                   JOIN THE HUNT
                 </Link>
             </Row>
+              </Col>
+           </Row>
        </Container>
        </header>
 
       {/* About Section  */}
         <Container id='about' className='mt-5 mb-5'>
           <Row className={`justify-content-center mb-5`}>
-            <Col xs = 'auto' className={`${styles.about_it}`}>ABOUT CRACK IT FIND IT</Col>
+            <Col xs = 'auto' className={`${styles.about_it}`}>HOW IT WORKS</Col>
           </Row>
-          <Row className={`mb-3 justify-content-center justify-content-md-around`}>
-              <div className={`${styles.about_div_col}`}>
+          <Row className={`mb-0 justify-content-center justify-content-md-around`}>
+              <div className={`${styles.about_div_col}`}> 
                 <div className={`${styles.about_div_row}`}>
                     <div className={`${styles.about_div} ${styles.about_div_1}`}></div>
                     <p className={`${styles.about_text}`}>Innovative Cerebral Hunt show that seamlessly blends intellect and adventure</p>
@@ -166,7 +170,7 @@ export default function LandingPage() {
                 </div>
               </div>
           </Row>
-          <Row className={`justify-content-center`}>
+          <Row className={`justify-content-center`} >
               <Link to='/signup' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP</Link>
           </Row>
         </Container>
@@ -176,7 +180,9 @@ export default function LandingPage() {
         <Container fluid className={`${styles.crack_video_container} mb-5`} >
           <Row id="top" className='m-0'>
              <Col className='p-0'>
-               <iframe width="560" height="315" className={`${styles.crack_video}`} src="https://www.youtube.com/embed/hUaUdUyamEc?si=eQ2Tg9wOICSt2oYL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+               {/* <iframe width="560" height="315" className={`${styles.crack_video}`} src="https://www.youtube.com/embed/hUaUdUyamEc?si=eQ2Tg9wOICSt2oYL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
+
+               <iframe width="560" height="315" className={`${styles.crack_video}`} src="https://www.youtube.com/embed/0AMZukmZRPQ?si=pnAAER6Wv9G0a4f4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
              </Col>
           </Row>
         </Container>
@@ -190,7 +196,7 @@ export default function LandingPage() {
 
             <div className={`${styles.get_in_touch} mb-5`}>
               <p className={`${styles.get_in_touch_title}`}>Get in touch with Us</p>
-              <p className={`${styles.get_in_touch_text}`}>We're here to assist you. Reach out for any Questions or support.</p>
+              <p className={`${styles.get_in_touch_text}`}>We're here to assist you. Reach out for any questions or support.</p>
               <input className='mb-3' type="text" placeholder='Your Name'/>
               <input className='mb-3'type="email" placeholder='Your Email'/>
               <textarea className='mb-4' name="" id="" cols="30" rows="2" placeholder='Type Your Message'></textarea>
@@ -199,7 +205,7 @@ export default function LandingPage() {
 
             <div className={`${styles.info}`}>
               <div>
-              <p className={`${styles.info_title} mb-4`}>Info</p>
+              <p className={`${styles.info_title} mb-4`}>Contact us</p>
               <div className={`${styles.info_row} d-flex mb-3`}>
                 <div><img src={andriod} alt="" /></div>
                 <p>(843) 555-0130</p>
@@ -208,10 +214,10 @@ export default function LandingPage() {
                 <div><img src={message} alt="" /></div>
                 <p>contact@crackitfindit.com</p>
               </div>
-              <div className={`${styles.info_row} d-flex mb-3`}>
+              {/* <div className={`${styles.info_row} d-flex mb-3`}>
                 <div><img src={earth} alt="" /></div>
                 <p>willie.jennings@example.com</p>
-              </div>
+              </div> */}
               </div>
             </div>
             <div className={`${styles.big_purple_box}`}>
@@ -231,7 +237,7 @@ export default function LandingPage() {
                     <div className={`${styles.policy_row} `}>
                         <p>Privacy Policy</p>
                         <p>Terms of Use </p>
-                        <p>Cookie Policy</p>
+                        {/* <p>Cookie Policy</p> */}
                     </div>
                 </div>
                 <div className={`col-8 col-lg-2 mb-3 mb-lg-0`}>
@@ -246,7 +252,7 @@ export default function LandingPage() {
                 </div>
                 <div className={`col-9 col-lg-2 mb-3 mb-lg-0 ${styles.rights}`}>
                   {/* <p>© 2021 Tokners. All rights reserved.</p> */}
-                  © 2021 Tokners. All rights reserved.
+                  © Crack it 2024. All rights reserved.
                 </div>
             </div>
         </Container>
