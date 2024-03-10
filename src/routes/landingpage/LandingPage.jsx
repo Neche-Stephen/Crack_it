@@ -208,7 +208,7 @@ export default function LandingPage() {
               <p className={`${styles.info_title} mb-4`}>Contact us</p>
               <div className={`${styles.info_row} d-flex mb-3`}>
                 <div><img src={andriod} alt="" /></div>
-                <p>(843) 555-0130</p>
+                <p>+2348022374661</p>
               </div>
               <div className={`${styles.info_row} d-flex mb-3`}>
                 <div><img src={message} alt="" /></div>
