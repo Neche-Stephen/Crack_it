@@ -66,7 +66,7 @@ export default function SignIn() {
             // Display error message in the corresponding span element
             setErrorMessage(`This field is required.`);
             const scrollToLabel = (field) => {
-                const labelElement = document.querySelector(`[for=${field}]`);
+                const labelElement = document.querySelector(`[name=${field}]`);
                 if (labelElement) {
                 labelElement.scrollIntoView({ behavior: 'smooth' });
                 }
@@ -196,7 +196,7 @@ export default function SignIn() {
                     </Row>
                     <Row className=''>
                         <Col xs = '11' lg = '9'>
-                            <input type="email" placeholder='Email' name='email' value={email} onChange={handleChange} style={userDetails.borderRedFields && userDetails.email === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
+                            <input type="text" placeholder='Email' name='email' value={email} onChange={handleChange} style={userDetails.borderRedFields && userDetails.email === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
                             {userDetails.borderRedFields && userDetails.email === '' &&
                             <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
                         }

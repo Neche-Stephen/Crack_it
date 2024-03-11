@@ -11,7 +11,6 @@ import Navbar from '../../components/navbar/Navbar';
 import styles from './SignUp.module.css';
 import exit from '../../assets/images/exit.png';
 
-import animate_vid from './animate.mp4';
 
 
 
@@ -61,7 +60,7 @@ export default function SignUp() {
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
-        console.log(name, value);
+        // console.log(name, value);
         setUserDetails({ ...userDetails, [name]: value });
    
     };
@@ -77,21 +76,30 @@ export default function SignUp() {
         setSignupLoading(true);
         setBtnDisabledState(true);
         setErrorMessageSentence([]);
-        const requiredFields = ['fname', 'email', 'phone', 'password', 'confirm_password', 'gender', 'age', 'state', 'country_code'];
+        const requiredFields = ['fname', 'lname', 'phone', 'occupation', 'email', 'password', 'confirm_password', 
+        'gender', 'age', 'state', 'country_code', 'nationality', 'address'];
+        // console.log("run")
         const isEmpty = requiredFields.some((field) => userDetails[field] === '');
        
         if(isEmpty){
+        // console.log("run")
+
             setUserDetails((prevData) => ({
                 ...prevData,
                 borderRedFields: true,
             }));
             // Find the first empty required field
             const emptyField = requiredFields.find((field) => userDetails[field] === '');
+            console.log(emptyField);
             // Display error message in the corresponding span element
             setErrorMessage(`This field is required.`);
             const scrollToLabel = (field) => {
                 const labelElement = document.querySelector(`[for=${field}]`);
+                console.log(field, labelElement);
+
                 if (labelElement) {
+                // console.log(field, labelElement);
+
                 labelElement.scrollIntoView({ behavior: 'smooth' });
                 }
             };
@@ -263,7 +271,7 @@ useEffect(() =>{
                            }
                         </Col>
                         <Col xs = '11' lg = '5'>
-                            <label htmlFor="">Last Name<span>*</span></label>
+                            <label htmlFor="lname">Last Name<span>*</span></label>
                             <input type="text" name='lname' value={lname} onChange={handleChange}
                                  style={userDetails.borderRedFields && userDetails.lname === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} 
                             />
@@ -274,8 +282,8 @@ useEffect(() =>{
                     </Row>
                     <Row>
                         <Col xs = '11' lg = '10'>
-                            <label htmlFor="">Email<span>*</span></label>
-                            <input type="email" name='email' value={email} onChange={handleChange}  style={userDetails.borderRedFields && userDetails.email === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} />
+                            <label htmlFor="email">Email<span>*</span></label>
+                            <input type="text" name='email' value={email} onChange={handleChange}  style={userDetails.borderRedFields && userDetails.email === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} />
                            {userDetails.borderRedFields && userDetails.email === '' &&
                              <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
                            }
@@ -283,7 +291,7 @@ useEffect(() =>{
                     </Row>
                     <Row>
                         <Col xs = "5" lg ="3">
-                             <label htmlFor="">Country Code<span>*</span></label>
+                             <label htmlFor="country_code">Country Code<span>*</span></label>
                              <select name="country_code" id="" onChange={handleChange} style={userDetails.borderRedFields && userDetails.country_code === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} >
                                 <option value="">-- select one --</option>
                                 <option value="+213">Algeria (+213)</option>
@@ -509,7 +517,7 @@ useEffect(() =>{
                              {/* <span className={`${styles.inputError} text-danger`}>{errorMessage}</span> */}
                         </Col>
                         <Col xs = "6" lg = "7" className='align-self-end'>
-                            <label htmlFor="">Phone Number<span>*</span></label>
+                            <label htmlFor="phone">Phone Number<span>*</span></label>
                             <input type="number" name='phone' value={phone} onChange={handleChange} style={userDetails.borderRedFields && userDetails.phone === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} />
                             {userDetails.borderRedFields && userDetails.phone === '' &&
                              <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
@@ -518,7 +526,7 @@ useEffect(() =>{
                     </Row>
                     <Row>
                         <Col xs = '11' lg = '5'>
-                            <label htmlFor="">Occupation<span>*</span></label>
+                            <label htmlFor="occupation">Occupation<span>*</span></label>
                             <input type="text"  name='occupation' value={occupation} onChange={handleChange} style={userDetails.borderRedFields && userDetails.occupation === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
                             {userDetails.borderRedFields && userDetails.occupation === '' &&
                              <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
@@ -526,7 +534,7 @@ useEffect(() =>{
 
                         </Col>
                         <Col xs = '11' lg = '5'>
-                            <label htmlFor="">Address <span>*</span></label>
+                            <label htmlFor="address">Address <span>*</span></label>
                             <input type="text" name='address' value={address} onChange={handleChange} style={userDetails.borderRedFields && userDetails.address === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
                             {userDetails.borderRedFields && userDetails.address === '' &&
                              <span className={`${styles.inputError} text-danger`}>{errorMessage}</span>
@@ -536,7 +544,7 @@ useEffect(() =>{
                     </Row>
                     <Row>
                         <Col xs = '11' lg = '5'>
-                            <label htmlFor="">Country<span>*</span></label>
+                            <label htmlFor="nationality">Country<span>*</span></label>
                             {/* <select name="nationality" id="" onChange={handleChange} style={userDetails.borderRedFields && userDetails.nationality === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} >
                                 <option value="">-- select one --</option>
                                 <option value="Nigeria">Nigeria</option>
@@ -744,7 +752,7 @@ useEffect(() =>{
                            }
                         </Col>
                         <Col  xs = '11' lg = '5'>
-                            <label htmlFor="">State of residence<span>*</span></label>
+                            <label htmlFor="state">State of residence<span>*</span></label>
                             {/* <select name="state" id="" style={userDetails.borderRedFields && userDetails.state === '' ? { border: '1px solid red', outline:"1px solid red" } : {}} onChange={handleChange}>
                                 <option value="">-- select one --</option>
                                 <option value="Abia State">Abia State</option>
@@ -759,7 +767,7 @@ useEffect(() =>{
                     </Row>
                     <Row>
                         <Col xs = '11' lg = '5'>
-                            <label htmlFor="">Gender<span>*</span></label>
+                            <label htmlFor="gender">Gender<span>*</span></label>
                             <select name="gender" id="" onChange={handleChange} style={userDetails.borderRedFields && userDetails.gender === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}>
                                   <option value="">-- select one --</option>
                                 <option value="Male">Male</option>
@@ -771,7 +779,7 @@ useEffect(() =>{
                         </Col>
 
                         <Col xs = '11' lg = '5'>
-                            <label htmlFor="">Age<span>*</span></label>
+                            <label htmlFor="age">Age<span>*</span></label>
                             <input type="number" name='age' value={age} onChange={handleChange} style={userDetails.borderRedFields && userDetails.age === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
                             {/* <select name="age" id="" onChange={handleChange}>
                                 <option value="18-25">18-25</option>
@@ -784,7 +792,7 @@ useEffect(() =>{
                     </Row>
                     <Row>
                         <Col xs = '11' lg = '5' style={{position:'relative'}}>
-                            <label htmlFor="">Password<span>*</span></label>
+                            <label htmlFor="password">Password<span>*</span></label>
                             <input type={showPassword? 'text' : 'password'} name='password' value={password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
                             {/* <span className="view-password-icon" onClick={togglePasswordVisibility}>
                                 {showPassword ? '👁️' : '👁️'}
@@ -798,7 +806,7 @@ useEffect(() =>{
                         </Col>
 
                         <Col xs = '11' lg = '5' style={{position:'relative'}}>
-                            <label htmlFor="">Confirm Password<span>*</span></label>
+                            <label htmlFor="confirm_password">Confirm Password<span>*</span></label>
                             <input type={showPassword? 'text' : 'password'} name='confirm_password' value={confirm_password} onChange={handleChange} style={userDetails.borderRedFields && userDetails.confirm_password === '' ? { border: '1px solid red', outline:"1px solid red" } : {}}/>
                             <span className={`${styles.password_view}`} onClick={togglePasswordVisibility}>
                                 <Icon icon={showPassword ? eyeOff : eye} size={25}/>

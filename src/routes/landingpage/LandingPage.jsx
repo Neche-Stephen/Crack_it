@@ -9,8 +9,6 @@ import Navbar from '../../components/navbar/Navbar';
 
 
 // import bg_video from '../../assets/videos/How_Computer_Vision_Works.mp4';
-import bg_video from '../../assets/videos/dangote.mp4';
-import bg_header from '../../assets/images/bg_header.png';
 import crack_logo from '../../assets/images/Crack It, Find It Logo1 1.svg';
 import play from '../../assets/images/play.png';
 import message from '../../assets/images/message.svg';
@@ -21,9 +19,6 @@ import instagram from '../../assets/images/instagram.svg';
 import linkendin from '../../assets/images/linkendin.svg';
 import telegram from '../../assets/images/telegram.svg';
 import twitter from '../../assets/images/twitter.svg';
-import about_1 from '../../assets/images/about_1.png';
-import about_2 from '../../assets/images/about_2.png';
-import about_3 from '../../assets/images/about_3.png';
 import exit from '../../assets/images/exit.png';
 
 

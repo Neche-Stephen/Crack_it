@@ -7,11 +7,18 @@
     position: relative;
     min-height: 100vh;
     /* overflow: hidden; */
-    background-image: url('../../assets/images/bg_header_90.png');
+    background-image: url('../../assets/images/bg_header_92.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 0px ;
 
+}
+
+
+@media (max-width:575px){
+   .header{
+    background-image: url('../../assets/images/bg_header_93_5.png');
+   }
 }
 
 @media (max-width:767px){
