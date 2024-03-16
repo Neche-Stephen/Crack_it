@@ -11,6 +11,8 @@ import Navbar from '../../components/navbar/Navbar';
 import styles from './SignUp.module.css';
 import exit from '../../assets/images/exit.png';
 
+import { PaystackButton } from 'react-paystack'
+
 
 
 
@@ -44,7 +46,6 @@ export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [btnDisabledState, setBtnDisabledState] = useState(false);
 
-
     const navigate = useNavigate();
     const api = 'https://crackitfindit.rad5.com.ng'
 
@@ -52,6 +53,24 @@ export default function SignUp() {
         confirm_password, country_code, address, age, occupation, nationality, state,
         privacy_terms
     } = userDetails;
+
+    const publicKey = "pk_test_06996f0f285bd3d650d9e78bccef581d57e631b2"
+    const amount = 1000000 // Remember, set in kobo!
+
+    const componentProps = {
+      email,
+      amount,
+      metadata: {
+        fname,
+        phone,
+      },
+      publicKey,
+      text: "Pay Now",
+      onSuccess: () =>
+        alert("Thanks for doing business with us! Come back soon!!"),
+      onClose: () => alert("Wait! You need this oil, don't go!!!!"),
+    }
+
 
  
     const handleNavClick = () => {
@@ -831,6 +850,7 @@ useEffect(() =>{
                                 "Sign Up"
                                 }
                             </button>
+                            
                         </Col>
                     </Row>
                    
@@ -859,6 +879,7 @@ useEffect(() =>{
         </Container>
 
     </div>
+    {/* <PaystackButton className="paystack-button" {...componentProps} /> */}
    </>
   )
 }

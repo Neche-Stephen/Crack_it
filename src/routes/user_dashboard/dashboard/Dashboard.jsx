@@ -51,7 +51,7 @@ export default function UserDashboard() {
                  // handle error
                  console.log(error);
                  setLoading(false)
-                 navigate('/login')
+                //  navigate('/login')
              });
     
             // axios.get(api + '/api/hunts', { 

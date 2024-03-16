@@ -7,6 +7,7 @@
     position: fixed;
     background: #FDDFFD !important;
     border-top-right-radius: 30px;
+    /* overflow-y: scroll; */
 }
 
 .offcanvas_main{

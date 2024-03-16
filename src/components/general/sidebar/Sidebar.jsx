@@ -146,7 +146,7 @@ export default function ({sidebarItems, show, handleClose, active}) {
                                 )
                             })
                         }
-                        <Row className={`${styles.offcanvas_item}`} style={{marginTop:'270px', justifyContent:'center'}}>
+                        <Row className={`${styles.offcanvas_item}`} style={{marginTop:'240px', justifyContent:'center'}}>
                             <Col  xs = '10' sm = '9' md = '7' lg = '8' className={`${styles.sidebar_item_col} p-0 py-2`} 
                             onClick={handleLogout}
                             >

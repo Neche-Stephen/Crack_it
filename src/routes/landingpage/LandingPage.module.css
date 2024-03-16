@@ -175,6 +175,7 @@
 
 .about_div_col{
     width: 30% !important;
+    /* border: 1px solid red; */
 }
 
 @media(max-width:991px){
@@ -224,9 +225,9 @@
 }
 .about_text{
     font-family: Lato;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 400;
-    line-height: 28.8px;
+    line-height: 23.8px;
     letter-spacing: -0.02em;
     text-align: center;
     width: 85%;
@@ -479,24 +480,19 @@
     justify-content: space-between;
     color: #fff;
 }
+
+.image_wrapper{
+    width: 5.33%;
+}
 @media(max-width:991px){
     
     .image_wrapper{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .image_wrapper img{
-        width: 50%;
+        width: 8.33%;
+        /* display: flex;
+        justify-content: center; */
     }
 }
 
-@media(max-width:575px){
-    .image_wrapper img{
-        width: 20%;
-    }
-}
 
 
 

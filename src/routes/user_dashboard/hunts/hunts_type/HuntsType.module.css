@@ -1,0 +1,63 @@
+
+
+.challange_main{
+    box-shadow: 0px 4px 16.100000381469727px 1px #00000040;
+    border-radius: 12px;
+}
+
+.today_challenge_title{
+    font-family: Chelsea Market;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 46px;
+    letter-spacing: 0em;
+    text-align: center;   
+    color: #660066;
+}
+
+.today_challenge_task{
+    font-family: Chelsea Market;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 46px;
+    letter-spacing: 0em;
+    text-align: center;    
+    color: #660066;
+}
+
+.challange_details{
+    font-family: Chelsea Market;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0em;
+    color: #660066;
+}
+
+.challange_details p{
+    text-align: center;
+}
+
+.today_challenge_body span{
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    /* text-align: center; */
+    color: #660066;
+}
+
+.today_challenge_body button{
+    border: unset;
+    background-color: #FF6600;
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 42px;
+    letter-spacing: 0em;
+    color: #fff;  
+    border-radius: 18px; 
+    width: 100%; 
+}
+

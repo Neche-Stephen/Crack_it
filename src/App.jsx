@@ -7,6 +7,8 @@ import SignIn from './routes/signin/SignIn';
 // User Dashboard
 import UserDashboard from './routes/user_dashboard/dashboard/Dashboard';
 import Hunts from './routes/user_dashboard/hunts/Hunts';
+import UserProfile from './routes/user_dashboard/profile/Profile';
+import HuntsType from './routes/user_dashboard/hunts/hunts_type/HuntsType';
 
 
 // Admin Dashboard
@@ -26,6 +28,8 @@ export default function App() {
         {/* User Dashboard Routes */}
         <Route path='/user/dashboard' element = {<UserDashboard />}/>
         <Route path='/user/hunts' element = {<Hunts />}/>
+        <Route path='/user/hunts/:hunt_type' element = {<HuntsType />}/>
+        <Route path='/user/profile' element = {<UserProfile />}/>
 
         {/* Admin Dashboard Routes */}
         <Route path='/admin/dashboard' element={<AdminDashboard />}/>

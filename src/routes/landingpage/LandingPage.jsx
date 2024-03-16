@@ -139,7 +139,7 @@ export default function LandingPage() {
        </header>
 
       {/* About Section  */}
-        <Container id='about' className='mt-5 mb-5'>
+        <Container id='about' className='mt-5 mb-md-5'>
           <Row className={`justify-content-center mb-5`}>
             <Col xs = 'auto' className={`${styles.about_it}`}>HOW IT WORKS</Col>
           </Row>
@@ -165,20 +165,22 @@ export default function LandingPage() {
                 </div>
               </div>
           </Row>
-          <Row className={`justify-content-center`} >
-              <Link to='/signup' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP</Link>
-          </Row>
+         
         </Container>
 
         {/* Crack it Video Section */}
 
-        <Container fluid className={`${styles.crack_video_container} mb-5`} >
+        <Container fluid className={`${styles.crack_video_container} mb-5`}>
           <Row id="top" className='m-0'>
              <Col className='p-0'>
                {/* <iframe width="560" height="315" className={`${styles.crack_video}`} src="https://www.youtube.com/embed/hUaUdUyamEc?si=eQ2Tg9wOICSt2oYL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
 
                <iframe width="560" height="315" className={`${styles.crack_video}`} src="https://www.youtube.com/embed/0AMZukmZRPQ?si=pnAAER6Wv9G0a4f4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
              </Col>
+          </Row>
+
+          <Row className={`justify-content-center mt-4`} >
+              <Link to='/signup' className={`${styles.sign_up} col-auto px-5 py-2`}>SIGN UP NOW</Link>
           </Row>
         </Container>
 
@@ -225,7 +227,7 @@ export default function LandingPage() {
      <div className={`${styles.footer_wrapper}`}>
       <Container>
               <div className={`${styles.footer_row} py-3 align-items-center justify-content-center justify-content-lg-between`}>
-                <div className={`${styles.image_wrapper} col-1 col-lg-1  mb-3 mb-lg-0`}>
+                <div className={`${styles.image_wrapper} mb-3 mb-lg-0`}>
                   <img src={crack_logo} alt="" className='w-100'/>
                 </div>
                 <div className={`offset-lg-0 col-12 col-lg-4 mb-3 mb-lg-0`}>
