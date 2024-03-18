@@ -10,6 +10,11 @@ import UserSidebar from '../../../components/user/userSidebar/UserSidebar';
 import DashboardNavbar from '../../../components/general/dashboard_navbar/DashboardNavbar';
 
 export default function Profile() {
+  // Offcanvas
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [profile, setProfile] = useState([])
   const navigate = useNavigate();
@@ -44,9 +49,9 @@ export default function Profile() {
   return (
     <Container fluid>
         <Row>
-            <UserSidebar active = "profile"/>
+            <UserSidebar show = {show} handleClose = {handleClose} active = "profile"/>
             <Col className='offset-sm-2 offset-lg-3 px-4'>
-                <DashboardNavbar />
+                <DashboardNavbar handleShow={handleShow}/>
                 <Row>
                   <Col className={`${styles.profile_title}`}>My profile</Col>
                 </Row>

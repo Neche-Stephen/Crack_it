@@ -27,6 +27,10 @@ export default function Hunts() {
     const [loadingHunts, setLoadingHunts] = useState(true);
     const navigate = useNavigate();
     const api = 'https://crackitfindit.rad5.com.ng';
+     //Offcanvas
+     const [show, setShow] = useState(false);
+     const handleClose = () => setShow(false);
+     const handleShow = () => setShow(true);
 
     useEffect(()=>{
         if (sessionStorage.Token){
@@ -71,9 +75,9 @@ export default function Hunts() {
                 :
                 <Container fluid>
                 <Row>
-                    <UserSidebar active = "Hunts"/>
+                    <UserSidebar show = {show} handleClose = {handleClose} active = "Hunts"/>
                     <Col className='offset-sm-2 offset-lg-3'>
-                        <DashboardNavbar />
+                        <DashboardNavbar handleShow={handleShow}/>
                         <Row>
                             <Col xs = '12' lg = '6'>
                                <Link to={`/user/hunts/day`}><img src={hunt_day} alt="" className='w-100'/></Link>

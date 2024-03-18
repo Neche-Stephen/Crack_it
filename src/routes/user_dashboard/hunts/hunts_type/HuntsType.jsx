@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
@@ -11,6 +11,11 @@ import DashboardNavbar from '../../../../components/general/dashboard_navbar/Das
 import left_arrow from './asset/left_arrow.png'
 
 export default function HuntsType(props) {
+    // Offcanvas
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -25,13 +30,13 @@ export default function HuntsType(props) {
     
     <div className={`${styles.today_challenge_body} container-fluid`}>
        <Row>
-            <UserSidebar active='Hunts'/>
+            <UserSidebar show = {show} handleClose = {handleClose} active='Hunts'/>
             <Col className='offset-sm-2 offset-lg-3'>
-                <DashboardNavbar />
+                <DashboardNavbar handleShow={handleShow}/>
                 <Row className='justify-content-center mt-5 mb-5'>
                     <Col xs = '10' className={`${styles.challange_main} py-5`}>
                         <div className={`${styles.today_challenge_row} row mb-3 align-items-center` }>
-                            <div className='col-2 col-md-1 col-lg-1' >
+                            <div className='col-2 col-md-1 col-lg-1 d-none d-sm-block' >
                                 <Link to='/user/hunts'><img src={left_arrow} alt="" className='w-100'/></Link>
                             </div>
 

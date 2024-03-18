@@ -93,90 +93,121 @@ export default function UserDashboard() {
                 <Row className=''>
                     <UserSidebar show = {show} handleClose = {handleClose} active = 'Dashboard'/>
         
-                    <Col className='ps-sm-4 pe-sm-5 pb-5 offset-sm-2 offset-lg-3'>
+                    <Col style={{background:' #FFF9FF'}} className='ps-sm-5 pe-sm-5 pb-5 offset-sm-2 offset-lg-3'>
                         <DashboardNavbar handleShow={handleShow}/>
                         <Row className='mt-5 mb-2'>
                             <Col><p className={`${styles.welcome}`}>Welcome {userData.name},</p></Col>
                         </Row>
-                        <Row className='mb-4 d-none justify-content-center justify-content-lg-start'>
-                          <Col sm ='6' lg = "4" className={`${styles.parent_dashboard_card}`}>
-                            <div className={`${styles.dashboard_card}`}>
-                                
-                            </div>
-                          
-                          </Col>
-                          <Col sm ='6' lg = "4" className='mb-5 mb-lg-0'>
-                            <div className={`${styles.dashboard_card}`}>
-                                
-                            </div>
-                          
-                          </Col>
-                          <Col sm ='6' lg = "4" className=''>
-                            <div className={`${styles.dashboard_card}`}>
-                                
-                            </div>
-                          
-                          </Col>
-                        </Row> 
-                        <Row className='d-none'>
-                            <Col lg = '4' className='mb-lg-4'>
-                                <div className={`${styles.hunt} `}>
-                                    <h3>Today's hunt</h3>
-                                    <p>You're to get the white box from under osisioma flyover...</p>
-                                    <p>You'll be given a code to crack at the entrance to kilimanjaro at railway, after getting it, proceed to the next location ... </p>
-                                </div>
-                            
-                            </Col>
-                            <Col lg = '4'>
-                                <div className={`${styles.hunt}`}>
-                                    <h3>This week's hunt</h3>
-                                    <p>You're to get the white box from under osisioma flyover...</p>
-                                    <p>You'll be given a code to crack at the entrance to kilimanjaro at railway, after getting it, proceed to the next location ... </p>
-                                </div>
-                            
-                            </Col>
-                            <Col lg = '4'>
-                                <div className={`${styles.hunt}`}>
-                                    <h3>This week's hunt</h3>
-                                    <p>You're to get the white box from under osisioma flyover...</p>
-                                    <p>You'll be given a code to crack at the entrance to kilimanjaro at railway, after getting it, proceed to the next location ... </p>
-                                </div>
-                            
-                            </Col>
-                            <Col lg = '4'>
-                               <div className={`${styles.notifications}`}>
-                                    <Row className='justify-content-center'>
-                                        <Col xs = 'auto'><h3 className={`${styles.notification_h3}`}>Notification</h3></Col>
-                                    </Row>
-                                    <div className={`${styles.notification}`}>
-                                        <Row className = "">
-                                        <Col xs = 'auto' className = "pe-0"><img src={avatar} alt="" className={`${styles.avatar}`}/></Col>
-                                        <Col className = "p-0 ms-2"><p className={`${styles.notification_title}`}>Crack It, Find It</p></Col>
-                                        <Col xs = "auto" className = "ms-auto"><p className={`${styles.notification_just_now}`}>Just now</p></Col>
+                        <Row className='justify-content-center'>
+                            <Col xs = '11'>
+                                <Row className='justify-content-between'>
+                                    <div className={`${styles.dashboard_details}`}>
+                                        <Row className='justify-content-between'>
+                                            {/* Ongoing hunt */}
+                                            <div className={`${styles.dashboard_widget} mb-3`}>
+                                                <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'><p>Ongoing hunt</p></Col>
+                                                </Row>
+                                                <Row className='justify-content-center mb-4'>
+                                                    <Col xs = '8'><button>23:34:40</button></Col>
+                                                </Row>
+                                                <Row className='justify-content-end'>
+                                                    <Col xs = 'auto'><span className={`${styles.view_details}`}>Click to view details</span></Col>
+                                                </Row>
+                                                
+                                            
+                                            </div>
+
+                                            {/* Active Hunt */}
+                                            <div className={`${styles.dashboard_widget} mb-3`}>
+                                                <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'>
+                                                        <p>Active hunt</p>
+                                                    </Col>
+                                                </Row>
+                                                 <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'><span>Hunt for the day</span></Col>
+                                                 </Row>
+                                                 <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'><span>Hunt for the week</span></Col>
+                                                 </Row>
+                                                 <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'><span>Hunt for the year</span></Col>
+                                                 </Row>
+                                            </div>
+
+                                            {/* Upcoming hunt */}
+                                            <div className={`${styles.dashboard_widget}`}>
+                                                <Row>
+                                                    <Col>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'><p>Upcoming hunt</p></Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'><span>Hunt for the day</span></Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Task</small> </Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Date</small> </Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Duration</small> </Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Prize</small> </Col>
+                                                        </Row>
+                                            
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'><p>Upcoming hunt</p></Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'><span>Hunt for the day</span></Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Task</small> </Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Date</small> </Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Duration</small> </Col>
+                                                        </Row>
+                                                        <Row className='justify-content-center'>
+                                                            <Col xs = 'auto'> <small>Prize</small> </Col>
+                                                        </Row>
+                                            
+                                                    </Col>
+                                                </Row>
+                                            
+                                            </div>
+
+                                             {/* Notification */}
+                                             <div className={`${styles.dashboard_widget}`}>
+                                                <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'><p>Notification</p></Col>
+                                                </Row>
+                                            
+                                            </div>
+
                                         </Row>
-                                        <Row>
-                                            <Col xs = 'auto'><p className={`${styles.notification_sub_title}`}>A new hunt is available in your location...</p></Col>
-                                            <Col xs ='auto'><p className={`${styles.notification_text}`}>This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...</p></Col>
-                                        </Row>
-        
                                     </div>
-                                    <div className={`${styles.notification}`}>
-                                        <Row className = "">
-                                        <Col xs = 'auto' className = "pe-0"><img src={avatar2} alt="" className={`${styles.avatar}`}/></Col>
-                                        <Col className = "p-0 ms-2"><p className={`${styles.notification_title}`}>Crack It, Find It</p></Col>
-                                        <Col xs = "auto" className = "ms-auto"><p className={`${styles.notification_just_now}`}>Just now</p></Col>
+                                    <div xs = '4' className={`${styles.dashboard_profile}`}>
+                                        <Row className='justify-content-center'>
+                                            <Col xs = 'auto'><p>Profile</p></Col>
                                         </Row>
-                                        <Row>
-                                            <Col xs = 'auto'><p className={`${styles.notification_sub_title}`}>A new hunt is available in your location...</p></Col>
-                                            <Col xs ='auto'><p className={`${styles.notification_text}`}>This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...</p></Col>
-                                        </Row>
-        
+                                    
                                     </div>
-                               </div>
+                                </Row>
                             </Col>
                         </Row>
         
-                        <Row className='justify-content-center'>
+                        <Row className='justify-content-center d-none'>
                             <Col xs = '10' className={`${styles.no_hunt}`}>
                                 <p>No active hunt</p>
                             </Col>

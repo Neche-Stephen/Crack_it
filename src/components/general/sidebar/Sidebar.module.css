@@ -8,6 +8,8 @@
     background: #FDDFFD !important;
     border-top-right-radius: 30px;
     /* overflow-y: scroll; */
+    min-height: 100vh;
+
 }
 
 .offcanvas_main{
@@ -21,6 +23,9 @@
 .sidebar_col{
     min-height: 100vh;
     border-top-right-radius: 30px;
+    /* position: fixed; */
+    /* overflow-y: scroll; */
+
     /* background: #FDDFFD; */
     /* padding-top: 40px; */
     padding-bottom: 70px;
