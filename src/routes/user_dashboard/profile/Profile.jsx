@@ -74,9 +74,9 @@ export default function Profile() {
                     <Row className={`${styles.profile_row} py-4`}>
                         <Col>
                             <Row className='mb-2'>
-                              <Col className={`${styles.profile_text}`}>Personal Information</Col>
+                              <Col className={`${styles.profile_text}`} >Personal Information</Col>
                             </Row>
-                            <Row>
+                            <Row >
                               <Col>
                                  <div className={`${styles.profile_list}`}>
                                     <p>First Name</p>
