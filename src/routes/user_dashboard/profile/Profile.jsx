@@ -60,8 +60,8 @@ export default function Profile() {
                 <Row className='m-0'>
                   <Col lg = '11' className={`${styles.profile_main_col}`} >
                     <Row className={`${styles.profile_row} ps-1 py-4 align-items-center`}>
-                        <div className={`${styles.profile_icon_col}`}><img src={profile_icon} alt="" className='w-100'/></div>
-                        <Col>
+                        <div className={`${styles.profile_icon_col} p-0`} ><img src={profile_icon} alt="" className='w-100'/></div>
+                        <Col className={`${styles.my_profile_name_details}`} >
                           <p className={`${styles.profile_text}`}>Kaka Claire</p>
                           <p className={`${styles.profile_text_tiny_under_name}`}>Enthusiast</p>
                         </Col>

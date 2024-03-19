@@ -21,39 +21,77 @@
 }
 
 .profile_icon_col{
-    width: 15% !important;
+    width: 10% !important;
+}
+@media(max-width:991px){
+    .profile_icon_col{
+        /* width: 15% !important; */
+    }
+}
+@media(max-width:767px){
+    .profile_icon_col{
+        width: 15% !important;
+    }
+}
+@media(max-width:575px){
+    .profile_icon_col{
+        width: 18% !important;
+    }
+}
+
+@media(max-width:400px){
+    .profile_icon_col{
+        width: 23% !important;
+    }
+}
+
+.my_profile_name_details{
+    height: fit-content;
 }
 .profile_text{
     font-family: Lato;
     font-size: var(--normal-text);
     font-weight: 700;
-    letter-spacing: 0em;
     color: var(--primary-color);
+    margin: 0;
+    /* border: 1px solid red; */
+    /* padding: 0; */
+}
+
+@media(max-width:575px){
+    .profile_text{
+        font-size: 12px;
+    }
 }
 
 .profile_text_tiny_under_name{
-    margin-top: -20px;
+    margin: 0;
+    /* margin-top: -20px; */
     font-family: Lato;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0em;
     color: var(--primary-color);
 }
+@media(max-width:575px){
+    .profile_text_tiny_under_namet{
+        font-size: 3px;
+        color: red;
+    }
+}
 .profile_list p{
     font-family: Lato;
     font-size: 14px;
     font-weight: 400;
-    letter-spacing: 0em;
     color: var(--primary-color);
 }
-.profile_text_tiny{
-    font-family: Lato;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 29px;
-    letter-spacing: 0em;
-    color: var(--primary-color);
+
+@media(max-width:575px){
+    .profile_list p{
+        font-size: 9px;
+    }
 }
+
 
 /* .profile_edit{
     position: absolute;
