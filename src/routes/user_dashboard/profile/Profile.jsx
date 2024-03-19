@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import styles from './Profile.module.css';
 import edit from './asset/edit.svg';
+import edit_main from './asset/edit_main.svg';
+
 import profile_icon from './asset/profile_icon1.svg';
 import UserSidebar from '../../../components/user/userSidebar/UserSidebar';
 import DashboardNavbar from '../../../components/general/dashboard_navbar/DashboardNavbar';
@@ -49,21 +51,24 @@ export default function Profile() {
   return (
     <Container fluid>
         <Row>
-            <UserSidebar show = {show} handleClose = {handleClose} active = "profile"/>
-            <Col className='offset-sm-2 offset-lg-3 px-4'>
+            <UserSidebar show = {show} handleClose = {handleClose} active = "Profile"/>
+            <Col className='offset-sm-2 offset-lg-3 px-4 px-sm-3' >
                 <DashboardNavbar handleShow={handleShow}/>
-                <Row>
-                  <Col className={`${styles.profile_title}`}>My profile</Col>
+                <Row className='m-0 mt-4 mb-5'>
+                  <Col className={`${styles.profile_title} p-0`}>My profile</Col>
                 </Row>
-                <Row>
-                  <Col xs = '9' className={`${styles.profile_main_col}`}>
+                <Row className='m-0'>
+                  <Col lg = '11' className={`${styles.profile_main_col}`} >
                     <Row className={`${styles.profile_row} ps-1 py-4 align-items-center`}>
                         <div className={`${styles.profile_icon_col}`}><img src={profile_icon} alt="" className='w-100'/></div>
                         <Col>
                           <p className={`${styles.profile_text}`}>Kaka Claire</p>
                           <p className={`${styles.profile_text_tiny_under_name}`}>Enthusiast</p>
                         </Col>
-                        <img src={edit} alt="" className={`${styles.profile_edit}`}/>
+                        <button className={`${styles.profile_editt}`}>
+                          <span>Edit</span>
+                          <img src={edit_main} alt="" />
+                        </button>
                     </Row>
                   {/* Personal Information */}
                     <Row className={`${styles.profile_row} py-4`}>
@@ -94,7 +99,11 @@ export default function Profile() {
                               </Col>
                             </Row>
                         </Col>
-                        <img src={edit} alt="" className={`${styles.profile_edit}`}/>
+                        {/* <img src={edit} alt="" className={`${styles.profile_edit}`}/> */}
+                        <button className={`${styles.profile_editt}`}>
+                          <span>Edit</span>
+                          <img src={edit_main} alt="" />
+                        </button>
                     </Row>
 
                     {/* Address */}
@@ -118,7 +127,10 @@ export default function Profile() {
                               </Col>
                             </Row>
                         </Col>
-                        <img src={edit} alt="" className={`${styles.profile_edit}`}/>
+                        <button className={`${styles.profile_editt}`}>
+                          <span>Edit</span>
+                          <img src={edit_main} alt="" />
+                        </button>
                     </Row>
 
                   </Col>

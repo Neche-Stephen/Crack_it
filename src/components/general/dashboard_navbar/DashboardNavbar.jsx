@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Container} from 'react-bootstrap';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import styles from './DashboardNavbar.module.css';
 import notification from '../../../assets/images/notification.png';
@@ -23,14 +23,14 @@ export default function DashboardNavbar({handleShow}) {
         <Col xs = '3' className='p-0 d-sm-none' >
           <img src={crack_it_logo} alt=""  className='w-100'/>
         </Col>
-        <Col xs = 'auto' className='p-0 ms-auto d-sm-none'>
-          <img src={hamburger} alt="" className='w-50' onClick={handleShow} />
-        </Col>
+        <div xs = 'auto' className={`${styles.navbar_icons} p-0 ms-auto me-4 d-sm-none`}>
+          <img src={hamburger} alt="" className='w-100' onClick={handleShow} />
+        </div>
         <div xs = 'auto' className={`${styles.navbar_icons} ms-sm-auto me-4`} >
             <img src={notification} alt="" className='w-100'/>
         </div>
         <div xs = 'auto' className={`${styles.navbar_icons} me-4`}  >
-            <img src={profile} alt="" className='w-100'/>
+            <Link to='/user/profile'><img src={profile} alt="" className='w-100'/></Link>
         </div>
         <div className={`${styles.navbar_icons}`} >
             <img src={logout} alt="" className='w-100' onClick={handleLogout} style={{cursor:'pointer'}}/>
