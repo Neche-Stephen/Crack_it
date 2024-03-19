@@ -109,7 +109,7 @@ export default function UserDashboard() {
                                                     <Col xs = 'auto'><p>Ongoing hunt</p></Col>
                                                 </Row>
                                                 <Row className='justify-content-center mb-4'>
-                                                    <Col xs = '8'><button>23:34:40</button></Col>
+                                                    <Col xs = '10' lg = '8'><button>23:34:40</button></Col>
                                                 </Row>
                                                 <Row className='justify-content-end'>
                                                     <Col xs = 'auto'><span className={`${styles.view_details}`}>Click to view details</span></Col>
