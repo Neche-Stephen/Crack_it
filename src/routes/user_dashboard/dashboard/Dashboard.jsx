@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from './Dashboard.module.css';
@@ -126,13 +126,13 @@ export default function UserDashboard() {
                                                     </Col>
                                                 </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span>Hunt for the day</span></Col>
+                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/day`}>Hunt for the day</Link></span></Col>
                                                  </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span>Hunt for the week</span></Col>
+                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`}>Hunt for the week</Link></span></Col>
                                                  </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span>Hunt for the year</span></Col>
+                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`}>Hunt for the year</Link></span></Col>
                                                  </Row>
                                             </div>
 

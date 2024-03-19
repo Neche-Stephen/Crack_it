@@ -19,22 +19,23 @@ export default function DashboardNavbar({handleShow}) {
     navigate('/login')
   }
   return (
-    <Row className='align-items-center mt-4 px-2'>
+    <Row className={`${styles.navbar_row} align-items-center mt-4 px-3`}>
         <Col xs = '3' className='p-0 d-sm-none' >
           <img src={crack_it_logo} alt=""  className='w-100'/>
         </Col>
         <Col xs = 'auto' className='p-0 ms-auto d-sm-none'>
           <img src={hamburger} alt="" className='w-50' onClick={handleShow} />
         </Col>
-        <Col xs = 'auto' className='ms-sm-auto p-0'>
-            <img src={notification} alt="" className='w-50'/>
-        </Col>
-        <Col xs = 'auto' className='p-0'>
-            <img src={profile} alt="" className='w-50'/>
-        </Col>
-        <Col xs = 'auto' className='p-0'>
-            <img src={logout} alt="" className='w-50' onClick={handleLogout} style={{cursor:'pointer'}}/>
-        </Col>
+        <div xs = 'auto' className={`${styles.navbar_icons} ms-sm-auto me-4`} >
+            <img src={notification} alt="" className='w-100'/>
+        </div>
+        <div xs = 'auto' className={`${styles.navbar_icons} me-4`}  >
+            <img src={profile} alt="" className='w-100'/>
+        </div>
+        <div className={`${styles.navbar_icons}`} >
+            <img src={logout} alt="" className='w-100' onClick={handleLogout} style={{cursor:'pointer'}}/>
+        </div >
+       
     </Row>
   )
 }

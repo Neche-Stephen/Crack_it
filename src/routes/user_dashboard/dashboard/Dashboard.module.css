@@ -49,7 +49,10 @@
     width: 48.5% !important;
     border-radius: 12px;
 }
-
+.dashboard_widget a {
+    text-decoration: none;
+    color: #660066;
+}
 .dashboard_widget p{
     font-size: 20px;
     font-weight: 700;

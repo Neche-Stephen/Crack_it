@@ -1,0 +1,31 @@
+
+
+.navbar_logout_icon{
+    width: auto !important;
+}
+
+.navbar_icons{
+    width: 3% !important;
+    padding: 0 !important;
+}
+
+@media(max-width:1199px){
+    .navbar_icons{
+        width: 3% !important;
+    }
+}
+@media(max-width:991px){
+    .navbar_icons{
+        width: 4% !important
+    }
+}
+@media(max-width:768px){
+    .navbar_icons{
+        width: 4.5% !important
+    }
+}
+@media(max-width:575px){
+    .navbar_icons{
+        width: 5% !important
+    }
+}
