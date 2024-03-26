@@ -54,24 +54,7 @@ export default function SignUp() {
         privacy_terms
     } = userDetails;
 
-    const publicKey = "pk_test_06996f0f285bd3d650d9e78bccef581d57e631b2"
-    const amount = 1000000 // Remember, set in kobo!
-
-    const componentProps = {
-      email,
-      amount,
-      metadata: {
-        fname,
-        phone,
-      },
-      publicKey,
-      text: "Pay Now",
-      onSuccess: () =>
-        alert("Thanks for doing business with us! Come back soon!!"),
-      onClose: () => alert("Wait! You need this oil, don't go!!!!"),
-    }
-
-
+   
  
     const handleNavClick = () => {
         setShowMobileNav(!showMobileNav)

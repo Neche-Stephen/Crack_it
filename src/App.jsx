@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
+
 import LandingPage from './routes/landingpage/LandingPage';
 import SignUp from './routes/signup/SignUp';
 import SignIn from './routes/signin/SignIn';
+import AdminSignIn from './routes/AdminSignin/AdminSignIn';
 
 // User Dashboard
 import UserDashboard from './routes/user_dashboard/dashboard/Dashboard';
@@ -24,6 +26,8 @@ export default function App() {
         <Route path = '/' element = {<LandingPage />}/>
         <Route path = '/signup' element = {<SignUp />}/>
         <Route path = '/login' element = {<SignIn />}/>
+        <Route path = '/admin-login' element = {<AdminSignIn />}/>
+
 
         {/* User Dashboard Routes */}
         <Route path='/user/dashboard' element = {<UserDashboard />}/>

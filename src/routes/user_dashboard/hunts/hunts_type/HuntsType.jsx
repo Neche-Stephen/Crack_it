@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import styles from './HuntsType.module.css'
 
 
@@ -16,8 +15,22 @@ export default function HuntsType(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
+    const {state:{hunts}} = useLocation();
+
+    // Sort the array based on date_created
+    hunts.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+
+    let mainHunt;
+    if (hunts.length > 0) {
+        // Return the object with the latest date_created
+        mainHunt = hunts[0];
+
+      } else {
+        mainHunt = {}
+      }
+   
     useEffect(()=>{
         if (!sessionStorage.Token){
            navigate('login'); 
@@ -47,33 +60,37 @@ export default function HuntsType(props) {
 
                         <Row className='justify-content-center'>
                             <Col xs = 'auto'>
-                                <p className={`${styles.today_challenge_task}`}>Find the Box under the Osisioma bridge</p>
+                                {/* <p className={`${styles.today_challenge_task}`}>Find the Box under the Osisioma bridge</p> */}
+                                <p className={`${styles.today_challenge_task}`}>{mainHunt.title}</p>
                             </Col>
                         </Row>
 
                         <Row className={`${styles.challange_details} justify-content-center`}>
                             <Col xs = "10" lg = "6">
-                            <p>Your journey starts from railway, get the code from the MTN shop and crack it. Proceed to get the second code at the gate of star paper mill and crack it...  </p>
+                            {/* <p>Your journey starts from railway, get the code from the MTN shop and crack it. Proceed to get the second code at the gate of star paper mill and crack it...  </p> */}
+                            <p>{mainHunt.description}</p>
                             </Col>
                         </Row>
 
                         <Row className={`${styles.challange_details} justify-content-center`}>
                             <Col xs = "10" lg = "6">
-                            <p>Participants from 18 and above are allowed to participate</p>
+                            {/* <p>Participants from 18 and above are allowed to participate</p> */}
+                              <p>{mainHunt.audience}</p>
                             </Col>
                         </Row>
 
                         <Row className={`${styles.challange_details} justify-content-center`}>
                             <Col xs = "10" lg = "6">
-                            <p>Your reward is a Cash price.</p>
+                            {/* <p>Your reward is a Cash price.</p> */}
+                            <p>-</p>
                             </Col>
                         </Row>
 
-                        <Row className='justify-content-center'>
+                        {/* <Row className='justify-content-center'>
                             <Col xs = '10' lg = '3'>
                             <button>Participate</button>
                             </Col>
-                        </Row>
+                        </Row> */}
                     </Col>
                 </Row>
             </Col>

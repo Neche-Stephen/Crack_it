@@ -6,8 +6,7 @@ import axios from 'axios';
 import styles from './Dashboard.module.css';
 import DashboardNavbar from '../../../components/general/dashboard_navbar/DashboardNavbar';
 import UserSidebar from '../../../components/user/userSidebar/UserSidebar';
-import avatar from './dashboard_asset/avatar.png';
-import avatar2 from './dashboard_asset/avatar2.png';
+import avatar from './dashboard_asset/avatar.svg';
 
 
 
@@ -24,6 +23,10 @@ export default function UserDashboard() {
 
      const handleClose = () => setShow(false);
      const handleShow = () => setShow(true);
+
+     const [dailyHunt, setDailyHunt] = useState([]);
+     const [weeklyHunt, setWeeklyHunt] = useState([]);
+     const [monthlyHunt, setMonthlyHunt] = useState([]);
 
     useEffect( () =>{
         if (sessionStorage.Token){
@@ -44,39 +47,51 @@ export default function UserDashboard() {
                 //  setAmount(response.data.data.payment.amount)
                 //  setTransaction_id(response.data.data.payment.transaction_id)
                 //  setCurrency(response.data.data.payment.currency)
-                 setLoading(false)
                 setUserData(response.data.data)
              })
              .catch(function (error) {
                  // handle error
                  console.log(error);
-                 setLoading(false)
                 //  navigate('/login')
              });
     
-            // axios.get(api + '/api/hunts', { 
-            //     headers: {
-            //         Authorization: "Bearer " + sessionStorage.Token,
-            //         Accept: 'application/json'
-            //     }
-            //  })
-            // .then(function (response) {
-            //     // handle success
-            //     // setWaitHunt(false)
-            //     // setHuntArray(response.data.data)
-            //     // setShowHuntCategory(true)
-            //     console.log(response);
-            // })
-            // .catch(function (error) {
-            //     // handle error
-            //     console.log(error);
-            //     // navigate('/login')
-            // });
+             axios.get(api + '/api/hunts', { 
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.Token,
+                    Accept: 'application/json'
+                }
+             })
+            .then(function (response) {
+                response.data.data.map((hunt => {
+                    if(hunt.hunt_category_title === 'Hunt for the day'){
+                        setDailyHunt(hunt.hunts)
+                    }
+                    else if (hunt.hunt_category_title === 'Hunt for the week'){
+                        setWeeklyHunt(hunt.hunts);
+                    }
+                    else if (hunt.hunt_category_title === 'Hunt for the month'){
+                        setMonthlyHunt(hunt.hunts);
+                    }
+                }))
+                setLoading(false)
+
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+                setLoading(false)
+
+
+                // navigate('/login')
+            });
             }
         else{
             navigate('/login')
         }    
     }, []) 
+
+
   return (
         <>
             {
@@ -126,13 +141,13 @@ export default function UserDashboard() {
                                                     </Col>
                                                 </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/day`}>Hunt for the day</Link></span></Col>
+                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/day`} state={{hunts : dailyHunt}}>Hunt for the day</Link></span></Col>
                                                  </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`}>Hunt for the week</Link></span></Col>
+                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`} state={{hunts : weeklyHunt}}>Hunt for the week</Link></span></Col>
                                                  </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`}>Hunt for the year</Link></span></Col>
+                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`} state={{hunts : monthlyHunt}}>Hunt for the year</Link></span></Col>
                                                  </Row>
                                             </div>
 
@@ -192,7 +207,50 @@ export default function UserDashboard() {
                                                 <Row className='justify-content-center'>
                                                     <Col xs = 'auto'><p>Notification</p></Col>
                                                 </Row>
-                                            
+
+                                                <div className={`${styles.notification_row}`}>
+                                                    <div className={`${styles.notification_row_first}`}>
+                                                        <div className={`${styles.notification_avatar}`}>
+                                                            <img src={avatar} alt="" className='w-100'/>
+                                                        </div>
+                                                        <div className={`${styles.notification_title} ms-2`}>
+                                                            Crack It, Find It
+                                                        </div>
+                                                        <div className={`${styles.notification_time} ms-auto`}>Just now</div>
+                                                    </div>
+                                                    <div className={`${styles.notification_row_second}`}>
+                                                        <div className={`${styles.notification_sub_title} ms-2`}>
+                                                           A new hunt is available in your location...
+                                                        </div>
+                                                    </div>
+                                                    <div className={`${styles.notification_row_third}`}>
+                                                        <div className={`${styles.notification_description} ms-2`}>
+                                                             This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className={`${styles.notification_row}`}>
+                                                    <div className={`${styles.notification_row_first}`}>
+                                                        <div className={`${styles.notification_avatar}`}>
+                                                            <img src={avatar} alt="" className='w-100'/>
+                                                        </div>
+                                                        <div className={`${styles.notification_title} ms-2`}>
+                                                            Crack It, Find It
+                                                        </div>
+                                                        <div className={`${styles.notification_time} ms-auto`}>Just now</div>
+                                                    </div>
+                                                    <div className={`${styles.notification_row_second}`}>
+                                                        <div className={`${styles.notification_sub_title} ms-2`}>
+                                                           A new hunt is available in your location...
+                                                        </div>
+                                                    </div>
+                                                    <div className={`${styles.notification_row_third}`}>
+                                                        <div className={`${styles.notification_description} ms-2`}>
+                                                             This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
 
                                         </Row>

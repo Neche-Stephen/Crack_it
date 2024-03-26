@@ -27,9 +27,12 @@
     color: #660066;
 }
 
-.admin_hunts_container .admin_hunts_containertextarea{
+.admin_hunts_container .admin_hunts_container_textarea{
     padding-left: 30px;
     border: 2px solid #D9D9D9;
+    width: 100%;
+    border-radius: 12px;
+
     /* width: 100%; */
 }
 

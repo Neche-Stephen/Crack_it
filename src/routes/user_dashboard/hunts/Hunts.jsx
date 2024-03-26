@@ -25,6 +25,10 @@ export default function Hunts() {
     const [weeklyQuestModalShow, setWeeklyQuestModalShow] = React.useState(false);
     const [monthlyQuestModalShow, setMonthlyQuestModalShow] = React.useState(false);
     const [loadingHunts, setLoadingHunts] = useState(true);
+    const [dailyHunt, setDailyHunt] = useState([]);
+    const [weeklyHunt, setWeeklyHunt] = useState([]);
+    const [monthlyHunt, setMonthlyHunt] = useState([]);
+
     const navigate = useNavigate();
     const api = 'https://crackitfindit.rad5.com.ng';
      //Offcanvas
@@ -35,25 +39,38 @@ export default function Hunts() {
     useEffect(()=>{
         if (sessionStorage.Token){
             
-            setLoadingHunts(false);
-            // axios.get(api + '/api/hunts', { 
-            //     headers: {
-            //         Authorization: "Bearer " + sessionStorage.Token,
-            //         Accept: 'application/json'
-            //     }
-            //  })
-            // .then(function (response) {
-            //     // handle success
-            //     // setWaitHunt(false)
-            //     // setHuntArray(response.data.data)
-            //     // setShowHuntCategory(true)
-            //     console.log(response);
-            // })
-            // .catch(function (error) {
-            //     // handle error
-            //     console.log(error);
-            //     // navigate('/login')
-            // });
+            axios.get(api + '/api/hunts', { 
+                headers: {
+                    Authorization: "Bearer " + sessionStorage.Token,
+                    Accept: 'application/json'
+                }
+             })
+            .then(function (response) {
+                // handle success
+                // setWaitHunt(false)
+                // setHuntArray(response.data.data)
+                // setShowHuntCategory(true)
+                response.data.data.map((hunt => {
+                    if(hunt.hunt_category_title === 'Hunt for the day'){
+                        setDailyHunt(hunt.hunts)
+                    }
+                    else if (hunt.hunt_category_title === 'Hunt for the week'){
+                        setWeeklyHunt(hunt.hunts);
+                    }
+                    else if (hunt.hunt_category_title === 'Hunt for the month'){
+                        setMonthlyHunt(hunt.hunts);
+                    }
+                }))
+                setLoadingHunts(false);
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+                setLoadingHunts(false);
+
+                // navigate('/login')
+            });
         }
         else{
             navigate('/login')
@@ -80,13 +97,13 @@ export default function Hunts() {
                         <DashboardNavbar handleShow={handleShow}/>
                         <Row>
                             <Col xs = '12' lg = '6'>
-                               <Link to={`/user/hunts/day`}><img src={hunt_day} alt="" className='w-100'/></Link>
+                               <Link to={`/user/hunts/day`} state={{hunts : dailyHunt}}><img src={hunt_day} alt="" className='w-100'/></Link>
                             </Col>
                             <Col xs = '12' lg = '6'>
-                                <Link to={`/user/hunts/week`}><img src={hunt_week} alt="" className='w-100'/></Link>
+                                <Link to={`/user/hunts/week`} state={{hunts : weeklyHunt}}><img src={hunt_week} alt="" className='w-100'/></Link>
                             </Col>
                             <Col xs = '12' lg = '6'>
-                                <Link to={`/user/hunts/month`}><img src={hunt_month} alt="" className='w-100'/></Link>
+                                <Link to={`/user/hunts/month`} state={{hunts : monthlyHunt}}><img src={hunt_month} alt="" className='w-100'/></Link>
                             </Col>
                         </Row>
                         <DailyQuestModal 
