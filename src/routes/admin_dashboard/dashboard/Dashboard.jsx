@@ -16,7 +16,7 @@ export default function AdminDashboard() {
     <Container fluid className={`${styles.admin_dashboard}`}>
         <Row>
             <AdminSidebar active="Dashboard"/>
-            <Col className='offset-3'>
+            <Col className='offset-sm-2 offset-lg-3'>
                <DashboardNavbar />
                 <Row className='mt-4'>
                     <Col><p className={`${styles.welcome}`}>Welcome Claire,</p></Col>
@@ -69,7 +69,7 @@ export default function AdminDashboard() {
                         <h3>Notification</h3>
                         <p>Create</p>
                         <input type="text" placeholder='Write your title here' className='mb-2'/>
-                        <textarea name="" id="" cols="30" rows="2" placeholder='Write your Message here' className='mb-2'></textarea>
+                        <textarea name="" id="" placeholder='Write your Message here' className='mb-2'></textarea>
                         <Row className='justify-content-end m-0'>
                             <Col xs = '6'>
                                 <button>Send</button>
