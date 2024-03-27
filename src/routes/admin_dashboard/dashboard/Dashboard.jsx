@@ -42,7 +42,7 @@ export default function AdminDashboard() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md = '6' lg = '4' className='mb-lg-4' style={{border:'1px solid red'}}>
+                  <Col md = '6' lg = '4' className='mb-lg-4' >
                     <div className={`${styles.todays_hunt}`}>
                         <h3 className='mb-4'>Today's hunt</h3>
                         <Row className='justify-content-center'>
