@@ -18,11 +18,11 @@
 
 .admin_dashboard_widget{
     /* border: 1px solid red; */
-    width: 48%;
+    width: 48.5%;
     box-shadow: 0px 1px 20.5px -5px #00000040;
-    padding: 30px 0px;
+    padding: 30px 10px;
     border-radius: 12px;
-    margin-bottom: 4%;
+    margin-bottom: 3%;
 }
 
 .widget_icon{
