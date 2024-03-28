@@ -16,7 +16,7 @@
 }
 
 .dashboard_details{
-    width: 64% !important;
+    width: 100% !important;
 }
 
 .dashboard_profile{
@@ -46,8 +46,15 @@
     font-family: Lato;
     color: var(--primary-color);
     padding: 20px 0px;
-    width: 48.5% !important;
+    width: 30.5% !important;
     border-radius: 12px;
+    /* border: 1px solid red; */
+    height: 255px;
+}
+@media(max-width:991px){
+    .dashboard_widget{
+        width: 48.5% !important;
+    }  
 }
 .dashboard_widget a {
     text-decoration: none;
@@ -60,6 +67,9 @@
 }
 
 @media(max-width:575px){
+    .dashboard_widget{
+        width: 48.5% !important;
+    }
     .dashboard_widget p{
         font-size: 16px;
         font-weight: 700;
@@ -82,12 +92,12 @@
     color: #FF6600;
     font-size: 14px;
 }
-.dashboard_widget small{
+
+/* Upcoming Hunts */
+.upcoming{
+    font-family: Lato;
     font-size: 10px;
     font-weight: 700;
-    margin-top: 30px;
-    display: inline-block;
-    margin-top: -190px;
 }
 
 /* Notification */
@@ -120,25 +130,25 @@
 }
 
 .notification_title{
-    font-size: 8.76px;
+    font-size: 10.76px;
     font-weight: 500;
     
 }
 
 .notification_time{
-    font-size: 6.57px;
+    font-size: 8.57px;
     font-weight: 400;   
     color: #A1A5C5;
 }
 
 .notification_sub_title{
-    font-size: 6.57px;
+    font-size: 8.57px;
     font-weight: 500; 
     color: #666666;
 }
 
 .notification_description{
-    font-size: 6.57px;
+    font-size: 8.57px;
     font-weight: 400;
     color: #A1A5C5;
 }

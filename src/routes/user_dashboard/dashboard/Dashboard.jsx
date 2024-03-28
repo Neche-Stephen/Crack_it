@@ -27,6 +27,26 @@ export default function UserDashboard() {
      const [dailyHunt, setDailyHunt] = useState([]);
      const [weeklyHunt, setWeeklyHunt] = useState([]);
      const [monthlyHunt, setMonthlyHunt] = useState([]);
+     const [generalHunt, setGeneralHunt] = useState([]);
+
+     function formatDate(dateString) {
+        // Convert ISO 8601 format to Date object
+        const date = new Date(dateString);
+    
+        // Define months array for formatting
+        const months = [
+            "January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"
+        ];
+    
+        // Extract components from the Date object
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+    
+        // Format the date as desired
+        return `${month} ${day}, ${year}`;
+    }
 
     useEffect( () =>{
         if (sessionStorage.Token){
@@ -38,7 +58,7 @@ export default function UserDashboard() {
               })
              .then(function (response) {
                  // handle success
-                 console.log(response)
+                //  console.log(response)
                 //  setName(response.data.data.name);
                 //  setAddress(response.data.data.address);
                 //  setEmail(response.data.data.email)
@@ -62,6 +82,7 @@ export default function UserDashboard() {
                 }
              })
             .then(function (response) {
+                console.log(response.data.data)
                 response.data.data.map((hunt => {
                     if(hunt.hunt_category_title === 'Hunt for the day'){
                         setDailyHunt(hunt.hunts)
@@ -73,6 +94,13 @@ export default function UserDashboard() {
                         setMonthlyHunt(hunt.hunts);
                     }
                 }))
+
+                let generalHunt = []
+                response.data.data.map((hunt) =>{
+                    generalHunt.push(...hunt.hunts)
+                })
+                // console.log(generalHunt)
+                setGeneralHunt(generalHunt);
                 setLoading(false)
 
 
@@ -153,25 +181,25 @@ export default function UserDashboard() {
 
                                             {/* Upcoming hunt */}
                                             <div className={`${styles.dashboard_widget}`}>
+                                                <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'><p>Upcoming hunt</p></Col>
+                                                </Row>
                                                 <Row>
                                                     <Col>
-                                                        <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'><p>Upcoming hunt</p></Col>
-                                                        </Row>
                                                         <Row className='justify-content-center'>
                                                             <Col xs = 'auto'><span>Hunt for the day</span></Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Task</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Task</div> </Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Date</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Date</div> </Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Duration</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Duration</div> </Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Prize</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Prize</div> </Col>
                                                         </Row>
                                             
                                                     </Col>
@@ -179,22 +207,19 @@ export default function UserDashboard() {
                                                 <Row>
                                                     <Col>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'><p>Upcoming hunt</p></Col>
-                                                        </Row>
-                                                        <Row className='justify-content-center'>
                                                             <Col xs = 'auto'><span>Hunt for the day</span></Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Task</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Task</div> </Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Date</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Date</div> </Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Duration</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Duration</div> </Col>
                                                         </Row>
                                                         <Row className='justify-content-center'>
-                                                            <Col xs = 'auto'> <small>Prize</small> </Col>
+                                                            <Col xs = 'auto'> <div className={`${styles.upcoming}`}>Prize</div> </Col>
                                                         </Row>
                                             
                                                     </Col>
@@ -203,64 +228,45 @@ export default function UserDashboard() {
                                             </div>
 
                                              {/* Notification */}
-                                             <div className={`${styles.dashboard_widget}`}>
+                                             <div className={`${styles.dashboard_widget}`} style={{overflow:'scroll'}}>
                                                 <Row className='justify-content-center'>
                                                     <Col xs = 'auto'><p>Notification</p></Col>
                                                 </Row>
 
-                                                <div className={`${styles.notification_row}`}>
-                                                    <div className={`${styles.notification_row_first}`}>
-                                                        <div className={`${styles.notification_avatar}`}>
-                                                            <img src={avatar} alt="" className='w-100'/>
-                                                        </div>
-                                                        <div className={`${styles.notification_title} ms-2`}>
-                                                            Crack It, Find It
-                                                        </div>
-                                                        <div className={`${styles.notification_time} ms-auto`}>Just now</div>
-                                                    </div>
-                                                    <div className={`${styles.notification_row_second}`}>
-                                                        <div className={`${styles.notification_sub_title} ms-2`}>
-                                                           A new hunt is available in your location...
-                                                        </div>
-                                                    </div>
-                                                    <div className={`${styles.notification_row_third}`}>
-                                                        <div className={`${styles.notification_description} ms-2`}>
-                                                             This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={`${styles.notification_row}`}>
-                                                    <div className={`${styles.notification_row_first}`}>
-                                                        <div className={`${styles.notification_avatar}`}>
-                                                            <img src={avatar} alt="" className='w-100'/>
-                                                        </div>
-                                                        <div className={`${styles.notification_title} ms-2`}>
-                                                            Crack It, Find It
-                                                        </div>
-                                                        <div className={`${styles.notification_time} ms-auto`}>Just now</div>
-                                                    </div>
-                                                    <div className={`${styles.notification_row_second}`}>
-                                                        <div className={`${styles.notification_sub_title} ms-2`}>
-                                                           A new hunt is available in your location...
-                                                        </div>
-                                                    </div>
-                                                    <div className={`${styles.notification_row_third}`}>
-                                                        <div className={`${styles.notification_description} ms-2`}>
-                                                             This hunt is available for hunters within osisioma, It is open to all gender within the age of 20 - 40 . Click to view hunt...
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                {
+                                                    generalHunt.map((hunt, index) => {
+                                                        return (
+                                                            <div key={index} className={`${styles.notification_row}`}>
+                                                                <div className={`${styles.notification_row_first}`}>
+                                                                    <div className={`${styles.notification_avatar}`}>
+                                                                        <img src={avatar} alt="" className='w-100'/>
+                                                                    </div>
+                                                                    <div className={`${styles.notification_title} ms-2`}>
+                                                                        Crack It, Find It
+                                                                    </div>
+                                                                    <div className={`${styles.notification_time} ms-auto`}>{formatDate(hunt.date_created)}</div>
+                                                                </div>
+                                                                <div className={`${styles.notification_row_second}`}>
+                                                                    <div className={`${styles.notification_sub_title} ms-2`}>
+                                                                    A new hunt is available...
+                                                                    </div>
+                                                                </div>
+                                                                <div className={`${styles.notification_row_third}`}>
+                                                                    <div className={`${styles.notification_description} ms-2`}>
+                                                                        {hunt.description}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+
 
                                             </div>
 
                                         </Row>
                                     </div>
-                                    <div xs = '4' className={`${styles.dashboard_profile}`}>
-                                        <Row className='justify-content-center'>
-                                            <Col xs = 'auto'><p>Profile</p></Col>
-                                        </Row>
-                                    
-                                    </div>
+                            
                                 </Row>
                             </Col>
                         </Row>
