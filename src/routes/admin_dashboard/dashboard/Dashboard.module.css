@@ -5,10 +5,8 @@
 
 .welcome{
     font-family: Lato;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 800;
-    line-height: 37px;
-    letter-spacing: 0em;
     color: #660066;
 }
 
@@ -18,24 +16,51 @@
     }
 } */
 
-.dashboard_card{
-    background-image: url('../../../assets/images/dashboard_card_2.png');
-    background-repeat: no-repeat;
-    /* background-size: 100% 282px; */
-    background-size:contain;
-    height: 282px;
+.admin_dashboard_widget{
     /* border: 1px solid red; */
+    width: 49%;
+    box-shadow: 0px 1px 20.5px -5px #00000040;
+    padding: 30px 0px;
+    border-radius: 12px;
+    margin-bottom: 20px;
 }
 
+.widget_icon{
+    width: 5%;
+}
 
-.admin_dashboard h3{
+@media (max-width:767px){
+    .widget_icon{
+        width: 10%;
+    }
+}
+
+@media (max-width:575px){
+    .widget_icon{
+        width: 20%;
+    }
+}
+
+.widget_title{
     font-family: Lato;
-    font-size: 18px;
-    font-weight: 800;
-    line-height: 23px;
-    letter-spacing: 0em;
-    color: #660066;
+    font-size: 14px;
+    font-weight: 600;
     text-align: center;
+}
+
+.widget_value{
+    font-family: Lato;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+@media (max-width:575px){
+    .widget_title{
+        font-size: 12px;
+    }
+    .widget_value{
+        font-size: 16px;;
+    }
 }
 
 .admin_dashboard .admin_dashboard_btn{
