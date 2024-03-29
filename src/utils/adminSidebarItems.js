@@ -17,11 +17,18 @@ export const adminSidebarItems = [
         itemLink: '/admin/hunts',
     },
 
-    // {
-    //     itemName : "Profile",
-    //     active: false,
-    //     icon : profile_icon,
-    //     itemLink: '/admin/profile',
-    // }
+    {
+        itemName : "Users",
+        active: false,
+        icon : profile_icon,
+        itemLink: '/admin/users',
+    },
+
+    {
+        itemName : "Transactions",
+        active: false,
+        icon : profile_icon,
+        itemLink: '/admin/transactions',
+    }
 
 ]

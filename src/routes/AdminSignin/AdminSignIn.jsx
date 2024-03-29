@@ -45,7 +45,7 @@ export default function AdminSignIn() {
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
-        console.log(name, value);
+        // console.log(name, value);
         setUserDetails({ ...userDetails, [name]: value });
     };
 
@@ -88,7 +88,7 @@ export default function AdminSignIn() {
           })
           .then(function (response) {
             // setLoading(false)
-            console.log(response.data.data.token);
+            // console.log(response.data.data.token);
             console.log(response.data);
             sessionStorage.setItem("Admin-Token", `${response.data.data.token}`);
             setSignupLoading(false);

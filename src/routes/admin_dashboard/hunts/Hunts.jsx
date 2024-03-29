@@ -27,6 +27,11 @@ export default function AdminHunts() {
     const [image_guide, setImage_guide] = useState(null)
     // const [category, setCategory] = useState("");
 
+     //Offcanvas
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const navigate = useNavigate();
 
     const handleChange = (e)=>{
@@ -102,9 +107,9 @@ export default function AdminHunts() {
    
     <Container fluid className={`${styles.admin_hunts_container}`}>
         <Row>
-            <AdminSidebar active = 'Hunts'/>
-            <Col className='ps-4 py-4 offset-3'>
-                <DashboardNavbar />
+            <AdminSidebar active = 'Hunts' show = {show} handleClose = {handleClose}/>
+            <Col className='ps-4 py-4 offset-sm-2 offset-lg-3'>
+                <DashboardNavbar  handleShow={handleShow}/>
                 <Row>
                     <form className='col-11 col-lg-9' onSubmit={handleCreateHunt}>
                         <Row className='mt-5'>
@@ -113,12 +118,12 @@ export default function AdminHunts() {
                         <Row className='mb-3'>
                             <Col>
                             <select name="category_id" value={category_id} id="" 
-                                onChange={handleChange}
+                                onChange={handleChange} required 
                             >
-                                <option value="" disabled>Select Category</option>
+                                <option value="" disabled>Hunt Category</option>
                                 {
                                     huntCategories.map((huntCategory, index) =>{
-                                        return <option key = {index} value={huntCategory.id}>{huntCategory.title}</option>
+                                        return <option key = {index} value={huntCategory.id} >{huntCategory.title}</option>
                                     })
                                 }
                             </select>
@@ -126,7 +131,7 @@ export default function AdminHunts() {
                         </Row>
                         <Row className='mb-3'>
                             <Col>
-                             <input name='title' value={title} type="text" placeholder='Hunt Title' onChange={handleChange} className={`${styles.admin_hunts_containerinput}`}/>
+                             <input name='title' value={title} type="text" placeholder='Hunt Title' onChange={handleChange} className={`${styles.admin_hunts_containerinput}`} required/>
                             </Col>
                         </Row>
                         <Row className='mb-3'>
@@ -154,19 +159,19 @@ export default function AdminHunts() {
                         </Row> */}
                         <Row className='mb-3'>
                             <Col>
-                            <input name = 'expiration' type="date" onChange={handleChange}  value={expiration} className={`${styles.admin_hunts_containerinput}`}/>
+                            <input name = 'expiration' type="text" placeholder='Hunt Expiration'  onFocus={(event) => event.target.type = 'date'}  onChange={handleChange}  value={expiration} className={`${styles.admin_hunts_containerinput}`} required/>
                             </Col>
                         </Row>
                         <Row className='mb-3'>
                             <Col>
-                                <input name='audience' placeholder='Audience' type="text" onChange={handleChange}  value={audience} className={`${styles.admin_hunts_containerinput}`}/>
+                                <input name='audience' placeholder='Hunt Audience' type="text" onChange={handleChange}  value={audience} className={`${styles.admin_hunts_containerinput}`} required/>
                             </Col>
                         </Row>
                         <Row className='mb-3'>
                             <Col>
-                                 <input name='image_guide' type="file" onChange={(e)=>{
+                                 <input name='image_guide' type="text" placeholder='Hunt Guide' onFocus={(event) => event.target.type = 'file'} onChange={(e)=>{
                                     setImage_guide(e.target.files[0])
-                                 }} className={`${styles.admin_hunts_containerinput}`} />
+                                 }} className={`${styles.admin_hunts_containerinput}`} required/>
                             </Col>
                         </Row>
                         <Row className='justify-content-center mb-5'>

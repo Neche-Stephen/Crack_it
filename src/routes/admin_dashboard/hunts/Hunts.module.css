@@ -2,30 +2,43 @@
 
 }
 
+
+.create_hunt{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 37px;
+    letter-spacing: 0em;
+    color: #660066;
+}
+
+
 .admin_hunts_container select, .admin_hunts_container .admin_hunts_containerinput{
     width:100%;
     border-radius: 12px;
     border: 2px solid #D9D9D9;
     height: 46px;
     padding-left: 30px;
+}
 
+.admin_hunts_container select{
     font-family: Lato;
     font-size: 14px;
-    font-weight: 600;
+    /* font-weight: 600; */
     line-height: 23px;
     letter-spacing: 0em;
     color: #B4B2B2;
 }
 
-
-.create_hunt{
+.admin_hunts_container .admin_hunts_containerinput::placeholder{
     font-family: Lato;
-    font-size: 30px;
-    font-weight: 800;
-    line-height: 37px;
+    font-size: 14px;
+    /* font-weight: 600; */
+    line-height: 23px;
     letter-spacing: 0em;
-    color: #660066;
+    color: #B4B2B2;
 }
+
 
 .admin_hunts_container .admin_hunts_container_textarea{
     padding-left: 30px;
@@ -39,7 +52,6 @@
 textarea::placeholder{
     font-family: Lato;
     font-size: 14px;
-    font-weight: 600;
     line-height: 23px;
     letter-spacing: 0em;
     color: #B4B2B2;
@@ -53,7 +65,7 @@ textarea::placeholder{
     width: 100%;
     height: 46px;
     font-family: Lato;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 26px;
     letter-spacing: 0em;
