@@ -168,6 +168,3 @@ export default function ({sidebarItems, show, handleClose, active}) {
             // </div>
   )
 }
-
-
-

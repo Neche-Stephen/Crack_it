@@ -112,7 +112,7 @@ export default function Transactions() {
                             })
                            } */}
 
-                        <MDBTable responsive hover className={`${styles.tab}`}>
+                        <MDBTable responsive-lg hover className={`${styles.tab}`}>
                         <MDBTableHead>
                             <tr>
                             <th scope='col'>Name</th>
@@ -225,7 +225,6 @@ export default function Transactions() {
                             </tr> */}
                         </MDBTableBody>
                         </MDBTable>
-
                         
                            
                         </Col>
@@ -233,6 +232,7 @@ export default function Transactions() {
                 
                 </Col>
             </Row>
+           
          </Container>
     }
     
