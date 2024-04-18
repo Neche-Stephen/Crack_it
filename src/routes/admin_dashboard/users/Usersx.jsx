@@ -11,43 +11,38 @@ import DashboardNavbar from '../../../components/general/dashboard_navbar/Dashbo
 import profile from './asset/profile_icon.svg';
 import message from './asset/message.png';
 import view from './asset/view.png';
-
 import left_arrow from './asset/left_arrow.svg'
-import right_arrow from './asset/right_arrow.svg';
-import search_icon from './asset/search_icon.svg';
+import right_arrow from './asset/right_arrow.svg'
 
 
 export default function Users() {
     const [loading, setLoading] = useState(true);
     const [userArray, setUserArray] = useState([]);
-    const [fromPageNumber, setFromPageNumber] = useState('');
-    const [toPageNumber, setToPageNumber] = useState('');
-
     const [searchQuery, setSearchQuery] = useState('');
     //Offcanvas
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     const [prevLink, setPrevLink] = useState('');
     const [nextLink, setNextLink] = useState('');
     const [disabled, setDisabled] = useState(true);
 
-    const [api, setApi] = useState('https://crackitfindit.rad5.com.ng/api/users');
+    const [api, setApi] = useState('https://crackitfindit.rad5.com.ng/api/transactions');
+
 
     const handleSearch = (event) => {
         setSearchQuery(event.target.value);
       };
 
-    const filteredUserArray = userArray.filter(user =>
-    user.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
     const nextPage = () =>{
         console.log('called next')
         setApi(nextLink)
     }
+
+    const filteredUserArray = userArray.filter(user =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
     useEffect(() =>{
         axios.get(api, { 
@@ -62,9 +57,7 @@ export default function Users() {
             console.log(response.data.data)
             setUserArray(response.data.data)
             setPrevLink(response.data.links.prev)
-            setNextLink(response.data.links.next);
-            setFromPageNumber(response.data.meta.from);
-            setToPageNumber(response.data.meta.to)
+            setNextLink(response.data.links.next)
             
         })
         .catch(function (error) {
@@ -94,19 +87,18 @@ export default function Users() {
                 <Col className='offset-sm-2 offset-lg-3 ps-4'>
                     <DashboardNavbar  handleShow={handleShow}/>
 
-                    <Row className='align-items-center mb-5 mt-4'>
+                    <Row className='align-items-center mb-5 border'>
                         <Col xs = 'auto' className='p-0'>
-                            <p className={`${styles.profile_title} m-0`}>Users</p>
+                            <p className={`${styles.profile_title}`}>Users</p>
                         </Col>
-                        <Col xs = 'auto' className='ms-auto position-relative'>
-                            <input type="text" placeholder='Search name'/>
-                            <img src={search_icon} className={`${styles.search_icon}`} alt="" />
+                        <Col xs = 'auto' className='ms-auto'>
+                            <input type="search" placeholder='Search name' onChange={handleSearch}/>
                         </Col>
 
                         <Col xs = 'auto'>
-                            <span className={`${styles.count}`}>{fromPageNumber} - {toPageNumber} of 1000</span>
-                            <button type='button' className={`${styles.pagination_arrow} me-2`}><img src={left_arrow} alt="" /></button>
-                            <button type='button' className={`${styles.pagination_arrow}`} onClick={nextPage}><img src={right_arrow} alt="" /></button>
+                            <span className={`${styles.count}`}>1 - 4 of 1000</span>
+                            <button type='button'><img src={left_arrow} alt="" /></button>
+                            <button type='button' onClick={nextPage}><img src={right_arrow} alt="" /></button>
                         </Col>
                     </Row>
 

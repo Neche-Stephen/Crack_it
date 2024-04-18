@@ -13,16 +13,9 @@ import profile from './asset/profile_icon.svg';
 import message from './asset/message.png';
 import view from './asset/view.png';
 
-import left_arrow from './asset/left_arrow.svg'
-import right_arrow from './asset/right_arrow.svg';
-import search_icon from './asset/search_icon.svg';
-
 export default function Transactions() {
     const [loading, setLoading] = useState(true);
-    const [transactionArray, setTransactionArray] = useState('');
-
-    const [fromPageNumber, setFromPageNumber] = useState('');
-    const [toPageNumber, setToPageNumber] = useState('');
+    const [transactionArray, setTransactionArray] = useState('')
 
     const [prevLink, setPrevLink] = useState('');
     const [nextLink, setNextLink] = useState('');
@@ -36,7 +29,6 @@ export default function Transactions() {
     const handleShow = () => setShow(true);
 
     const nextPage = () =>{
-        console.log('called')
         setApi(nextLink)
     }
 
@@ -51,10 +43,8 @@ export default function Transactions() {
             // handle success
             console.log(response)
             setTransactionArray(response.data.data)
-            setPrevLink(response.data.links.prev);
-            setNextLink(response.data.links.next);
-            setFromPageNumber(response.data.meta.from);
-            setToPageNumber(response.data.meta.to);
+            setPrevLink(response.data.links.prev)
+            setNextLink(response.data.links.next)
             setLoading(false);
         })
         .catch(function (error) {
@@ -84,19 +74,18 @@ export default function Transactions() {
                 <Col className='offset-sm-2 offset-lg-3 ps-4'>
                     <DashboardNavbar  handleShow={handleShow}/>
 
-                    <Row className='align-items-center mb-5 mt-4'>
+                    <Row className='align-items-center mb-5'>
                         <Col xs = 'auto' className='p-0'>
-                            <p className={`${styles.profile_title} m-0`}>Transactions</p>
+                            <p className={`${styles.profile_title}`}>Transactions</p>
                         </Col>
-                        <Col xs = 'auto' className='ms-auto position-relative'>
+                        <Col xs = 'auto' className='ms-auto'>
                             <input type="text" placeholder='Search name'/>
-                            <img src={search_icon} className={`${styles.search_icon}`} alt="" />
                         </Col>
 
                         <Col xs = 'auto'>
-                            <span className={`${styles.count}`}>{fromPageNumber} - {toPageNumber} of 1000</span>
-                            <button type='button' className={`${styles.pagination_arrow} me-2`}><img src={left_arrow} alt="" /></button>
-                            <button type='button' onClick={nextPage} className={`${styles.pagination_arrow}`}><img src={right_arrow} alt="" /></button>
+                            <span className={`${styles.count}`}>1 - 4 of 1000</span>
+                            <button type='button'><img src={left_arrow} alt="" /></button>
+                            <button type='button' onClick={nextPage}><img src={right_arrow} alt="" /></button>
                         </Col>
                     </Row>
 

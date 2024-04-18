@@ -16,6 +16,7 @@ import HuntsType from './routes/user_dashboard/hunts/hunts_type/HuntsType';
 // Admin Dashboard
 import AdminDashboard from './routes/admin_dashboard/dashboard/Dashboard';
 import AdminHunts from './routes/admin_dashboard/hunts/Hunts';
+import ViewHunts from './routes/admin_dashboard/hunts/view_hunts/ViewHunts';
 import Profile from './routes/admin_dashboard/profile/Profile';
 import Users from './routes/admin_dashboard/users/Users';
 import Transactions from './routes/admin_dashboard/transactions/Transactions';
@@ -40,6 +41,7 @@ export default function App() {
         {/* Admin Dashboard Routes */}
         <Route path='/admin/dashboard' element={<AdminDashboard />}/>
         <Route path='/admin/hunts' element={<AdminHunts />}/>
+        <Route path='/admin/view_hunts' element={<ViewHunts />}/>
         {/* <Route path='/admin/profile' element={<Profile />}/> */}
         <Route path='/admin/users' element={<Users />}/>
         <Route path='/admin/transactions' element={<Transactions />}/>

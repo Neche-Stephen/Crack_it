@@ -7,11 +7,18 @@
     font-family: Lato;
     font-size: 20px;
     font-weight: 800;
-    line-height: 37px;
-    letter-spacing: 0em;
     color: #660066;
 }
 
+.view_hunts{
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 600;
+    color:#FF6600;
+    
+}
+
+/* Create Hunt Form */
 
 .admin_hunts_container select, .admin_hunts_container .admin_hunts_containerinput{
     width:100%;
@@ -70,3 +77,5 @@ textarea::placeholder{
     line-height: 26px;
     letter-spacing: 0em;
 }
+
+/* admin_hunts_container */

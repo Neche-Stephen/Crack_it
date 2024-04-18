@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -25,7 +26,11 @@ export default function AdminHunts() {
     const {category_id, audience, expiration, title, description} = huntDetails;
     const [huntCategories, setHuntCategories] = useState([]);
     const [image_guide, setImage_guide] = useState(null)
+    const [loadingCreateHuntBtn, setLoadingCreateHuntBtn] = useState(false)
     // const [category, setCategory] = useState("");
+
+     // Page or event loading state
+     const [loadingCreateHuntForm, setLoadingCreateHuntForm] = useState(true);
 
      //Offcanvas
     const [show, setShow] = useState(false);
@@ -41,6 +46,7 @@ export default function AdminHunts() {
 
     const handleCreateHunt = (e) => {
         e.preventDefault();
+        setLoadingCreateHuntBtn(true);
         console.log('working');
         // setPublishLoading(true)
         let form = new FormData();
@@ -56,14 +62,21 @@ export default function AdminHunts() {
         }},)
         .then(function (response) {
         // handle success
-        console.log(response.data.message)
+        // console.log(response.data.message)
+        setLoadingCreateHuntBtn(false);
+        const createHuntNotify = () => toast(response.data.message);
+        createHuntNotify()
         // setPublishLoading(false)
         // setMessage(response.data.message)
         // setShowAlert(true)
         })
         .catch(function (error) {
         // handle error
+        console.log('There is an error')
         console.log(error);
+        setLoadingCreateHuntBtn(false);
+        const createHuntNotify = () => toast(error.message);
+        createHuntNotify()
         // setPublishLoading(false)
         // setMessage(error.response.data.message)
         // setShowAlert(true)
@@ -85,7 +98,7 @@ export default function AdminHunts() {
             // setLoading(true)
             // setHuntArray(response.data.data)
             setHuntCategories(response.data.data);
-            console.log(response.data.data);
+            // console.log(response.data.data);
             })
             .catch(function (error) {
             // handle error
@@ -111,9 +124,10 @@ export default function AdminHunts() {
             <Col className='ps-4 py-4 offset-sm-2 offset-lg-3'>
                 <DashboardNavbar  handleShow={handleShow}/>
                 <Row>
-                    <form className='col-11 col-lg-9' onSubmit={handleCreateHunt}>
+                        <form className='col-11 col-lg-9' onSubmit={handleCreateHunt}>
                         <Row className='mt-5'>
                          <Col><p className={`${styles.create_hunt}`}>Create Hunt</p></Col>
+                         <Col xs = 'auto' className='ms-auto'><Link to = '/admin/view_hunts' className={`${styles.view_hunts}`}>See all Hunts</Link></Col>
                         </Row>
                         <Row className='mb-3'>
                             <Col>
@@ -121,11 +135,10 @@ export default function AdminHunts() {
                                 onChange={handleChange} required 
                             >
                                 <option value="" disabled>Hunt Category</option>
-                                {
-                                    huntCategories.map((huntCategory, index) =>{
-                                        return <option key = {index} value={huntCategory.id} >{huntCategory.title}</option>
-                                    })
-                                }
+                                <option value={1}>Hunt for the day</option>
+                                <option value={2}>Hunt for the week</option>
+                                <option value={3}>Hunt for the month</option>
+                                <option value={4}>Hunt for the year</option>
                             </select>
                             </Col>
                         </Row>
@@ -141,22 +154,6 @@ export default function AdminHunts() {
                             placeholder='Hunt Description' className={`${styles.admin_hunts_container_textarea}`} required></textarea>
                             </Col>
                         </Row>
-                        {/* <Row className='mb-3'>
-                            <Col>
-                            <select name="audience" id="" value={audience}>
-                                    <option value="" disabled>Requirement</option>
-                                    <option value="">18 and abovet</option>
-                                    <option value="">Requirement</option>
-                            </select>
-                            </Col>
-                        </Row> */}
-                        {/* <Row className='mb-3'>
-                            <Col>
-                            <select name="" id="">
-                                    <option value="">Reward</option>
-                            </select>
-                            </Col>
-                        </Row> */}
                         <Row className='mb-3'>
                             <Col>
                             <input name = 'expiration' type="text" placeholder='Hunt Expiration'  onFocus={(event) => event.target.type = 'date'}  onChange={handleChange}  value={expiration} className={`${styles.admin_hunts_containerinput}`} required/>
@@ -176,28 +173,17 @@ export default function AdminHunts() {
                         </Row>
                         <Row className='justify-content-center mb-5'>
                             <Col xs ='9' lg = '3'>
-                               <button className={`${styles.hunt_btn}`}>Create Hunt</button>
+                               <button className={`${styles.hunt_btn}`}>
+                                {
+                                    loadingCreateHuntBtn ? <Spinner /> :
+                                    "Create Hunt"
+                                }
+                               </button>
+                               <ToastContainer />
                             </Col>
                         </Row>
-                        {/* <Row>
-                            <Col><p className={`${styles.create_hunt}`}>Reward Hunt</p></Col>
-                        </Row>
-                        <Row className='mb-4'>
-                            <Col xs = '12' className='mb-3'>
-                                <input type="text" placeholder='Iwuanyanwu Claire' className={`${styles.admin_hunts_containerinput}`}/>
-                            </Col>
-                            <Col xs = '12' >
-                            <select name="" id="">
-                                    <option value="">Category</option>
-                            </select>
-                            </Col>
-                        </Row>
-                        <Row className='justify-content-center'>
-                            <Col xs ='9' lg = '3'>
-                                 <Link to = '/admin/hunts'><button className={`${styles.hunt_btn}`}>Reward</button></Link>
-                            </Col>
-                        </Row> */}
-                    </form>
+                        
+                        </form>                        
                 </Row>
             </Col>
         </Row>

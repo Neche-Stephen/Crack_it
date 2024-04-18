@@ -4,14 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
-import {eye} from 'react-icons-kit/feather/eye'
+import {eye} from 'react-icons-kit/feather/eye';
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+
 
 import Navbar from '../../components/navbar/Navbar';
 
 import styles from './SignUp.module.css';
 import exit from '../../assets/images/exit.png';
-
-import { PaystackButton } from 'react-paystack'
 
 
 
@@ -35,6 +35,8 @@ const defaultUserDetails = {
 
 
 export default function SignUp() {
+    const apiKey = process.env.FLUTTER_API_KEY;
+    
 
     const [showMobileNav, setShowMobileNav] = React.useState(false);
     const [signupBtnLoading, setSignUpBtnLoading] = useState(false);
@@ -54,6 +56,26 @@ export default function SignUp() {
         privacy_terms
     } = userDetails;
 
+
+    const config = {
+        public_key: apiKey,
+        tx_ref: Date.now(),
+        amount: 100,
+        currency: 'NGN',
+        payment_options: 'card,mobilemoney,ussd',
+        customer: {
+          email : email,
+           phone_number: phone,
+          name: fname + lname,
+        },
+        customizations: {
+          title: 'Crackit Findit',
+          description: 'Payment for Crackit Findit',
+          logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+        },
+      };
+    
+      const handleFlutterPayment = useFlutterwave(config);
    
  
     const handleNavClick = () => {
@@ -152,7 +174,17 @@ export default function SignUp() {
             console.log(response.data);
             setSignupLoading(false);
             setBtnDisabledState(false);
-            navigate("/user/dashboard");
+            // navigate("/user/dashboard");
+            console.log('successful')
+            handleFlutterPayment({
+                callback: (response) => {
+                   console.log(response);
+                    closePaymentModal() // this will close the modal programmatically
+                },
+                onClose: () => {
+                     navigate("/user/dashboard");
+                },
+              });
         })
         .catch(function (error) {
             // alert(error, error.response);
@@ -833,7 +865,6 @@ useEffect(() =>{
                                 "Sign Up"
                                 }
                             </button>
-                            
                         </Col>
                     </Row>
                    
