@@ -61,7 +61,10 @@ export default function HuntsType(props) {
                         <Row className='justify-content-center'>
                             <Col xs = 'auto'>
                                 {/* <p className={`${styles.today_challenge_task}`}>Find the Box under the Osisioma bridge</p> */}
-                                <p className={`${styles.today_challenge_task}`}>{mainHunt.title}</p>
+                                <p className={`${styles.today_challenge_task}`}>{
+                                mainHunt.title ? mainHunt.title : <small>No hunt avalable</small>
+                                
+                                }</p>
                             </Col>
                         </Row>
 

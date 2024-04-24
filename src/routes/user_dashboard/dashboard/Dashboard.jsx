@@ -58,7 +58,7 @@ export default function UserDashboard() {
               })
              .then(function (response) {
                  // handle success
-                //  console.log(response)
+                 console.log(response.data.data)
                 //  setName(response.data.data.name);
                 //  setAddress(response.data.data.address);
                 //  setEmail(response.data.data.email)
@@ -147,7 +147,7 @@ export default function UserDashboard() {
                                     <div className={`${styles.dashboard_details}`}>
                                         <Row className='justify-content-between'>
                                             {/* Ongoing hunt */}
-                                            <div className={`${styles.dashboard_widget} mb-3`}>
+                                            {/* <div className={`${styles.dashboard_widget} mb-3`}>
                                                 <Row className='justify-content-center'>
                                                     <Col xs = 'auto'><p>Ongoing hunt</p></Col>
                                                 </Row>
@@ -159,13 +159,13 @@ export default function UserDashboard() {
                                                 </Row>
                                                 
                                             
-                                            </div>
+                                            </div> */}
 
                                             {/* Active Hunt */}
                                             <div className={`${styles.dashboard_widget} mb-3`}>
                                                 <Row className='justify-content-center'>
                                                     <Col xs = 'auto'>
-                                                        <p>Active hunt</p>
+                                                        <p>Active hunts</p>
                                                     </Col>
                                                 </Row>
                                                  <Row className='justify-content-center'>
@@ -180,7 +180,7 @@ export default function UserDashboard() {
                                             </div>
 
                                             {/* Upcoming hunt */}
-                                            <div className={`${styles.dashboard_widget}`}>
+                                            {/* <div className={`${styles.dashboard_widget}`}>
                                                 <Row className='justify-content-center'>
                                                     <Col xs = 'auto'><p>Upcoming hunt</p></Col>
                                                 </Row>
@@ -225,40 +225,48 @@ export default function UserDashboard() {
                                                     </Col>
                                                 </Row>
                                             
-                                            </div>
+                                            </div> */}
 
                                              {/* Notification */}
                                              <div className={`${styles.dashboard_widget}`} style={{overflow:'scroll'}}>
                                                 <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><p>Notification</p></Col>
+                                                    <Col xs = 'auto'><p>Notifications</p></Col>
                                                 </Row>
 
                                                 {
-                                                    generalHunt.map((hunt, index) => {
-                                                        return (
-                                                            <div key={index} className={`${styles.notification_row}`}>
-                                                                <div className={`${styles.notification_row_first}`}>
-                                                                    <div className={`${styles.notification_avatar}`}>
-                                                                        <img src={avatar} alt="" className='w-100'/>
-                                                                    </div>
-                                                                    <div className={`${styles.notification_title} ms-2`}>
-                                                                        Crack It, Find It
-                                                                    </div>
-                                                                    <div className={`${styles.notification_time} ms-auto`}>{formatDate(hunt.date_created)}</div>
+                                                   generalHunt.length !== 0
+                                                   ?
+                                                   generalHunt.map((hunt, index) => {
+                                                    return (
+                                                        <div key={index} className={`${styles.notification_row}`}>
+                                                            <div className={`${styles.notification_row_first}`}>
+                                                                <div className={`${styles.notification_avatar}`}>
+                                                                    <img src={avatar} alt="" className='w-100'/>
                                                                 </div>
-                                                                <div className={`${styles.notification_row_second}`}>
-                                                                    <div className={`${styles.notification_sub_title} ms-2`}>
-                                                                    A new hunt is available...
-                                                                    </div>
+                                                                <div className={`${styles.notification_title} ms-2`}>
+                                                                    Crack It, Find It
                                                                 </div>
-                                                                <div className={`${styles.notification_row_third}`}>
-                                                                    <div className={`${styles.notification_description} ms-2`}>
-                                                                        {hunt.description}
-                                                                    </div>
+                                                                <div className={`${styles.notification_time} ms-auto`}>{formatDate(hunt.date_created)}</div>
+                                                            </div>
+                                                            <div className={`${styles.notification_row_second}`}>
+                                                                <div className={`${styles.notification_sub_title} ms-2`}>
+                                                                A new hunt is available...
                                                                 </div>
                                                             </div>
-                                                        )
-                                                    })
+                                                            <div className={`${styles.notification_row_third}`}>
+                                                                <div className={`${styles.notification_description} ms-2`}>
+                                                                    {hunt.description}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+
+                                                :
+                                                <Row className='justify-content-center'>
+                                                    <Col xs = 'auto'><small>No notifications</small></Col>
+                                                </Row>
+                                                
                                                 }
 
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import { Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Alert, Spinner , Table} from 'react-bootstrap';
 import axios from 'axios';
 
 import styles from './Users.module.css';
@@ -59,7 +59,7 @@ export default function Users() {
         .then(function (response) {
             // handle success
             setLoading(false)
-            console.log(response.data.data)
+            console.log("here", response.data.data)
             setUserArray(response.data.data)
             setPrevLink(response.data.links.prev)
             setNextLink(response.data.links.next);
@@ -99,7 +99,7 @@ export default function Users() {
                             <p className={`${styles.profile_title} m-0`}>Users</p>
                         </Col>
                         <Col xs = 'auto' className='ms-auto position-relative'>
-                            <input type="text" placeholder='Search name'/>
+                            <input type="text" placeholder='Search name' onChange={handleSearch}/>
                             <img src={search_icon} className={`${styles.search_icon}`} alt="" />
                         </Col>
 
@@ -112,7 +112,7 @@ export default function Users() {
 
                     <Row className=''>
                         <Col xs = '11'>
-                           {
+                           {/* {
                             filteredUserArray.map((user, index) => {
                                 return(
                                     <Row key = {index} className={`${styles.user_row} align-items-center mb-4 px-2 py-3 px-sm-4`}>
@@ -136,7 +136,49 @@ export default function Users() {
                                 </Row>
                                 )
                             })
-                           }
+                           } */}
+
+<                       Table hover responsive>
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th scope='col'>Name</th>
+                                    <th scope='col'>Age</th>
+                                    <th scope='col'>Phone</th>
+                                    <th scope='col'>Email</th>
+                                    <th scope='col'>Address</th>
+                                    <th scope='col'>Date registered</th>
+                                    <th scope='col'>Gender</th>
+                                    <th scope='col'>Nationality</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                            filteredUserArray.map((user, index) =>{
+                                return (
+                                    <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>
+                                     {user.name}
+                                    </td>
+                                    <td>
+                                     {user.age}
+                                    </td>
+                                    <td>
+                                       {user.phone}
+                                    </td>
+                                    <td>{user.email}</td>
+                                    <td>{user.address}</td>
+                                    <td>{user.date_registered}</td>
+                                    <td>{user.gender}</td>
+                                    <td>{user.nationality}</td>
+                                    </tr>
+                                )
+                            })
+                          }
+                            </tbody>
+                        </Table>
                            
                         </Col>
                     </Row>        

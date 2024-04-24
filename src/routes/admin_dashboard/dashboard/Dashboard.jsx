@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import { Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Dashboard.module.css';
 
@@ -12,7 +13,6 @@ import transaction_2 from './asset/transaction_2.svg';
 import AdminSidebar from '../../../components/admin/adminSidebar/AdminSidebar';
 import DashboardNavbar from '../../../components/general/dashboard_navbar/DashboardNavbar';
 import axios from 'axios';
-import { useNavigate} from 'react-router-dom';
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true)
@@ -20,7 +20,9 @@ export default function AdminDashboard() {
   const [successful_transactions, setSuccessful_transactions] = useState('')
   const [total_transactions, setTotal_transactions] = useState('')
   const [users, setUsers] = useState('')
-  const [totalAmount, setTotalAmount] = useState('')
+  const [totalAmount, setTotalAmount] = useState('');
+
+  const navigate = useNavigate();
 
  //Offcanvas
  const [show, setShow] = useState(false);
@@ -28,6 +30,7 @@ export default function AdminDashboard() {
  const handleShow = () => setShow(true);
 
   useEffect( () =>{
+    console.log('effect')
     // Make a request for a user with a given ID
       if (sessionStorage['Admin-Token']){
           axios.get('https://crackitfindit.rad5.com.ng/api/dashboard', { 
@@ -59,9 +62,9 @@ export default function AdminDashboard() {
           });
       }
       else{
-      // navigate('/admin')
+      navigate('/admin-login')
 
-      alert('odi nkem mere')
+      // alert('odi nkem mere')
 
       } 
 

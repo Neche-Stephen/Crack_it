@@ -62,6 +62,17 @@ export default function Transactions() {
     const handleCloseEditHuntModal = () => setShowEditHuntModal(false);
     const handleShowEditHuntModal = () => setShowEditHuntModal(true);
 
+    const [searchQuery, setSearchQuery] = useState(''); // Search query for searching different hunts
+
+     // Method to set search query
+    const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+    };
+
+    const filteredHuntsList = huntsList.filter(hunt =>
+        hunt.description.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
     const nextPage = () =>{
         console.log('called')
         setApi(nextLink)
@@ -214,7 +225,7 @@ export default function Transactions() {
                             <p className={`${styles.profile_title} m-0`}>All Hunts</p>
                         </Col>
                         <Col xs = 'auto' className='ms-auto position-relative'>
-                            <input type="text" placeholder='Search name'/>
+                            <input type="text" placeholder='Search hunt title' onChange={handleSearch}/>
                             <img src={search_icon} className={`${styles.search_icon}`} alt="" />
                         </Col>
 
@@ -246,7 +257,7 @@ export default function Transactions() {
                                 </thead>
                                 <tbody>
                                 {
-                                huntsList.map( (huntDetail) =>{
+                                filteredHuntsList.map( (huntDetail) =>{
                                         return (
                                                 <tr key = {Math.random()}>
                                                 <td>{huntDetail.hunt_id}</td>
