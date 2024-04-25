@@ -60,7 +60,7 @@ export default function SignUp() {
     const config = {
         public_key: apiKey,
         tx_ref: Date.now(),
-        amount: 100,
+        amount: 1,
         currency: 'NGN',
         payment_options: 'card,mobilemoney,ussd',
         customer: {
@@ -180,6 +180,7 @@ export default function SignUp() {
                 callback: (response) => {
                    console.log(response);
                     closePaymentModal() // this will close the modal programmatically
+                    navigate("/user/dashboard");
                 },
                 onClose: () => {
                      navigate("/user/dashboard");
