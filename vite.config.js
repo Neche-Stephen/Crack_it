@@ -9,7 +9,12 @@ dotenv.config();
 export default defineConfig({
   plugins: [react()],
   // define process env
+  // define: {
+  //   'process.env': process.env
+  // },
   define: {
-    'process.env': process.env
-  }
+
+    'process.env.VITE_APP_FLUTTER_API_KEY':JSON.stringify(process.env.VITE_APP_FLUTTER_API_KEY)
+    
+    }
 })
