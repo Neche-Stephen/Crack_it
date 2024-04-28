@@ -46,7 +46,7 @@ export default function SignUp() {
     const [btnDisabledState, setBtnDisabledState] = useState(false);
 
     const navigate = useNavigate();
-    const api = 'https://crackitfindit.rad5.com.ng'
+    const api = 'https://crackitfindit.rad5.com.ng';
 
     const {fname, lname, gender, email, phone, password, 
         confirm_password, country_code, address, age, occupation, nationality, state,
