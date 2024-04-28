@@ -92,146 +92,146 @@ export default function SignUp() {
     
     const handleSubmit = (e)=> {
       e.preventDefault();
-        console.log('submittng');
+      console.log('submittng');
       
 
-        handleFlutterPayment({
-          callback: (response) => {
-             console.log(response);
-              closePaymentModal() // this will close the modal programmatically
-              // navigate("/user/dashboard");
-          },
-          onClose: () => {
-              //  navigate("/user/dashboard");
-          },
-        });
-
-
-        // e.preventDefault();
-        // setSignupLoading(true);
-        // setBtnDisabledState(true);
-        // setErrorMessageSentence([]);
-        // const requiredFields = ['fname', 'lname', 'phone', 'occupation', 'email', 'password', 'confirm_password', 
-        // 'gender', 'age', 'state', 'country_code', 'nationality', 'address'];
-        // // console.log("run")
-        // const isEmpty = requiredFields.some((field) => userDetails[field] === '');
-       
-        // if(isEmpty){
-        // // console.log("run")
-
-        //     setUserDetails((prevData) => ({
-        //         ...prevData,
-        //         borderRedFields: true,
-        //     }));
-        //     // Find the first empty required field
-        //     const emptyField = requiredFields.find((field) => userDetails[field] === '');
-        //     console.log(emptyField);
-        //     // Display error message in the corresponding span element
-        //     setErrorMessage(`This field is required.`);
-        //     const scrollToLabel = (field) => {
-        //         const labelElement = document.querySelector(`[for=${field}]`);
-        //         console.log(field, labelElement);
-
-        //         if (labelElement) {
-        //         // console.log(field, labelElement);
-
-        //         labelElement.scrollIntoView({ behavior: 'smooth' });
-        //         }
-        //     };
-        //     // Scroll to the label of the empty field
-        //     scrollToLabel(emptyField);
-        //     // // Scroll to the empty field
-        //     // const element = document.querySelector(`[name=${emptyField}]`);
-        //     // if (element) {
-        //     // element.scrollIntoView({ behavior: 'smooth' });
-        //     // }
-        //     setSignupLoading(false);
-        //     setBtnDisabledState(false);
-        //     return;
-        // }
-
-        // if(confirm_password !== password){
-        //     // alert('ogini');
-        //     setErrorMessageSentence(['Password and Confirm Password are not the same']);
-        //     setSignupLoading(false);
-        //     setBtnDisabledState(false);
-        //     return;
-        // }
-
-        // // if(!privacy_terms){
-        // //     // alert('baba');
-        // //     setErrorMessageSentence(['You must accept privacy terms']);
-        // //     setSignupLoading(false);
-        // //      setBtnDisabledState(false);
-        // //     return;
-        // // }
-           
-        // axios.post(api + '/api/user-reg', {
-        //     'name': `${fname}`,
-        //     'lname': `${lname}`,
-        //     'gender': `${gender}`,
-        //     'email': `${email}`,
-        //     'phone': `${country_code + phone}`,
-        //     'password': `${password}`,
-        //     'address': `${address}`,
-        //     'age': `${age}`,
-        //     'occupation': `${occupation}`,
-        //     'nationality' : `${nationality}`,
-        //     'state_of_origin' : `${state}`
-        // })
-        // .then(function (response) {
-        //     // setLoading(false)
-        //     sessionStorage.setItem("Token", `${response.data.data.token}`);
-        //     console.log(response.data);
-        //     setSignupLoading(false);
-        //     setBtnDisabledState(false);
-        //     // navigate("/user/dashboard");
-        //     console.log('successful')
-        //     handleFlutterPayment({
-        //         callback: (response) => {
-        //            console.log(response);
-        //             closePaymentModal() // this will close the modal programmatically
-        //             navigate("/user/dashboard");
-        //         },
-        //         onClose: () => {
-        //              navigate("/user/dashboard");
-        //         },
-        //       });
-        // })
-        // .catch(function (error) {
-        //     // alert(error, error.response);
-        //     if (error.response){
-        //     //   setLoading(false)
-        //     console.log(error.response.data);
-        //     console.log(error.response.data.message);
-        //     //   setSuccess(error.response.data.success)
-        //     //   setErrorMessage(error.response.data.message);
-        //     setSignupLoading(false);
-        //     setBtnDisabledState(false);
-        //     const sentences = error.response.data.message.split('.\n').filter(sentence => sentence.trim() !== '');
-        //     setErrorMessageSentence(sentences);
-        //     console.log(sentences);
-        //     }
-        //     else{
-        //     //   setLoading(false)
-        //     //   setSuccess(false)
-        //     //   setNetwork( network = 'Encountered an error, Please try again')
-        //     console.log('error');
-        //     if (error.message === 'Network Error')
-        //       {
-        //         setErrorMessageSentence(['There is a problem with your internet connection'])
-        //         setSignupLoading(false);
-        //         setBtnDisabledState(false);
-        //       }
-        //       else{
-        //         setErrorMessageSentence([error.message])
-        //         setSignupLoading(false);
-        //         setBtnDisabledState(false);
-        //       }
-             
-        //     }
-            
+        // handleFlutterPayment({
+        //   callback: (response) => {
+        //      console.log(response);
+        //       closePaymentModal() // this will close the modal programmatically
+        //       // navigate("/user/dashboard");
+        //   },
+        //   onClose: () => {
+        //       //  navigate("/user/dashboard");
+        //   },
         // });
+
+
+        e.preventDefault();
+        setSignupLoading(true);
+        setBtnDisabledState(true);
+        setErrorMessageSentence([]);
+        const requiredFields = ['fname', 'lname', 'phone', 'occupation', 'email', 'password', 'confirm_password', 
+        'gender', 'age', 'state', 'country_code', 'nationality', 'address'];
+        // console.log("run")
+        const isEmpty = requiredFields.some((field) => userDetails[field] === '');
+       
+        if(isEmpty){
+        // console.log("run")
+
+            setUserDetails((prevData) => ({
+                ...prevData,
+                borderRedFields: true,
+            }));
+            // Find the first empty required field
+            const emptyField = requiredFields.find((field) => userDetails[field] === '');
+            console.log(emptyField);
+            // Display error message in the corresponding span element
+            setErrorMessage(`This field is required.`);
+            const scrollToLabel = (field) => {
+                const labelElement = document.querySelector(`[for=${field}]`);
+                console.log(field, labelElement);
+
+                if (labelElement) {
+                // console.log(field, labelElement);
+
+                labelElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+            // Scroll to the label of the empty field
+            scrollToLabel(emptyField);
+            // // Scroll to the empty field
+            // const element = document.querySelector(`[name=${emptyField}]`);
+            // if (element) {
+            // element.scrollIntoView({ behavior: 'smooth' });
+            // }
+            setSignupLoading(false);
+            setBtnDisabledState(false);
+            return;
+        }
+
+        if(confirm_password !== password){
+            // alert('ogini');
+            setErrorMessageSentence(['Password and Confirm Password are not the same']);
+            setSignupLoading(false);
+            setBtnDisabledState(false);
+            return;
+        }
+
+        // if(!privacy_terms){
+        //     // alert('baba');
+        //     setErrorMessageSentence(['You must accept privacy terms']);
+        //     setSignupLoading(false);
+        //      setBtnDisabledState(false);
+        //     return;
+        // }
+           
+        axios.post(api + '/api/user-reg', {
+            'name': `${fname}`,
+            'lname': `${lname}`,
+            'gender': `${gender}`,
+            'email': `${email}`,
+            'phone': `${country_code + phone}`,
+            'password': `${password}`,
+            'address': `${address}`,
+            'age': `${age}`,
+            'occupation': `${occupation}`,
+            'nationality' : `${nationality}`,
+            'state_of_origin' : `${state}`
+        })
+        .then(function (response) {
+            // setLoading(false)
+            sessionStorage.setItem("Token", `${response.data.data.token}`);
+            console.log(response.data);
+            setSignupLoading(false);
+            setBtnDisabledState(false);
+            // navigate("/user/dashboard");
+            console.log('successful')
+            handleFlutterPayment({
+                callback: (response) => {
+                   console.log(response);
+                    closePaymentModal() // this will close the modal programmatically
+                    navigate("/user/dashboard");
+                },
+                onClose: () => {
+                     navigate("/user/dashboard");
+                },
+              });
+        })
+        .catch(function (error) {
+            // alert(error, error.response);
+            if (error.response){
+            //   setLoading(false)
+            console.log(error.response.data);
+            console.log(error.response.data.message);
+            //   setSuccess(error.response.data.success)
+            //   setErrorMessage(error.response.data.message);
+            setSignupLoading(false);
+            setBtnDisabledState(false);
+            const sentences = error.response.data.message.split('.\n').filter(sentence => sentence.trim() !== '');
+            setErrorMessageSentence(sentences);
+            console.log(sentences);
+            }
+            else{
+            //   setLoading(false)
+            //   setSuccess(false)
+            //   setNetwork( network = 'Encountered an error, Please try again')
+            console.log('error');
+            if (error.message === 'Network Error')
+              {
+                setErrorMessageSentence(['There is a problem with your internet connection'])
+                setSignupLoading(false);
+                setBtnDisabledState(false);
+              }
+              else{
+                setErrorMessageSentence([error.message])
+                setSignupLoading(false);
+                setBtnDisabledState(false);
+              }
+             
+            }
+            
+        });
         
     }
 
