@@ -93,12 +93,33 @@
     font-size: 14px;
 }
 
+
+
+/* Active Hunts */
+    .active_hunts{
+        border: unset !important;
+    }
+    .active_hunts:hover{
+        background-color: unset !important;
+        color: #660066 !important;
+    }
+    .active_hunts:active{
+        background-color: unset !important;
+        color: #660066 !important;
+    }
+    .active_hunts:focus{
+        background-color: unset !important;
+        color: #660066 !important;
+    }
+
 /* Upcoming Hunts */
 .upcoming{
     font-family: Lato;
     font-size: 10px;
     font-weight: 700;
 }
+
+
 
 /* Notification */
 .notification_row{
@@ -136,19 +157,19 @@
 }
 
 .notification_time{
-    font-size: 3.57px;
+    font-size: 9.57px;
     font-weight: 400;   
     color: #A1A5C5;
 }
 
 .notification_sub_title{
-    font-size: 8.57px;
+    font-size: 10.57px;
     font-weight: 500; 
     color: #666666;
 }
 
 .notification_description{
-    font-size: 8.57px;
+    font-size: 9.57px;
     font-weight: 400;
     color: #A1A5C5;
 }

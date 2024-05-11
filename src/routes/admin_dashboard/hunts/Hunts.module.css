@@ -8,6 +8,16 @@
     font-size: 20px;
     font-weight: 800;
     color: #660066;
+    
+}
+
+.upcoming_hunt{
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 600;
+    color:#FF6600;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .view_hunts{
@@ -15,7 +25,7 @@
     font-size: 14px;
     font-weight: 600;
     color:#FF6600;
-    
+    text-decoration: none;
 }
 
 /* Create Hunt Form */

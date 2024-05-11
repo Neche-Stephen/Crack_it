@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Dropdown} from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import Timer from './Timer';
 
 import styles from './Dashboard.module.css';
 import DashboardNavbar from '../../../components/general/dashboard_navbar/DashboardNavbar';
@@ -14,7 +15,7 @@ export default function UserDashboard() {
     const [userData, setUserData] = useState({});
     const [hunts, setHunts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const api = 'https://crackitfindit.rad5.com.ng';
+    const api = import.meta.env.VITE_APP_API_URL
     const navigate = useNavigate();
 
     
@@ -28,6 +29,80 @@ export default function UserDashboard() {
      const [weeklyHunt, setWeeklyHunt] = useState([]);
      const [monthlyHunt, setMonthlyHunt] = useState([]);
      const [generalHunt, setGeneralHunt] = useState([]);
+
+     const [dailyUpcomingHunt, setDailyUpcomingHunt] = useState([]);
+     const [weeklyUpcomingHunt, setWeeklyUpcomingHunt] = useState([]);
+     const [monthlyUpcomingHunt, setMonthlyUpcomingHunt] = useState([]);
+     const [generalUpcomingHunt, setGeneralUpcomingHunt] = useState([]);
+
+     const [ongoingHunt, setOngoingHunt] = useState({}); // This is a select hunt (based on earliest date) from the daily hunt that is set as ongoing hunt
+     
+
+    const getOngoingHunt = ()=>{
+        console.log("ongoing hunt call");
+        
+        if(dailyHunt.length > 0){
+            // Sort the array based on date_created
+        let newDailyHunt = dailyHunt;
+        console.log("newdailt1",newDailyHunt)
+        newDailyHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+        console.log("newdailt2",newDailyHunt)
+        let mainHunt;
+        if (newDailyHunt.length > 0) {
+        console.log("newdailt3",newDailyHunt)
+            // Return the object with the latest date_created
+            mainHunt = newDailyHunt[0];
+            console.log("easy", mainHunt);
+
+            setOngoingHunt(mainHunt);
+
+        } else {
+            mainHunt = {}
+            console.log("did not work");
+        }
+       
+        }
+        else if(weeklyHunt.length > 0){
+            // Sort the array based on date_created
+        let newHunt = weeklyHunt;
+        console.log("newdailt1",newHunt)
+        newHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+        console.log("newdailt2",newHunt)
+        let mainHunt;
+        if (newHunt.length > 0) {
+        console.log("newdailt3",newDailyHunt)
+            // Return the object with the latest date_created
+            mainHunt = newHunt[0];
+            console.log("easy", mainHunt);
+
+            setOngoingHunt(mainHunt);
+
+        } else {
+            mainHunt = {}
+            console.log("did not work");
+        }
+        }
+        else if(monthlyHunt.length > 0){
+            // Sort the array based on date_created
+        let newHunt = monthlyHunt;
+        console.log("newdailt1",newHunt)
+        newHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+        console.log("newdailt2",newHunt)
+        let mainHunt;
+        if (newHunt.length > 0) {
+        console.log("newdailt3",newDailyHunt)
+            // Return the object with the latest date_created
+            mainHunt = newHunt[0];
+            console.log("easy", mainHunt);
+
+            setOngoingHunt(mainHunt);
+
+        } else {
+            mainHunt = {}
+            console.log("did not work");
+        }
+        }
+    }
 
      function formatDate(dateString) {
         // Convert ISO 8601 format to Date object
@@ -48,7 +123,51 @@ export default function UserDashboard() {
         return `${month} ${day}, ${year}`;
     }
 
+    const fetchUpcomingHunts = () => {
+        axios.get(api + '/api/upcoming-hunts', { 
+            headers: {
+                Authorization: "Bearer " + sessionStorage.Token,
+                Accept: 'application/json'
+            }
+         })
+        .then(function (response) {
+            console.log(response.data.data)
+            response.data.data.map((hunt => {
+                if(hunt.hunt_category_title === 'Hunt for the day'){
+                    setDailyUpcomingHunt(hunt.hunts)
+                }
+                else if (hunt.hunt_category_title === 'Hunt for the week'){
+                    setWeeklyUpcomingHunt(hunt.hunts);
+                }
+                else if (hunt.hunt_category_title === 'Hunt for the month'){
+                    setMonthlyUpcomingHunt(hunt.hunts);
+                }
+            }))
+
+            let generalHunt = []
+            response.data.data.map((hunt) =>{
+                generalHunt.push(...hunt.hunts)
+            })
+            // console.log(generalHunt)
+            setGeneralUpcomingHunt(generalHunt);
+            setLoading(false);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+            setLoading(false)
+
+
+            // navigate('/login')
+        });
+    }
+
+    const goToOngoingHunt = () =>{
+    navigate(`/user/hunts/ongoing`, { state: {hunt:ongoingHunt} });
+    }
+
     useEffect( () =>{
+        // Validate and Fetch user info
         if (sessionStorage.Token){
              axios.get(api + '/api/user', { 
                  headers: {
@@ -75,6 +194,7 @@ export default function UserDashboard() {
                 //  navigate('/login')
              });
     
+             // Get Active Hunts
              axios.get(api + '/api/hunts', { 
                 headers: {
                     Authorization: "Bearer " + sessionStorage.Token,
@@ -82,10 +202,11 @@ export default function UserDashboard() {
                 }
              })
             .then(function (response) {
-                console.log(response.data.data)
+                console.log("hunts",response.data.data)
                 response.data.data.map((hunt => {
                     if(hunt.hunt_category_title === 'Hunt for the day'){
-                        setDailyHunt(hunt.hunts)
+                        setDailyHunt(hunt.hunts);
+                        
                     }
                     else if (hunt.hunt_category_title === 'Hunt for the week'){
                         setWeeklyHunt(hunt.hunts);
@@ -101,6 +222,7 @@ export default function UserDashboard() {
                 })
                 // console.log(generalHunt)
                 setGeneralHunt(generalHunt);
+                // setOngoingHunt(); 
                 setLoading(false)
 
 
@@ -113,11 +235,19 @@ export default function UserDashboard() {
 
                 // navigate('/login')
             });
+
+            // Get Upcoming Hunts
+            fetchUpcomingHunts();
             }
         else{
             navigate('/login')
         }    
-    }, []) 
+    }, []);
+
+    useEffect(() => {
+        console.log("second useeffect")
+        getOngoingHunt();
+    }, [dailyHunt]);
 
 
   return (
@@ -147,20 +277,26 @@ export default function UserDashboard() {
                                     <div className={`${styles.dashboard_details}`}>
                                         <Row className='justify-content-between'>
                                             {/* Ongoing hunt */}
-                                            {/* <div className={`${styles.dashboard_widget} mb-3`}>
+                                            <div className={`${styles.dashboard_widget} mb-3`}>
                                                 <Row className='justify-content-center'>
                                                     <Col xs = 'auto'><p>Ongoing hunt</p></Col>
                                                 </Row>
                                                 <Row className='justify-content-center mb-4'>
-                                                    <Col xs = '10' lg = '8'><button>23:34:40</button></Col>
+                                                    <Col xs = '10' lg = '8'>
+                                                        {/* <button>23:34:40</button> */}
+                                                        <button><Timer expiration={ongoingHunt.expiration} /></button>
+                                                    </Col>
                                                 </Row>
                                                 <Row className='justify-content-end'>
-                                                    <Col xs = 'auto'><span className={`${styles.view_details}`}>Click to view details</span></Col>
+                                                    <Col xs = 'auto'>
+                                                        <span style={{cursor:"pointer"}} className={`${styles.view_details}`} onClick={goToOngoingHunt}>Click to view details</span>
+                                                        {/* <Link to={`/user/hunts/week`} state={{hunt : hunt}}>{hunt.title} - {ongoingHunt.audience}</Link> */}
+                                                        
+                                                    </Col>
                                                 </Row>
                                                 
                                             
-                                            </div> */}
-
+                                            </div>
                                             {/* Active Hunt */}
                                             <div className={`${styles.dashboard_widget} mb-3`}>
                                                 <Row className='justify-content-center'>
@@ -169,13 +305,67 @@ export default function UserDashboard() {
                                                     </Col>
                                                 </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/day`} state={{hunts : dailyHunt}}>Hunt for the day</Link></span></Col>
+                                                    {/* <Col xs = 'auto'><span><Link to={`/user/hunts/day`} state={{hunts : dailyHunt}}>Hunt for the day</Link></span></Col> */}
+                                                    <Col xs = 'auto'><span>
+                                                        {/* <Link to={`/user/hunts/day`} state={{hunts : dailyHunt}}>Hunt for the day</Link> */}
+                                                            <Dropdown>
+                                                                <Dropdown.Toggle className={`${styles.active_hunts}`} id="dropdown-basic">
+                                                                     Hunt for the day
+                                                                </Dropdown.Toggle>
+
+                                                                    <Dropdown.Menu>
+
+                                                                        {
+                                                                            dailyHunt.map((hunt)=>{
+                                                                                 return <Dropdown.Item as={Link} to={`/user/hunts/day`} state={{hunt : hunt}}>{hunt.title} - {hunt.audience}</Dropdown.Item>
+                                                                            })
+                                                                        }                               
+                                                                    </Dropdown.Menu>
+                                                            </Dropdown>
+                                            
+                                                            </span>
+                                                        </Col>
+
                                                  </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`} state={{hunts : weeklyHunt}}>Hunt for the week</Link></span></Col>
+                                                    {/* <Col xs = 'auto'><span><Link to={`/user/hunts/week`} state={{hunts : weeklyHunt}}>Hunt for the week</Link></span></Col> */}
+                                                    <Col xs = 'auto'><span>
+                                                            <Dropdown>
+                                                                <Dropdown.Toggle className={`${styles.active_hunts}`} id="dropdown-basic">
+                                                                     Hunt for the Week
+                                                                </Dropdown.Toggle>
+                                                                    <Dropdown.Menu>
+                                                                        {
+                                                                            weeklyHunt.map((hunt)=>{
+                                                                                 return <Dropdown.Item as={Link} to={`/user/hunts/week`} state={{hunt : hunt}}>{hunt.title} - {hunt.audience}</Dropdown.Item>
+                                                                            })
+                                                                        }                               
+                                                                    </Dropdown.Menu>
+                                                            </Dropdown>
+                                            
+                                                            </span>
+                                                        </Col>
                                                  </Row>
                                                  <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><span><Link to={`/user/hunts/week`} state={{hunts : monthlyHunt}}>Hunt for the year</Link></span></Col>
+                                                    {/* <Col xs = 'auto'><span><Link to={`/user/hunts/week`} state={{hunts : monthlyHunt}}>Hunt for the year</Link></span></Col> */}
+                                                    <Col xs = 'auto'><span>
+                                                            <Dropdown>
+                                                                <Dropdown.Toggle className={`${styles.active_hunts}`} id="dropdown-basic">
+                                                                     Hunt for the month
+                                                                </Dropdown.Toggle>
+
+                                                                    <Dropdown.Menu>
+
+                                                                        {
+                                                                            monthlyHunt.map((hunt)=>{
+                                                                                 return <Dropdown.Item as={Link} to={`/user/hunts/month`} state={{hunt : hunt}}>{hunt.title} - {hunt.audience}</Dropdown.Item>
+                                                                            })
+                                                                        }                               
+                                                                    </Dropdown.Menu>
+                                                            </Dropdown>
+                                            
+                                                            </span>
+                                                        </Col>
                                                  </Row>
                                             </div>
 
@@ -227,22 +417,22 @@ export default function UserDashboard() {
                                             
                                             </div> */}
 
-                                             {/* Notification */}
-                                             <div className={`${styles.dashboard_widget}`} style={{overflow:'scroll'}}>
+                                             {/* Upcoming - Notification  - I am now using notification as my upcoming hunt, so you will find a lot of clas still name with notification*/}
+                                             <div className={`${styles.upcoming_hunts} ${styles.dashboard_widget}`} style={{overflow:'scroll'}}>
                                                 <Row className='justify-content-center'>
-                                                    <Col xs = 'auto'><p>Notifications</p></Col>
+                                                    <Col xs = 'auto'><p>Upcoming Hunts</p></Col>
                                                 </Row>
 
                                                 {
-                                                   generalHunt.length !== 0
+                                                   generalUpcomingHunt.length !== 0
                                                    ?
-                                                   generalHunt.map((hunt, index) => {
+                                                   generalUpcomingHunt.map((hunt, index) => {
                                                     return (
-                                                        <div key={index} className={`${styles.notification_row}`}>
+                                                        <div key={index} className={`${styles.notification_row} mb-3`}>
                                                             <div className={`${styles.notification_row_first}`}>
-                                                                <div className={`${styles.notification_avatar}`}>
+                                                                {/* <div className={`${styles.notification_avatar}`}>
                                                                     <img src={avatar} alt="" className='w-100'/>
-                                                                </div>
+                                                                </div> */}
                                                                 <div className={`${styles.notification_title} ms-2`}>
                                                                     Crack It, Find It
                                                                 </div>
@@ -250,7 +440,7 @@ export default function UserDashboard() {
                                                             </div>
                                                             <div className={`${styles.notification_row_second}`}>
                                                                 <div className={`${styles.notification_sub_title} ms-2`}>
-                                                                A new hunt is available...
+                                                                {hunt.title}
                                                                 </div>
                                                             </div>
                                                             <div className={`${styles.notification_row_third}`}>

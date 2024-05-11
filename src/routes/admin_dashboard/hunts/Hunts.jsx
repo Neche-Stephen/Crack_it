@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Link, useNavigate } from 'react-router-dom';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+
 import axios from 'axios';
 
 import styles from './Hunts.module.css';
@@ -15,17 +17,41 @@ import DashboardNavbar from '../../../components/general/dashboard_navbar/Dashbo
 const defaultHuntDetails = {
     category_id: '',
     audience : '',
+    start_date: '',
     expiration: '',
     title:'',
+    hunt_youtube_url:'',
     description: '',
+}
+
+const defaultUpcomingHuntDetails = {
+    upcomingCategory_id: '',
+    upcomingAudience : '',
+    upcomingExpiration: '',
+    upcomingStart_date: '',
+    upcomingTitle:'',
+    upcomingDescription: '',
 }
 
 
 export default function AdminHunts() {
+    const api = import.meta.env.VITE_APP_API_URL
+
     const [huntDetails, setHuntDetails] = useState(defaultHuntDetails);
-    const {category_id, audience, expiration, title, description} = huntDetails;
+    const [huntUpcomingDetails, setHuntUpcomingDetails] = useState(defaultHuntDetails);
+
+    const [hunt_status, setHunt_status] = useState("active"); // Status for the kind of hunt to be created - active or upcoming
+
+    // const [start_date, setStart_date] = useState('');
+
+    const {category_id, audience, start_date, hunt_youtube_url, expiration, title, description} = huntDetails;
+
+    const {upcomingCategory_id, upcomingAudience,upcomingStart_date, upcomingExpiration, upcomingTitle, upcomingDescription} = huntUpcomingDetails;
+
     const [huntCategories, setHuntCategories] = useState([]);
-    const [image_guide, setImage_guide] = useState(null)
+    const [image_guide, setImage_guide] = useState(null);
+    const [upcomingImage_guide, setUpcomingImage_guide] = useState(null);
+
     const [loadingCreateHuntBtn, setLoadingCreateHuntBtn] = useState(false)
     // const [category, setCategory] = useState("");
 
@@ -44,6 +70,16 @@ export default function AdminHunts() {
         setHuntDetails({ ...huntDetails, [name]: value });
     };
 
+    const handleUpcomingChange = (e)=>{
+        const { name, value } = e.target;
+        setHuntUpcomingDetails({ ...huntUpcomingDetails, [name]: value });
+    };
+
+    const clearHuntFormDetails = () => {
+        setHuntDetails(defaultHuntDetails);
+        fileInputRef.current.value = null;  
+    }
+
     const handleCreateHunt = (e) => {
         e.preventDefault();
         setLoadingCreateHuntBtn(true);
@@ -56,7 +92,8 @@ export default function AdminHunts() {
         form.append("audience", audience);
         form.append('image', image_guide);
         form.append("expiration", expiration);
-        axios.post('https://crackitfindit.rad5.com.ng/api/add-or-edit-hunt', form,    {headers: {
+        form.append("youtube_url", hunt_youtube_url)
+        axios.post(api + '/api/add-or-edit-hunt', form, {headers: {
                 Authorization: "Bearer " + sessionStorage['Admin-Token'],
                 Accept: 'application/json'
         }},)
@@ -65,7 +102,8 @@ export default function AdminHunts() {
         // console.log(response.data.message)
         setLoadingCreateHuntBtn(false);
         const createHuntNotify = () => toast(response.data.message);
-        createHuntNotify()
+        createHuntNotify();
+        clearHuntFormDetails();
         // setPublishLoading(false)
         // setMessage(response.data.message)
         // setShowAlert(true)
@@ -83,10 +121,55 @@ export default function AdminHunts() {
         })
     }
 
+    const handleCreateUpcomingHunt = (e) => {
+        e.preventDefault();
+        console.log(image_guide);
+        setLoadingCreateHuntBtn(true);
+        console.log('working');
+        // setPublishLoading(true)
+        let form = new FormData();
+        form.append("category_id", category_id);
+        form.append("title", title);
+        form.append("description", description);
+        form.append("audience", audience);
+        form.append('image', image_guide);
+        form.append("start_date", start_date);
+        form.append("expiration", expiration);
+        axios.post(api + '/api/add-or-edit-hunt', form,  {headers: {
+                Authorization: "Bearer " + sessionStorage['Admin-Token'],
+                Accept: 'application/json'
+        }},)
+        .then(function (response) {
+        // handle success
+        // console.log(response.data.message)
+        setLoadingCreateHuntBtn(false);
+        const createHuntNotify = () => toast(response.data.message);
+        createHuntNotify();
+        clearHuntFormDetails();
+        // setPublishLoading(false)
+        // setMessage(response.data.message)
+        // setShowAlert(true)
+        })
+        .catch(function (error) {
+        // handle error
+        console.log('There is an error')
+        console.log(error);
+        setLoadingCreateHuntBtn(false);
+        const createHuntNotify = () => toast(error.message);
+        createHuntNotify()
+        // setPublishLoading(false)
+        // setMessage(error.response.data.message)
+        // setShowAlert(true)
+        })
+    }
+
+    const fileInputRef = useRef(null);
+
+
     useEffect( () =>{
       // Make a request for a user with a given ID
         if (sessionStorage['Admin-Token']){
-            axios.get('https://crackitfindit.rad5.com.ng/api/hunt-categories', { 
+            axios.get(api + '/api/hunt-categories', { 
             headers: {
                     Authorization: "Bearer " + sessionStorage['Admin-Token'],
                     Accept: 'application/json'
@@ -124,11 +207,28 @@ export default function AdminHunts() {
             <Col className='ps-4 py-4 offset-sm-2 offset-lg-3'>
                 <DashboardNavbar  handleShow={handleShow}/>
                 <Row>
-                        <form className='col-11 col-lg-9' onSubmit={handleCreateHunt}>
-                        <Row className='mt-5'>
-                         <Col><p className={`${styles.create_hunt}`}>Create Hunt</p></Col>
-                         <Col xs = 'auto' className='ms-auto'><Link to = '/admin/view_hunts' className={`${styles.view_hunts}`}>See all Hunts</Link></Col>
+                    {/* Create Active Hunt */}
+                        <form className='col-11 col-lg-9' onSubmit={ hunt_status === "active" ? handleCreateHunt : handleCreateUpcomingHunt}>
+                        <Row className='mt-5 align-items-center'>
+                         <Col xs = 'auto'><p className={`${styles.create_hunt}`}>Create Hunt</p></Col>
+                         <Col xs = 'auto' className='ms-auto'><Link to = '/admin/view_hunts' className={`${styles.view_hunts}`}><p>See all Hunts</p></Link></Col>
                         </Row>
+                        <Row className='mb-3'>
+                            <Col>
+                            <select name="hunt_status" value={hunt_status} id="" 
+                                onChange={
+                                    (e) => {
+                                        setHunt_status(e.target.value)
+                                    }
+                                } required 
+                            >
+                                <option value="" disabled>Select Status of the Hunt</option>
+                                <option value="active">Active Hunt</option>
+                                <option value="upcoming">Upcoming Hunt</option>
+                            </select>
+                            </Col>
+                        </Row>
+
                         <Row className='mb-3'>
                             <Col>
                             <select name="category_id" value={category_id} id="" 
@@ -154,6 +254,14 @@ export default function AdminHunts() {
                             placeholder='Hunt Description' className={`${styles.admin_hunts_container_textarea}`} required></textarea>
                             </Col>
                         </Row>
+                            {
+                                hunt_status === "active" ? "" :
+                                <Row className='mb-3'>
+                                <Col>
+                                <input name = 'start_date' type="text" placeholder='Hunt Start Date'  onFocus={(event) => event.target.type = 'date'}  onChange={handleChange}  value={start_date} className={`${styles.admin_hunts_containerinput}`} required/>
+                                </Col>
+                                 </Row>
+                            }
                         <Row className='mb-3'>
                             <Col>
                             <input name = 'expiration' type="text" placeholder='Hunt Expiration'  onFocus={(event) => event.target.type = 'date'}  onChange={handleChange}  value={expiration} className={`${styles.admin_hunts_containerinput}`} required/>
@@ -166,9 +274,14 @@ export default function AdminHunts() {
                         </Row>
                         <Row className='mb-3'>
                             <Col>
-                                 <input name='image_guide' type="text" placeholder='Hunt Guide' onFocus={(event) => event.target.type = 'file'} onChange={(e)=>{
+                                 <input ref={fileInputRef} name='image_guide' type="text" placeholder='Hunt Guide' onFocus={(event) => event.target.type = 'file'} onChange={(e)=>{
                                     setImage_guide(e.target.files[0])
-                                 }} className={`${styles.admin_hunts_containerinput}`} required/>
+                                 }} className={`${styles.admin_hunts_containerinput}`}  required/>
+                            </Col>
+                        </Row>
+                        <Row className='mb-3'>
+                            <Col>
+                                <input name='hunt_youtube_url' placeholder='Hunt Video URL - Youtube' type="text" onChange={handleChange}  value={hunt_youtube_url} className={`${styles.admin_hunts_containerinput}`} />
                             </Col>
                         </Row>
                         <Row className='justify-content-center mb-5'>
@@ -183,7 +296,9 @@ export default function AdminHunts() {
                             </Col>
                         </Row>
                         
-                        </form>                        
+                        </form>      
+
+                                       
                 </Row>
             </Col>
         </Row>

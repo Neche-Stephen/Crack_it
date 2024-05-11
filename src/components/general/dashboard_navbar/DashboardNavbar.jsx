@@ -26,10 +26,10 @@ export default function DashboardNavbar({handleShow}) {
         <div xs = 'auto' className={`${styles.navbar_icons} p-0 ms-auto me-4 d-sm-none`}>
           <img src={hamburger} alt="" className='w-100' onClick={handleShow} />
         </div>
-        <div xs = 'auto' className={`${styles.navbar_icons} ms-sm-auto me-4`} >
+        {/* <div xs = 'auto' className={`${styles.navbar_icons} ms-sm-auto me-4`} >
             <img src={notification} alt="" className='w-100'/>
-        </div>
-        <div xs = 'auto' className={`${styles.navbar_icons} me-4`}  >
+        </div> */}
+        <div xs = 'auto' className={`${styles.navbar_icons} ms-sm-auto me-4`}  >
             <Link to='/user/profile'><img src={profile} alt="" className='w-100'/></Link>
         </div>
         <div className={`${styles.navbar_icons}`} >

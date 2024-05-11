@@ -29,12 +29,64 @@ export default function Hunts() {
     const [weeklyHunt, setWeeklyHunt] = useState([]);
     const [monthlyHunt, setMonthlyHunt] = useState([]);
 
+    const [mainDailyHunt, setMainDailyHunt] = useState({});
+    const [mainWeeklyHunt, setMainWeeklyHunt] = useState([]);
+    const [mainMonthlyHunt, setMainMonthlyHunt] = useState([]);
+
+
+
     const navigate = useNavigate();
-    const api = 'https://crackitfindit.rad5.com.ng';
+    const api = import.meta.env.VITE_APP_API_URL
      //Offcanvas
      const [show, setShow] = useState(false);
      const handleClose = () => setShow(false);
      const handleShow = () => setShow(true);
+
+     
+      const setMainHunts = ()=>{
+            // set Main Daily Hunt
+            // Sort the array based on date_created
+            let newDailyHunt = dailyHunt;
+            console.log("Inside setmainhunts")
+            newDailyHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+            // let mainHunt;
+            if (newDailyHunt.length > 0) {
+                // Return the object with the latest date_created
+                // mainHunt = hunts[0];
+                setMainDailyHunt(newDailyHunt[0]);
+                console.log("setted main daily hunt")
+
+            } else {
+                // mainHunt = {}
+                setMainDailyHunt({});
+            }
+
+            let newWeeklyHunt = weeklyHunt;
+            newWeeklyHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+            // let mainHunt;
+            if (newWeeklyHunt.length > 0) {
+                // Return the object with the latest date_created
+                // mainHunt = hunts[0];
+                setMainWeeklyHunt(newWeeklyHunt[0]);
+
+            } else {
+                // mainHunt = {}
+                setMainWeeklyHunt({});
+            }
+
+            let newMonthlyHunt = monthlyHunt;
+            newMonthlyHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+            // let mainHunt;
+            if (newMonthlyHunt.length > 0) {
+                // Return the object with the latest date_created
+                // mainHunt = hunts[0];
+                setMainMonthlyHunt(newMonthlyHunt[0]);
+
+            } else {
+                // mainHunt = {}
+                setMainMonthlyHunt({});
+            }
+      }
 
     useEffect(()=>{
         if (sessionStorage.Token){
@@ -61,6 +113,7 @@ export default function Hunts() {
                         setMonthlyHunt(hunt.hunts);
                     }
                 }))
+                setMainHunts();
                 setLoadingHunts(false);
 
             })
@@ -71,6 +124,7 @@ export default function Hunts() {
 
                 // navigate('/login')
             });
+
         }
         else{
             navigate('/login')
@@ -97,7 +151,7 @@ export default function Hunts() {
                         <DashboardNavbar handleShow={handleShow}/>
                         <Row>
                             <Col xs = '12' lg = '6'>
-                               <Link to={`/user/hunts/day`} state={{hunts : dailyHunt}}><img src={hunt_day} alt="" className='w-100'/></Link>
+                               <Link to={`/user/hunts/day`} state={{hunt : mainDailyHunt}}><img src={hunt_day} alt="" className='w-100'/></Link>
                             </Col>
                             <Col xs = '12' lg = '6'>
                                 <Link to={`/user/hunts/week`} state={{hunts : weeklyHunt}}><img src={hunt_week} alt="" className='w-100'/></Link>

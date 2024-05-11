@@ -14,13 +14,13 @@ export const userSidebarItems = [
         itemLink: '/user/dashboard'
     },
 
-    {
-        itemName : "Hunts",
-        active: false,
-        icon : hunt_new_icon,
-        // iconWidth: '13%',
-        itemLink: '/user/hunts'
-    },
+    // {
+    //     itemName : "Hunts",
+    //     active: false,
+    //     icon : hunt_new_icon,
+    //     // iconWidth: '13%',
+    //     itemLink: '/user/hunts'
+    // },
 
     {
         itemName : "Profile",

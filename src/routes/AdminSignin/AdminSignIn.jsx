@@ -30,7 +30,7 @@ export default function AdminSignIn() {
 
 
     const navigate = useNavigate();
-    const api = 'https://crackitfindit.rad5.com.ng';
+    const api = import.meta.env.VITE_APP_API_URL
 
 
     const {email, password} = userDetails

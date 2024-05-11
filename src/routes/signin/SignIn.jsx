@@ -30,7 +30,7 @@ export default function SignIn() {
 
 
     const navigate = useNavigate();
-    const api = 'https://crackitfindit.rad5.com.ng';
+    const api = 'https://crackitfindit.com';
 
 
     const {email, password} = userDetails
@@ -88,8 +88,8 @@ export default function SignIn() {
           })
           .then(function (response) {
             // setLoading(false)
-            console.log(response.data.data.token);
-            console.log(response.data);
+            // console.log(response.data.data.token);
+            // console.log(response.data);
             sessionStorage.setItem("Token", `${response.data.data.token}`);
             setSignupLoading(false);
             setBtnDisabledState(false);

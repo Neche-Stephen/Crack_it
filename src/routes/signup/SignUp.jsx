@@ -33,6 +33,7 @@ const defaultUserDetails = {
 
 export default function SignUp() {
     const apiKey = import.meta.env.VITE_APP_FLUTTER_API_KEY
+    const api = import.meta.env.VITE_APP_API_URL
     // const apiKey = VITE_APP_FLUTTER_API_KEY;
     
     const [showMobileNav, setShowMobileNav] = React.useState(false);
@@ -46,7 +47,7 @@ export default function SignUp() {
     const [btnDisabledState, setBtnDisabledState] = useState(false);
 
     const navigate = useNavigate();
-    const api = 'https://crackitfindit.rad5.com.ng';
+    // const api = 'https://crackitfindit.com';
 
     const {fname, lname, gender, email, phone, password, 
         confirm_password, country_code, address, age, occupation, nationality, state,
@@ -167,8 +168,8 @@ export default function SignUp() {
         // }
            
         axios.post(api + '/api/user-reg', {
-            'name': `${fname}`,
-            'lname': `${lname}`,
+            'firstname': `${fname}`,
+            'lastname': `${lname}`,
             'gender': `${gender}`,
             'email': `${email}`,
             'phone': `${country_code + phone}`,
@@ -177,12 +178,12 @@ export default function SignUp() {
             'age': `${age}`,
             'occupation': `${occupation}`,
             'nationality' : `${nationality}`,
-            'state_of_origin' : `${state}`
+            'state' : `${state}`
         })
         .then(function (response) {
             // setLoading(false)
             sessionStorage.setItem("Token", `${response.data.data.token}`);
-            console.log(response.data);
+            // console.log(response.data);
             setSignupLoading(false);
             setBtnDisabledState(false);
             // navigate("/user/dashboard");
@@ -202,8 +203,8 @@ export default function SignUp() {
             // alert(error, error.response);
             if (error.response){
             //   setLoading(false)
-            console.log(error.response.data);
-            console.log(error.response.data.message);
+            console.log(1, error.response.data);
+            console.log(2, error.response.data.message);
             //   setSuccess(error.response.data.success)
             //   setErrorMessage(error.response.data.message);
             setSignupLoading(false);

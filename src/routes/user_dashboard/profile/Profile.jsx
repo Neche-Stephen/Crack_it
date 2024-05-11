@@ -21,7 +21,7 @@ export default function Profile() {
   const [errorMessage, setErrorMessage] = useState('')
   const [profile, setProfile] = useState([])
   const navigate = useNavigate();
-  const api = 'https://crackitfindit.rad5.com.ng';
+  const api = import.meta.env.VITE_APP_API_URL;
 
   useEffect(()=>{
       if (sessionStorage.Token){
@@ -105,7 +105,7 @@ export default function Profile() {
                                   <Col>
                                     <div className={`${styles.profile_list}`}>
                                       <p>Last Name</p>
-                                      <p style={{marginTop:'-18px'}}><b>-</b></p>
+                                      <p style={{marginTop:'-18px'}}><b>{profile.lastname}</b></p>
                                       <p>Phone</p>
                                       <p style={{marginTop:'-18px'}}><b>{profile.phone}</b></p>
                                       <p>Age</p>
@@ -137,7 +137,7 @@ export default function Profile() {
                                   <Col>
                                     <div className={`${styles.profile_list}`}>
                                       <p>City/State</p>
-                                      <p style={{marginTop:'-18px'}}><b>-</b></p>
+                                      <p style={{marginTop:'-18px'}}><b>{profile.state}</b></p>
                                     </div>
                                   </Col>
                                 </Row>
