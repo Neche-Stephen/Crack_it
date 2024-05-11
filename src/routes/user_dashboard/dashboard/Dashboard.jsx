@@ -44,9 +44,7 @@ export default function UserDashboard() {
         if(dailyHunt.length > 0){
             // Sort the array based on date_created
         let newDailyHunt = dailyHunt;
-        console.log("newdailt1",newDailyHunt)
         newDailyHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
-        console.log("newdailt2",newDailyHunt)
         let mainHunt;
         if (newDailyHunt.length > 0) {
         console.log("newdailt3",newDailyHunt)
@@ -63,45 +61,39 @@ export default function UserDashboard() {
        
         }
         else if(weeklyHunt.length > 0){
+            console.log("thiis is ongoing weekly")
             // Sort the array based on date_created
-        let newHunt = weeklyHunt;
-        console.log("newdailt1",newHunt)
-        newHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
-        console.log("newdailt2",newHunt)
-        let mainHunt;
-        if (newHunt.length > 0) {
-        console.log("newdailt3",newDailyHunt)
-            // Return the object with the latest date_created
-            mainHunt = newHunt[0];
-            console.log("easy", mainHunt);
+            let newHunt = weeklyHunt;
+            newHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+            let mainHunt;
+            if (newHunt.length > 0) {
+                // Return the object with the latest date_created
+                mainHunt = newHunt[0];
+                console.log("easy", mainHunt);
 
-            setOngoingHunt(mainHunt);
+                setOngoingHunt(mainHunt);
 
-        } else {
-            mainHunt = {}
-            console.log("did not work");
-        }
+            } else {
+                mainHunt = {}
+                console.log("did not work");
+            }
         }
         else if(monthlyHunt.length > 0){
-            // Sort the array based on date_created
-        let newHunt = monthlyHunt;
-        console.log("newdailt1",newHunt)
-        newHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
-        console.log("newdailt2",newHunt)
-        let mainHunt;
-        if (newHunt.length > 0) {
-        console.log("newdailt3",newDailyHunt)
-            // Return the object with the latest date_created
-            mainHunt = newHunt[0];
-            console.log("easy", mainHunt);
+                // Sort the array based on date_created
+            let newHunt = monthlyHunt;
+            newHunt.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+            let mainHunt;
+            if (newHunt.length > 0) {
+                // Return the object with the latest date_created
+                mainHunt = newHunt[0];
+                console.log("easy", mainHunt);
+                setOngoingHunt(mainHunt);
 
-            setOngoingHunt(mainHunt);
-
-        } else {
-            mainHunt = {}
-            console.log("did not work");
-        }
-        }
+            } else {
+                mainHunt = {}
+                console.log("did not work");
+            }
+            }
     }
 
      function formatDate(dateString) {
@@ -124,7 +116,7 @@ export default function UserDashboard() {
     }
 
     const fetchUpcomingHunts = () => {
-        axios.get(api + '/api/upcoming-hunts', { 
+        axios.get(api + 'upcoming-hunts', { 
             headers: {
                 Authorization: "Bearer " + sessionStorage.Token,
                 Accept: 'application/json'
@@ -169,7 +161,7 @@ export default function UserDashboard() {
     useEffect( () =>{
         // Validate and Fetch user info
         if (sessionStorage.Token){
-             axios.get(api + '/api/user', { 
+             axios.get(api + 'user', { 
                  headers: {
                      Authorization: "Bearer " + sessionStorage.Token,
                      Accept: 'application/json'
@@ -195,7 +187,7 @@ export default function UserDashboard() {
              });
     
              // Get Active Hunts
-             axios.get(api + '/api/hunts', { 
+             axios.get(api + 'hunts', { 
                 headers: {
                     Authorization: "Bearer " + sessionStorage.Token,
                     Accept: 'application/json'
@@ -247,7 +239,7 @@ export default function UserDashboard() {
     useEffect(() => {
         console.log("second useeffect")
         getOngoingHunt();
-    }, [dailyHunt]);
+    }, [dailyHunt, weeklyHunt, monthlyHunt]);
 
 
   return (
@@ -285,6 +277,8 @@ export default function UserDashboard() {
                                                     <Col xs = '10' lg = '8'>
                                                         {/* <button>23:34:40</button> */}
                                                         <button><Timer expiration={ongoingHunt.expiration} /></button>
+                                                        {/* <button>{ongoingHunt.title}</button> */}
+
                                                     </Col>
                                                 </Row>
                                                 <Row className='justify-content-end'>

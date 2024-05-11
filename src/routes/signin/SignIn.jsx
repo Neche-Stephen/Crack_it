@@ -30,7 +30,7 @@ export default function SignIn() {
 
 
     const navigate = useNavigate();
-    const api = 'https://crackitfindit.com';
+    const api = import.meta.env.VITE_APP_API_URL;
 
 
     const {email, password} = userDetails
@@ -82,7 +82,7 @@ export default function SignIn() {
             setBtnDisabledState(false);
             return;
         }
-        axios.post( api + '/api/login', {
+        axios.post(api + 'login', {
             'email': `${email}`,
             'password': `${password}`
           })

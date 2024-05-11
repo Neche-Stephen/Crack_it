@@ -25,7 +25,7 @@ export default function Profile() {
 
   useEffect(()=>{
       if (sessionStorage.Token){
-        axios.get(api + '/api/user', { 
+        axios.get(api + 'user', { 
           headers: {
               Authorization: "Bearer " + sessionStorage.Token,
               Accept: 'application/json'

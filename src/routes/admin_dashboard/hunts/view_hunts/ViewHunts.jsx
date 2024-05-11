@@ -92,7 +92,7 @@ export default function Transactions() {
         e.preventDefault();
         console.log('Network requestS')
         // setLoadingEditHunt(true)
-        axios.get(api + '/api/get-hunt/' + hunt, { 
+        axios.get(api + 'get-hunt/' + hunt, { 
             headers: {
                     Authorization: "Bearer " + sessionStorage['Admin-Token'],
                     Accept: 'application/json'
@@ -122,7 +122,7 @@ export default function Transactions() {
     }
 
     const getHuntCategories = () => {
-        axios.get(api + '/api/hunt-categories', { 
+        axios.get(api + 'hunt-categories', { 
             headers: {
                     Authorization: "Bearer " + sessionStorage['Admin-Token'],
                     Accept: 'application/json'
@@ -153,7 +153,7 @@ export default function Transactions() {
         if (editedImage === true){form.append('image', image_guide); console.log('jj')}
         form.append("expiration", expiration);
         form.append("hunt_id", hunt_id);
-        axios.post(api + '/api/add-or-edit-hunt', form,    {headers: {
+        axios.post(api + 'add-or-edit-hunt', form,    {headers: {
             Authorization: "Bearer " + sessionStorage['Admin-Token'],
             Accept: 'application/json'
     }},)

@@ -35,7 +35,7 @@ export default function AdminDashboard() {
     console.log('effect')
     // Make a request for a user with a given ID
       if (sessionStorage['Admin-Token']){
-          axios.get(api + '/api/dashboard', { 
+          axios.get(api + 'dashboard', { 
           headers: {
                   Authorization: "Bearer " + sessionStorage['Admin-Token'],
                   Accept: 'application/json'

@@ -58,7 +58,7 @@ export default function SignUp() {
     const config = {
         public_key: apiKey,
         tx_ref: Date.now(),
-        amount: 100,
+        amount: 2000,
         currency: 'NGN',
         payment_options: 'card,mobilemoney,ussd',
         customer: {
@@ -167,7 +167,7 @@ export default function SignUp() {
         //     return;
         // }
            
-        axios.post(api + '/api/user-reg', {
+        axios.post(api + 'user-reg', {
             'firstname': `${fname}`,
             'lastname': `${lname}`,
             'gender': `${gender}`,

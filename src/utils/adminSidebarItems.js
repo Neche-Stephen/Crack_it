@@ -4,6 +4,7 @@ import dashboard_new_icon from './utilsAsset/dashboard.svg';
 import hunt_new_icon from './utilsAsset/hunt.svg';
 // import profile_icon from "../assets/images/profile_icon.png";
 import profile_new_icon from './utilsAsset/profile.svg';
+import transaction from './utilsAsset/transaction_2.svg';
 
 export const adminSidebarItems = [
     {
@@ -30,7 +31,7 @@ export const adminSidebarItems = [
     {
         itemName : "Transactions",
         active: false,
-        icon : profile_new_icon,
+        icon : transaction,
         itemLink: '/admin/transactions',
     }
 

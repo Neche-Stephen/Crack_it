@@ -37,6 +37,7 @@ export default function HuntsType(props) {
         var videoURL = url;
         let regex = /(youtu.*be.*)\/(watch\?v=|embed\/|v|shorts|)(.*?((?=[&#?])|$))/gm;
         var videoId = regex.exec(videoURL)[3];
+        console.log(videoId);
         return videoId;
      }
    
@@ -67,7 +68,7 @@ export default function HuntsType(props) {
 
                             <div className='col-auto mx-auto'>
                                 <p className={`${styles.today_challenge_title}`}>{
-                                    hunt_type !== "ongoing" ? "Hunt for the" + {hunt_type}: "Ongoing Hunt"
+                                    hunt_type !== "ongoing" ? "Hunt for the " + hunt_type : "Ongoing Hunt"
                                 }</p>
                             </div>
                         </div>

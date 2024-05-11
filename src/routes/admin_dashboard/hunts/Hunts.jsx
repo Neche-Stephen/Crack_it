@@ -93,7 +93,7 @@ export default function AdminHunts() {
         form.append('image', image_guide);
         form.append("expiration", expiration);
         form.append("youtube_url", hunt_youtube_url)
-        axios.post(api + '/api/add-or-edit-hunt', form, {headers: {
+        axios.post(api + 'add-or-edit-hunt', form, {headers: {
                 Authorization: "Bearer " + sessionStorage['Admin-Token'],
                 Accept: 'application/json'
         }},)
@@ -135,7 +135,7 @@ export default function AdminHunts() {
         form.append('image', image_guide);
         form.append("start_date", start_date);
         form.append("expiration", expiration);
-        axios.post(api + '/api/add-or-edit-hunt', form,  {headers: {
+        axios.post(api + 'add-or-edit-hunt', form,  {headers: {
                 Authorization: "Bearer " + sessionStorage['Admin-Token'],
                 Accept: 'application/json'
         }},)
@@ -169,7 +169,7 @@ export default function AdminHunts() {
     useEffect( () =>{
       // Make a request for a user with a given ID
         if (sessionStorage['Admin-Token']){
-            axios.get(api + '/api/hunt-categories', { 
+            axios.get(api + 'hunt-categories', { 
             headers: {
                     Authorization: "Bearer " + sessionStorage['Admin-Token'],
                     Accept: 'application/json'

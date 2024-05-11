@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Timer = ({ expiration }) => {
-  // console.log(expiration)
+  // console.log("expiration",expiration);
   const [timeLeft, setTimeLeft] = useState({ hours: '00', minutes: '00', seconds: '00' });
 
   function calculateTimeLeft() {
@@ -47,7 +47,14 @@ const Timer = ({ expiration }) => {
   }, [expiration]);
 
   return (
-        <>{timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}</>
+        // <>{timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
+          
+        //   </>
+        <>
+        {
+          timeLeft  ? `${timeLeft.hours} : ${timeLeft.minutes }: ${timeLeft.seconds}` : "00:00:00"
+        }
+        </>
   );
 };
 

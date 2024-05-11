@@ -82,7 +82,8 @@ export default function AdminSignIn() {
             setBtnDisabledState(false);
             return;
         }
-        axios.post( api + '/api/admin-login', {
+        console.log(api);
+        axios.post(api + 'admin-login', {
             'email': `${email}`,
             'password': `${password}`
           })
@@ -99,7 +100,7 @@ export default function AdminSignIn() {
           .catch(function (error) {
             if (error.response){
             //   setLoading(false)
-            console.log(error.response.data);
+            console.log("admin signin error",error);
             //   setSuccess(error.response.data.success)
             //   setMessage(error.response.data.message)
             const sentences = error.response.data.message.split('.\n').filter(sentence => sentence.trim() !== '');

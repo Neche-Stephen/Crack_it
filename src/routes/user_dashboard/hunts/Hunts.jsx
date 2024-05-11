@@ -91,7 +91,7 @@ export default function Hunts() {
     useEffect(()=>{
         if (sessionStorage.Token){
             
-            axios.get(api + '/api/hunts', { 
+            axios.get(api + 'hunts', { 
                 headers: {
                     Authorization: "Bearer " + sessionStorage.Token,
                     Accept: 'application/json'
