@@ -68,7 +68,7 @@
 
 @media(max-width:575px){
     .dashboard_widget{
-        width: 48.5% !important;
+        width: 100% !important;
     }
     .dashboard_widget p{
         font-size: 16px;
