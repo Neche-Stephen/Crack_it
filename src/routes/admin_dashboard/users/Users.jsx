@@ -34,7 +34,7 @@ export default function Users() {
     const [nextLink, setNextLink] = useState('');
     const [disabled, setDisabled] = useState(true);
 
-    const [api, setApi] = useState('https://crackitfindit.rad5.com.ng/api/users');
+    const [api, setApi] = useState('https://crackitfindit.com/api/users');
 
     const handleSearch = (event) => {
         setSearchQuery(event.target.value);

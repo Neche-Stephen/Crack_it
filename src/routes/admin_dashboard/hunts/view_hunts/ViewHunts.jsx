@@ -25,7 +25,9 @@ const defaultHuntDetails = {
     hunt_id : ''
 }
 
+
 export default function Transactions() {
+    
     const [huntDetails, setHuntDetails] = useState(defaultHuntDetails);
     const {audience, expiration, title, description, hunt_id} = huntDetails;
     const [huntCategories, setHuntCategories] = useState([]);
@@ -50,7 +52,10 @@ export default function Transactions() {
     const [nextLink, setNextLink] = useState('');
     const [disabled, setDisabled] = useState(true);
 
-    const [api, setApi] = useState('https://crackitfindit.rad5.com.ng/api/get-hunts');
+    // const [api, setApi] = useState(defaultApi);
+    const api = import.meta.env.VITE_APP_API_URL;
+    const [fetchHuntsApi, setFetchHuntsApi] = useState("https://crackitfindit.com/api/get-hunts ");
+
 
     //Offcanvas
     const [show, setShow] = useState(false);
@@ -75,7 +80,7 @@ export default function Transactions() {
 
     const nextPage = () =>{
         console.log('called')
-        setApi(nextLink)
+        setFetchHuntsApi(nextLink)
     }
 
     const handleChange = (e)=>{
@@ -87,7 +92,7 @@ export default function Transactions() {
         e.preventDefault();
         console.log('Network requestS')
         // setLoadingEditHunt(true)
-        axios.get('https://crackitfindit.rad5.com.ng/api/get-hunt/' + hunt, { 
+        axios.get(api + '/api/get-hunt/' + hunt, { 
             headers: {
                     Authorization: "Bearer " + sessionStorage['Admin-Token'],
                     Accept: 'application/json'
@@ -117,7 +122,7 @@ export default function Transactions() {
     }
 
     const getHuntCategories = () => {
-        axios.get('https://crackitfindit.rad5.com.ng/api/hunt-categories', { 
+        axios.get(api + '/api/hunt-categories', { 
             headers: {
                     Authorization: "Bearer " + sessionStorage['Admin-Token'],
                     Accept: 'application/json'
@@ -148,7 +153,7 @@ export default function Transactions() {
         if (editedImage === true){form.append('image', image_guide); console.log('jj')}
         form.append("expiration", expiration);
         form.append("hunt_id", hunt_id);
-        axios.post('https://crackitfindit.rad5.com.ng/api/add-or-edit-hunt', form,    {headers: {
+        axios.post(api + '/api/add-or-edit-hunt', form,    {headers: {
             Authorization: "Bearer " + sessionStorage['Admin-Token'],
             Accept: 'application/json'
     }},)
@@ -173,7 +178,7 @@ export default function Transactions() {
     }
 
     const fetchHunts = () =>{
-        axios.get(api, { 
+        axios.get(fetchHuntsApi, { 
             headers: {
                 Authorization: "Bearer " + sessionStorage['Admin-Token'],
                 Accept: 'application/json'
@@ -181,7 +186,7 @@ export default function Transactions() {
          })
         .then(function (response) {
             // handle success
-            // console.log(response)
+            console.log("all hunts links",response.data.links)
             setHuntsList(response.data.data)
             setPrevLink(response.data.links.prev);
             setNextLink(response.data.links.next);
@@ -201,7 +206,7 @@ export default function Transactions() {
 
     useEffect(() =>{
         fetchHunts();
-    }, [api])
+    }, [fetchHuntsApi])
 
   return (
     <>

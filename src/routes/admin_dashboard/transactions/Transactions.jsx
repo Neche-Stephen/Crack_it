@@ -28,7 +28,7 @@ export default function Transactions() {
     const [nextLink, setNextLink] = useState('');
     const [disabled, setDisabled] = useState(true);
 
-    const [api, setApi] = useState('https://crackitfindit.rad5.com.ng/api/transactions');
+    const [api, setApi] = useState('https://crackitfindit.com/api/transactions');
 
     const [searchQuery, setSearchQuery] = useState(''); // Search query for searching different transactions
 

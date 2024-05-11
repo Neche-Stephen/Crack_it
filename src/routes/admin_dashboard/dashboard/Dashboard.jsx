@@ -29,11 +29,13 @@ export default function AdminDashboard() {
  const handleClose = () => setShow(false);
  const handleShow = () => setShow(true);
 
+ const api = import.meta.env.VITE_APP_API_URL;
+
   useEffect( () =>{
     console.log('effect')
     // Make a request for a user with a given ID
       if (sessionStorage['Admin-Token']){
-          axios.get('https://crackitfindit.rad5.com.ng/api/dashboard', { 
+          axios.get(api + '/api/dashboard', { 
           headers: {
                   Authorization: "Bearer " + sessionStorage['Admin-Token'],
                   Accept: 'application/json'
