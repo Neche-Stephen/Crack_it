@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Alert, Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
 import styles from './Profile.module.css';
@@ -11,17 +12,112 @@ import profile_icon from './asset/profile_icon1.svg';
 import UserSidebar from '../../../components/user/userSidebar/UserSidebar';
 import DashboardNavbar from '../../../components/general/dashboard_navbar/DashboardNavbar';
 
+const defaultProfileDetails = {
+  "lastname": "",
+  "bio": "",
+  "image": "",
+  "email": "",
+  "gender": "",
+  "phone": "",
+  "age": "",
+  "address": "",
+  "nationality": "",
+  "date_registered": "",
+  "payment": "",
+  "occupation":""
+
+}
+
 export default function Profile() {
   // Offcanvas
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // Edit Profile Modal
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const handleCloseProfileModal = () => setShowProfileModal(false);
+  const handleShowProfileModal = () => setShowProfileModal(true);
+
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [errorMessage, setErrorMessage] = useState('')
-  const [profile, setProfile] = useState([])
+  const [profile, setProfile] = useState({});
+  const [editProfileLoader, setEditProfileLoader] = useState(false);
+  
+
   const navigate = useNavigate();
   const api = import.meta.env.VITE_APP_API_URL;
+
+  const [userProfile , setUserProfile] = useState(defaultProfileDetails);
+  const {lastname, bio, image, email, gender, phone, age, address, 
+    nationality, date_registered, payment, state, occupation } = userProfile;
+
+    const handleChange = (e)=>{
+      const { name, value } = e.target;
+      // console.log(name, value);
+      setUserProfile({ ...userProfile, [name]: value });
+  };
+
+  const getUserProfie = () => {
+    axios.get(api + 'user', { 
+      headers: {
+          Authorization: "Bearer " + sessionStorage.Token,
+          Accept: 'application/json'
+      }
+   })
+  .then(function (response) {
+      // handle success
+      console.log(response.data.data)
+       setUserProfile(response.data.data)
+  })
+  .catch(function (error) {
+      // handle error
+      console.log(error);
+     //  navigate('/login')
+  });
+
+  }
+
+  const clearEditProfileForm = () => {
+    setUserProfile(defaultProfileDetails);
+  }
+
+
+  const editProfile = (e) => {
+      e.preventDefault();
+      console.log("editing profile");
+      console.log("address: ", address, "bio: ", bio, "state: ", state, "occupation: ", occupation )
+      setEditProfileLoader(true);
+      let form = new FormData();
+      form.append("address", address);
+      form.append("bio", bio);
+      form.append("state", state);
+      form.append("occupation", occupation);
+      let patchProfile = {
+        address, bio, state, occupation
+      }
+      axios.patch(api + 'user', patchProfile , {headers: {
+        Authorization: "Bearer " + sessionStorage['Token'],
+        Accept: 'application/json',
+        // 'Content-Type': 'multipart/form-data',
+      }},)
+      .then(function (response) {
+        // handle success
+        console.log(response)
+        const editProfileNotify = () => toast(response.data.message);
+        editProfileNotify();
+        clearEditProfileForm();
+        setEditProfileLoader(false);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        console.log('There is an error' + error);
+        const editProfileNotify = () => toast(error.message);
+        editProfileNotify();
+        setEditProfileLoader(false);
+      })
+  }
 
   useEffect(()=>{
       if (sessionStorage.Token){
@@ -33,7 +129,7 @@ export default function Profile() {
        })
       .then(function (response) {
           // handle success
-          console.log(response)
+          console.log("fetch user profile", response)
           // setLoading(false)
           setProfile(response.data.data)
           setErrorMessage('');
@@ -99,7 +195,9 @@ export default function Profile() {
                                         <p>Email Adress</p>
                                         <p style={{marginTop:'-18px'}}><b>{profile.email}</b></p>
                                         <p>Bio</p>
-                                        <p style={{marginTop:'-18px'}}><b>-</b></p>
+                                        <p style={{marginTop:'-18px'}}><b>{profile.bio}</b></p>
+                                        <p>Occupation</p>
+                                        <p style={{marginTop:'-18px'}}><b>{profile.occupation}</b></p>
                                     </div>
                                   </Col>
                                   <Col>
@@ -115,10 +213,15 @@ export default function Profile() {
                                 </Row>
                             </Col>
                             {/* <img src={edit} alt="" className={`${styles.profile_edit}`}/> */}
-                            {/* <button className={`${styles.profile_editt}`}>
+                            <button className={`${styles.profile_editt}`} onClick={(e) =>{
+                              handleShowProfileModal(e);
+                              getUserProfie();
+                            }
+                              
+                              }>
                               <span>Edit</span>
                               <img src={edit_main} alt="" />
-                            </button> */}
+                            </button>
                         </Row>
 
                         {/* Address */}
@@ -132,6 +235,8 @@ export default function Profile() {
                                     <div className={`${styles.profile_list}`}>
                                         <p>Country</p>
                                         <p style={{marginTop:'-18px'}}><b>{profile.nationality}</b></p>
+                                        <p>Home Address</p>
+                                        <p style={{marginTop:'-18px'}}><b>{profile.address}</b></p>
                                     </div>
                                   </Col>
                                   <Col>
@@ -155,6 +260,48 @@ export default function Profile() {
                 }
 
             </Col>
+
+            {/* Edit Profile Modal */}
+            <Modal show={showProfileModal} onHide={handleCloseProfileModal} className={`${styles.edit_profile_modal}`}>
+              <Modal.Body>
+                      <form className="col-lg-12" onSubmit={editProfile}>
+                          <div className="row">
+                              <div className={`col-12 mb-3`}>
+                                 <label htmlFor="">Address</label>
+                                  <input type="text" className="" name='address' value={address} onChange={handleChange} required/>
+                              </div>
+                              <div className="col-12 mb-3">
+                                  <label htmlFor="">Bio</label>
+                                  <input type="text" className="" name='bio' value={bio} placeholder='About you' onChange={handleChange} required/>
+                              </div>
+                              <div className="col-12 mb-3">
+                                  <label htmlFor="">State</label>
+                                  <input type="text" className=""  name='state' value={state} onChange={handleChange} required/>
+                              </div>
+                              <div className="col-12 mb-3">
+                                  <label htmlFor="">Occupation</label>
+                                  <input type="text" className="" name='occupation' value={occupation} onChange={handleChange} required/>
+                              </div>
+                              <div className="col-12 mb-3">
+                                 <button className={`${styles.edit_profile_btn}`}>
+                                  {
+                                    editProfileLoader ? 
+                                    <Spinner /> :
+                                    "Edit Profile"
+                                  }
+                                 </button>
+                                 <ToastContainer />
+                              </div>
+
+                          </div>
+                      </form>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseProfileModal}>
+                            Close
+                        </Button>
+                      </Modal.Footer>
+              </Modal.Body>
+            </Modal>
         </Row>
     </Container>
   )

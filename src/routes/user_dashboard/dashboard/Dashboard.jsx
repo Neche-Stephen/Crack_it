@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Row, Col, Spinner, Dropdown} from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Dropdown, Badge} from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+
 import Timer from './Timer';
 
 import styles from './Dashboard.module.css';
@@ -16,6 +18,7 @@ export default function UserDashboard() {
     const [hunts, setHunts] = useState([]);
     const [loading, setLoading] = useState(true);
     const api = import.meta.env.VITE_APP_API_URL
+    const apiKey = import.meta.env.VITE_APP_FLUTTER_API_KEY
     const navigate = useNavigate();
 
     
@@ -158,6 +161,26 @@ export default function UserDashboard() {
     navigate(`/user/hunts/ongoing`, { state: {hunt:ongoingHunt} });
     }
 
+    const config = {
+        public_key: apiKey,
+        tx_ref: Date.now(),
+        amount: 2000,
+        currency: 'NGN',
+        payment_options: 'card,mobilemoney,ussd',
+        customer: {
+          email : userData.email,
+           phone_number: userData.phone,
+          name: userData.name,
+        },
+        customizations: {
+          title: 'Crackit Findit',
+          description: 'Payment for Crackit Findit',
+          logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+        },
+      };
+
+    const handleFlutterPayment = useFlutterwave(config);
+
     useEffect( () =>{
         // Validate and Fetch user info
         if (sessionStorage.Token){
@@ -261,7 +284,29 @@ export default function UserDashboard() {
                     <Col style={{background:' #FFF9FF'}} className='ps-sm-5 pe-sm-5 pb-5 offset-sm-2 offset-lg-3'>
                         <DashboardNavbar handleShow={handleShow}/>
                         <Row className='mt-5 mb-2'>
-                            <Col><p className={`${styles.welcome}`}>Welcome {userData.name},</p></Col>
+                            <Col md = '6'>
+                                <p className={`${styles.welcome}`}>Welcome {userData.name}, 
+                                </p>
+                             </Col>
+                             <Col md='6'>
+                             <Badge bg="warning" text="dark" className='mb-1'>Payment Pending</Badge>
+                             <p>Click <span style={{color:"blue", cursor:'pointer'}}
+                                    onClick={ () => {
+                                        handleFlutterPayment({
+                                            callback: (response) => {
+                                               console.log(response);
+                                                closePaymentModal() // this will close the modal programmatically
+                                                navigate("/user/dashboard");
+                                            },
+                                            onClose: () => {
+                                                 navigate("/user/dashboard");
+                                            },
+                                          });
+                                    }}
+                                    > here </span> to make payment
+                                 </p>
+                             </Col>
+                             
                         </Row>
                         <Row className='justify-content-center'>
                             <Col xs = '11'>

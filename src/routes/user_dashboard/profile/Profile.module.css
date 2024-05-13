@@ -127,3 +127,27 @@
         width: 50% !important;
     }
 }
+
+/* Edit Profile Modal Form */
+
+.edit_profile_modal input{
+    width:100%;
+    border-radius: 12px;
+    border: 2px solid #D9D9D9;
+    height: 46px;
+    padding-left: 30px;
+}
+
+.edit_profile_modal .edit_profile_btn{
+    border: unset;
+    background-color: #FF6600;
+    border-radius: 12px;
+    color: #fff;
+    width: 100%;
+    height: 46px;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    letter-spacing: 0em;
+}

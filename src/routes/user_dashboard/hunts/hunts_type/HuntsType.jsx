@@ -47,7 +47,7 @@ export default function HuntsType(props) {
         }
 
         setHunt(state.hunt);
-        console.log("passed hunt",hunt);
+        console.log("passed hunt",state.hunt);
     }, [])
 
     const { hunt_type } = useParams();

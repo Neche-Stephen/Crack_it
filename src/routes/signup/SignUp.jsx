@@ -73,7 +73,7 @@ export default function SignUp() {
         },
       };
     
-      const handleFlutterPayment = useFlutterwave(config);
+    const handleFlutterPayment = useFlutterwave(config);
    
  
     const handleNavClick = () => {
