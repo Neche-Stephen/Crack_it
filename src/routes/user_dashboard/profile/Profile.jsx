@@ -24,7 +24,8 @@ const defaultProfileDetails = {
   "nationality": "",
   "date_registered": "",
   "payment": "",
-  "occupation":""
+  "occupation":"",
+  "state":""
 
 }
 
@@ -42,7 +43,15 @@ export default function Profile() {
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [errorMessage, setErrorMessage] = useState('')
   const [profile, setProfile] = useState({});
-  const [editProfileLoader, setEditProfileLoader] = useState(false);
+  
+    // Disabled state for editing profile button
+    const [btnDisabledState, setBtnDisabledState] = useState(false);
+
+    // Editing profile button spinner
+    const [editProfileButtonLoader, setEditProfileButtonLoader] = useState(false);
+
+    // Loading state spinner for editing profile form
+    const [editProfileFormLoading, setEditProfileFormLoading] = useState(false);
   
 
   const navigate = useNavigate();
@@ -52,6 +61,8 @@ export default function Profile() {
   const {lastname, bio, image, email, gender, phone, age, address, 
     nationality, date_registered, payment, state, occupation } = userProfile;
 
+ 
+
     const handleChange = (e)=>{
       const { name, value } = e.target;
       // console.log(name, value);
@@ -59,6 +70,7 @@ export default function Profile() {
   };
 
   const getUserProfie = () => {
+    setEditProfileFormLoading(true);
     axios.get(api + 'user', { 
       headers: {
           Authorization: "Bearer " + sessionStorage.Token,
@@ -67,27 +79,29 @@ export default function Profile() {
    })
   .then(function (response) {
       // handle success
+      setEditProfileFormLoading(false);
       console.log(response.data.data)
        setUserProfile(response.data.data)
   })
   .catch(function (error) {
       // handle error
+      setEditProfileFormLoading(false);
       console.log(error);
      //  navigate('/login')
   });
 
   }
 
-  const clearEditProfileForm = () => {
-    setUserProfile(defaultProfileDetails);
-  }
+  // const clearEditProfileForm = () => {
+  //   setUserProfile(defaultProfileDetails);
+  // }
 
 
   const editProfile = (e) => {
       e.preventDefault();
-      console.log("editing profile");
-      console.log("address: ", address, "bio: ", bio, "state: ", state, "occupation: ", occupation )
-      setEditProfileLoader(true);
+      setEditProfileButtonLoader(true);
+      setBtnDisabledState(true);
+      
       let form = new FormData();
       form.append("address", address);
       form.append("bio", bio);
@@ -103,30 +117,30 @@ export default function Profile() {
       }},)
       .then(function (response) {
         // handle success
-        console.log(response)
+        setBtnDisabledState(false);
+        setEditProfileButtonLoader(false);
         const editProfileNotify = () => toast(response.data.message);
         editProfileNotify();
-        clearEditProfileForm();
-        setEditProfileLoader(false);
+        // clearEditProfileForm();
+        fetchUserProfile();
       })
       .catch(function (error) {
         // handle error
-        console.log(error);
-        console.log('There is an error' + error);
-        const editProfileNotify = () => toast(error.message);
+        setEditProfileButtonLoader(false);
+        setBtnDisabledState(false);
+        const editProfileNotify = () => toast(error.response.data.message);
         editProfileNotify();
-        setEditProfileLoader(false);
       })
   }
 
-  useEffect(()=>{
-      if (sessionStorage.Token){
-        axios.get(api + 'user', { 
-          headers: {
-              Authorization: "Bearer " + sessionStorage.Token,
-              Accept: 'application/json'
-          }
-       })
+  const fetchUserProfile = ()=> {
+    setLoadingProfile(true);
+      axios.get(api + 'user', { 
+        headers: {
+            Authorization: "Bearer " + sessionStorage.Token,
+            Accept: 'application/json'
+        }
+    })
       .then(function (response) {
           // handle success
           console.log("fetch user profile", response)
@@ -143,6 +157,11 @@ export default function Profile() {
           setLoadingProfile(false);
           // navigate('/login')
       });
+  }
+
+  useEffect(()=>{
+      if (sessionStorage.Token){
+       fetchUserProfile();
 
       }
       else{
@@ -174,7 +193,7 @@ export default function Profile() {
                             <div className={`${styles.profile_icon_col} p-0`} ><img src={profile_icon} alt="" className='w-100'/></div>
                             <Col className={`${styles.my_profile_name_details}`} >
                               <p className={`${styles.profile_text}`}>{profile.name}</p>
-                              <p className={`${styles.profile_text_tiny_under_name}`}>-</p>
+                              <p className={`${styles.profile_text_tiny_under_name}`}>{profile.bio}</p>
                             </Col>
                             {/* <button className={`${styles.profile_editt}`}>
                               <span>Edit</span>
@@ -263,7 +282,17 @@ export default function Profile() {
 
             {/* Edit Profile Modal */}
             <Modal show={showProfileModal} onHide={handleCloseProfileModal} className={`${styles.edit_profile_modal}`}>
-              <Modal.Body>
+              {
+                 editProfileFormLoading ? 
+                  <Container className='mt-5 mb-5'>
+                    <Row className='justify-content-center'>
+                      <Col xs = 'auto'>
+                        <Spinner />
+                      </Col>
+                    </Row>
+                  </Container>
+                :
+                <Modal.Body>
                       <form className="col-lg-12" onSubmit={editProfile}>
                           <div className="row">
                               <div className={`col-12 mb-3`}>
@@ -283,9 +312,9 @@ export default function Profile() {
                                   <input type="text" className="" name='occupation' value={occupation} onChange={handleChange} required/>
                               </div>
                               <div className="col-12 mb-3">
-                                 <button className={`${styles.edit_profile_btn}`}>
+                                 <button className={`${styles.edit_profile_btn}`} disabled = {btnDisabledState} style={{opacity:btnDisabledState ? '0.6' : '1'}}>
                                   {
-                                    editProfileLoader ? 
+                                    editProfileButtonLoader ? 
                                     <Spinner /> :
                                     "Edit Profile"
                                   }
@@ -295,12 +324,13 @@ export default function Profile() {
 
                           </div>
                       </form>
-                      <Modal.Footer>
+                </Modal.Body>
+              }
+              <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseProfileModal}>
                             Close
                         </Button>
                       </Modal.Footer>
-              </Modal.Body>
             </Modal>
         </Row>
     </Container>

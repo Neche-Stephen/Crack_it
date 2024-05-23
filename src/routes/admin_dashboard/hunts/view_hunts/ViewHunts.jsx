@@ -67,6 +67,12 @@ export default function Transactions() {
     const handleCloseEditHuntModal = () => setShowEditHuntModal(false);
     const handleShowEditHuntModal = () => setShowEditHuntModal(true);
 
+     // Disabled state for editing hunt button
+     const [btnDisabledState, setBtnDisabledState] = useState(false);
+
+     // Edit Hunt Form Loader/Spinner
+     const [editHuntFormLoader, setEditHuntFormLoader] = useState(false);
+
     const [searchQuery, setSearchQuery] = useState(''); // Search query for searching different hunts
 
      // Method to set search query
@@ -90,8 +96,9 @@ export default function Transactions() {
 
     const getHunt = (e, hunt) => {
         e.preventDefault();
-        console.log('Network requestS')
+        // console.log('Network requestS')
         // setLoadingEditHunt(true)
+        setEditHuntFormLoader(true);
         axios.get(api + 'get-hunt/' + hunt, { 
             headers: {
                     Authorization: "Bearer " + sessionStorage['Admin-Token'],
@@ -100,8 +107,7 @@ export default function Transactions() {
             })
             .then(function (response) {
                 // handle success
-                // setLoadingEditHunt(false)
-                console.log("individual hunt", response.data.data)
+                setEditHuntFormLoader(false);
                 setHuntDetails(response.data.data);
                 // console.log(response.data.data)
                 setImage_guide(response.data.data.image_url)
@@ -113,8 +119,10 @@ export default function Transactions() {
                 // window.location = '#about'
             })
             .catch(function (error) {
+            setEditHuntFormLoader(false);
+
                 // handle error
-                console.log(error);
+                // console.log(error);
                 // navigate('/login')
             });
 
@@ -144,7 +152,8 @@ export default function Transactions() {
 
     const editHunt = (e) => {
         e.preventDefault()
-        setEditLoading(true)
+        setEditLoading(true);
+        setBtnDisabledState(true);
         let form = new FormData();
         form.append("category_id", huntCategoryId);
         form.append("title", title);
@@ -159,21 +168,17 @@ export default function Transactions() {
     }},)
     .then(function (response) {
         // handle success
-        // console.log(response.data.message)
         setEditLoading(false);
+        setBtnDisabledState(false);
          // Toast Notifications
         const editHuntNotify = () => toast(response.data.message);
         editHuntNotify();
         fetchHunts();
-        // setMessage(response.data.message)
-        // setShowAlert(true)
         })
     .catch(function (error) {
         // handle error
-        console.log(error);
-        setEditLoading(false)
-        // setMessage(error.response.data.message)
-        // setShowAlert(true)
+        setEditLoading(false);
+        setBtnDisabledState(false);
     })
     }
 
@@ -290,76 +295,95 @@ export default function Transactions() {
 
                             {/* Edit Modal Modal */}
                             <Modal  size="lg" show={showEditHuntModal} onHide={handleCloseEditHuntModal} className={`${styles.editHuntForm}`}>
-                                <Modal.Body >
-                                <form className='col-lg-12' onSubmit={editHunt}>
-                                    <Row className='mt-5'>
-                                    <Col><p className={`${styles.edit_hunt}`}>Edit Hunt</p></Col>
-                                    </Row>
-                                    <Row className='mb-3'>
-                                        <Col>
-                                        <label htmlFor = 'category_id'>Edit Hunt Category</label>
-
-                                        <select value={huntCategoryId} onChange={handleChange}>
-                                            <option value="" disabled>Hunt Category</option>
-                                            {
-                                                huntCategories.map((huntCategory) =>{
-                                                    return <option key = {huntCategory.id} value={huntCategory.id} >{huntCategory.title}</option>
-                                                })
-                                            }
-                                        </select>
-                                        </Col>
-                                    </Row>
-                                    <Row className='mb-3'>
-                                        <Col>
-                                        <label htmlFor = 'title'>Edit Hunt Title</label>
-                                        <input name='title' id = 'title' value={title} type="text" placeholder='Hunt Title' onChange={handleChange} className={`${styles.editHuntForminput}`} required/>
-                                        </Col>
-                                    </Row>
-                                    <Row className='mb-3'>
-                                        <Col>
-                                        <label htmlFor = 'description'>Edit Hunt Description</label>
-                                        <textarea name="description" id = 'description' value = {description} rows="10"
-                                        onChange={handleChange}
-                                        placeholder='Hunt Description' className={`${styles.editHuntForm_textarea}`} required></textarea>
-                                        </Col>
-                                    </Row>
-                                    <Row className='mb-3'>
-                                        <Col>
-                                        <label htmlFor = 'expiration'>Edit Hunt Expiration Date</label>
-                                        <input name = 'expiration' id = 'expiration' type="text" placeholder='Hunt Expiration'  onFocus={(event) => event.target.type = 'date'}  onChange={handleChange}  value={expiration} className={`${styles.editHuntForminput}`} required/>
-                                        </Col>
-                                    </Row>
-                                    <Row className='mb-3'>
-                                        <Col>
-                                            <label htmlFor = 'audience'>Edit Hunt Audience</label>
-                                            <input name='audience' id = 'audience' placeholder='Hunt Audience' type="text" onChange={handleChange}  value={audience} className={`${styles.editHuntForminput}`} required/>
-                                        </Col>
-                                    </Row>
-                                    <Row className='mb-3'>
-                                        <Col className = ''>
-                                         <label htmlFor = 'image_guide'>Edit Hunt Guide Image</label>
-                                         <div className = 'border rounded p-4'>
-                                            <img src={image_display} alt="" width="" className = 'd-block mb-2 w-100'/>
-                                            <input name='image_guide' id = 'image_guide' type="file" placeholder='Hunt Guide' onChange={(e)=>{
-                                                setEditedImage(true);
-                                                setImage_guide(e.target.files[0]);
-                                                setImage_display(URL.createObjectURL(e.target.files[0]));
-                                            }} className={`${styles.editHuntForminput} ${styles.image_guide}`}/>
-                                         </div>
-                                        </Col>
-                                    </Row>
-                                    <Row className='justify-content-center mb-5'>
-                                        <Col xs ='6' lg = '3'>
-                                        <button className={`${styles.hunt_btn}`}>
-                                            {editLoading ? <Spinner /> : "Edit Hunt"}
-                                        </button>
-                                        <ToastContainer />
-
-                                        </Col>
-                                    </Row>
-                                </form>
                                 
-                                </Modal.Body>
+                            {
+
+                                editHuntFormLoader ?
+
+                                <Container className='mt-5 mb-5'>
+                                <Row className='justify-content-center'>
+                                  <Col xs = 'auto'>
+                                    <Spinner />
+                                  </Col>
+                                </Row>
+                              </Container>
+                                    :
+                                    <Modal.Body >
+                                        <form className='col-lg-12' onSubmit={editHunt}>
+                                            <Row className='mt-5'>
+                                            <Col><p className={`${styles.edit_hunt}`}>Edit Hunt</p></Col>
+                                            </Row>
+                                            <Row className='mb-3'>
+                                                <Col>
+                                                <label htmlFor = 'category_id'>Edit Hunt Category</label>
+
+                                                <select value={huntCategoryId} onChange={handleChange}>
+                                                    <option value="" disabled>Hunt Category</option>
+                                                    {
+                                                        huntCategories.map((huntCategory) =>{
+                                                            return <option key = {huntCategory.id} value={huntCategory.id} >{huntCategory.title}</option>
+                                                        })
+                                                    }
+                                                </select>
+                                                </Col>
+                                            </Row>
+                                            <Row className='mb-3'>
+                                                <Col>
+                                                <label htmlFor = 'title'>Edit Hunt Title</label>
+                                                <input name='title' id = 'title' value={title} type="text" placeholder='Hunt Title' onChange={handleChange} className={`${styles.editHuntForminput}`} required/>
+                                                </Col>
+                                            </Row>
+                                            <Row className='mb-3'>
+                                                <Col>
+                                                <label htmlFor = 'description'>Edit Hunt Description</label>
+                                                <textarea name="description" id = 'description' value = {description} rows="10"
+                                                onChange={handleChange}
+                                                placeholder='Hunt Description' className={`${styles.editHuntForm_textarea}`} required></textarea>
+                                                </Col>
+                                            </Row>
+                                            <Row className='mb-3'>
+                                                <Col>
+                                                <label htmlFor = 'expiration'>Edit Hunt Expiration Date</label>
+                                                <input name = 'expiration' id = 'expiration' type="text" placeholder='Hunt Expiration'  onFocus={(event) => event.target.type = 'date'}  onChange={handleChange}  value={expiration} className={`${styles.editHuntForminput}`} required/>
+                                                </Col>
+                                            </Row>
+                                            <Row className='mb-3'>
+                                                <Col>
+                                                    <label htmlFor = 'audience'>Edit Hunt Audience</label>
+                                                    <input name='audience' id = 'audience' placeholder='Hunt Audience' type="text" onChange={handleChange}  value={audience} className={`${styles.editHuntForminput}`} required/>
+                                                </Col>
+                                            </Row>
+                                            <Row className='mb-3'>
+                                                <Col className = ''>
+                                                <label htmlFor = 'image_guide'>Edit Hunt Guide Image</label>
+                                                <div className = 'border rounded p-4'>
+                                                    <img src={image_display} alt="" width="" className = 'd-block mb-2 w-100'/>
+                                                    <input name='image_guide' id = 'image_guide' type="file" placeholder='Hunt Guide' onChange={(e)=>{
+                                                        setEditedImage(true);
+                                                        setImage_guide(e.target.files[0]);
+                                                        setImage_display(URL.createObjectURL(e.target.files[0]));
+                                                    }} className={`${styles.editHuntForminput} ${styles.image_guide}`}/>
+                                                </div>
+                                                </Col>
+                                            </Row>
+                                            <Row className='justify-content-center mb-5'>
+                                                <Col xs ='6' lg = '3'>
+                                                <button className={`${styles.hunt_btn}`} disabled = {btnDisabledState} style={{opacity:btnDisabledState ? '0.6' : '1'}}>
+                                                    {editLoading ? <Spinner /> : "Edit Hunt"}
+                                                </button>
+                                                <ToastContainer />
+
+                                                </Col>
+                                            </Row>
+                                        </form>    
+                                     </Modal.Body>
+
+
+
+                            }
+
+
+
                                 <Modal.Footer>
                                 <Button variant="secondary" onClick={handleCloseEditHuntModal}>
                                     Close

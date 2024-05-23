@@ -33,12 +33,14 @@ export default function UserDashboard() {
      const [monthlyHunt, setMonthlyHunt] = useState([]);
      const [generalHunt, setGeneralHunt] = useState([]);
 
+     const [dailyCategory, setDailyCategory] = useState([]);
+
      const [dailyUpcomingHunt, setDailyUpcomingHunt] = useState([]);
      const [weeklyUpcomingHunt, setWeeklyUpcomingHunt] = useState([]);
      const [monthlyUpcomingHunt, setMonthlyUpcomingHunt] = useState([]);
      const [generalUpcomingHunt, setGeneralUpcomingHunt] = useState([]);
 
-     const [ongoingHunt, setOngoingHunt] = useState({}); // This is a select hunt (based on earliest date) from the daily hunt that is set as ongoing hunt
+     const [ongoingHunt, setOngoingHunt] = useState({ payment: {} }); // This is a select hunt (based on earliest date) from the daily hunt that is set as ongoing hunt
      
 
     const getOngoingHunt = ()=>{
@@ -118,6 +120,10 @@ export default function UserDashboard() {
         return `${month} ${day}, ${year}`;
     }
 
+    // const fetchActiveHunts = ()=>{
+        
+    // }
+
     const fetchUpcomingHunts = () => {
         axios.get(api + 'upcoming-hunts', { 
             headers: {
@@ -158,7 +164,12 @@ export default function UserDashboard() {
     }
 
     const goToOngoingHunt = () =>{
+        console.log("hello")
     navigate(`/user/hunts/ongoing`, { state: {hunt:ongoingHunt} });
+    }
+
+    const goToUpcomingHunt = (hunt) => {
+        navigate(`/user/hunts/upcoming`, {state :{hunt:hunt}})
     }
 
     const config = {
@@ -217,9 +228,11 @@ export default function UserDashboard() {
                 }
              })
             .then(function (response) {
-                console.log("hunts",response.data.data)
+                console.log("all hunts",response.data.data);
+
                 response.data.data.map((hunt => {
                     if(hunt.hunt_category_title === 'Hunt for the day'){
+                        setDailyCategory(hunt);
                         setDailyHunt(hunt.hunts);
                         
                     }
@@ -288,7 +301,9 @@ export default function UserDashboard() {
                                 <p className={`${styles.welcome}`}>Welcome {userData.name}, 
                                 </p>
                              </Col>
-                             <Col md='6'>
+                             {
+                                userData.payment?.status === "pending" ? 
+                                <Col md='6'>
                              <Badge bg="warning" text="dark" className='mb-1'>Payment Pending</Badge>
                              <p>Click <span style={{color:"blue", cursor:'pointer'}}
                                     onClick={ () => {
@@ -297,6 +312,7 @@ export default function UserDashboard() {
                                                console.log(response);
                                                 closePaymentModal() // this will close the modal programmatically
                                                 navigate("/user/dashboard");
+                                                window.location.reload();
                                             },
                                             onClose: () => {
                                                  navigate("/user/dashboard");
@@ -305,7 +321,10 @@ export default function UserDashboard() {
                                     }}
                                     > here </span> to make payment
                                  </p>
-                             </Col>
+                                </Col>
+                                :
+                                null
+                             }
                              
                         </Row>
                         <Row className='justify-content-center'>
@@ -467,27 +486,29 @@ export default function UserDashboard() {
                                                    ?
                                                    generalUpcomingHunt.map((hunt, index) => {
                                                     return (
-                                                        <div key={index} className={`${styles.notification_row} mb-3`}>
-                                                            <div className={`${styles.notification_row_first}`}>
-                                                                {/* <div className={`${styles.notification_avatar}`}>
-                                                                    <img src={avatar} alt="" className='w-100'/>
-                                                                </div> */}
-                                                                <div className={`${styles.notification_title} ms-2`}>
-                                                                    Crack It, Find It
+                                                    //    <Link to='/'>
+                                                             <div style={{cursor:'pointer'}} onClick={() => {goToUpcomingHunt(hunt)}} key={index} className={`${styles.notification_row} mb-3`}>
+                                                                <div className={`${styles.notification_row_first}`}>
+                                                                    {/* <div className={`${styles.notification_avatar}`}>
+                                                                        <img src={avatar} alt="" className='w-100'/>
+                                                                    </div> */}
+                                                                    <div className={`${styles.notification_title} ms-2`}>
+                                                                        Crack It, Find It
+                                                                    </div>
+                                                                    <div className={`${styles.notification_time} ms-auto`}>{formatDate(hunt.date_created)}</div>
                                                                 </div>
-                                                                <div className={`${styles.notification_time} ms-auto`}>{formatDate(hunt.date_created)}</div>
-                                                            </div>
-                                                            <div className={`${styles.notification_row_second}`}>
-                                                                <div className={`${styles.notification_sub_title} ms-2`}>
-                                                                {hunt.title}
+                                                                <div className={`${styles.notification_row_second}`}>
+                                                                    <div className={`${styles.notification_sub_title} ms-2`}>
+                                                                    {hunt.title}
+                                                                    </div>
+                                                                </div>
+                                                                <div className={`${styles.notification_row_third}`}>
+                                                                    <div className={`${styles.notification_description} ms-2`}>
+                                                                        {hunt.description}
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div className={`${styles.notification_row_third}`}>
-                                                                <div className={`${styles.notification_description} ms-2`}>
-                                                                    {hunt.description}
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    //    </Link>
                                                     )
                                                 })
 

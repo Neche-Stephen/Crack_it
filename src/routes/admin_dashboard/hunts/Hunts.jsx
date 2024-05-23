@@ -42,8 +42,12 @@ export default function AdminHunts() {
 
     const [hunt_status, setHunt_status] = useState("active"); // Status for the kind of hunt to be created - active or upcoming
 
-    // const [start_date, setStart_date] = useState('');
+    // Disabled state for creating hunt button
+    const [btnDisabledState, setBtnDisabledState] = useState(false);
+    
 
+
+    // const [start_date, setStart_date] = useState('');
     const {category_id, audience, start_date, hunt_youtube_url, expiration, title, description} = huntDetails;
 
     const {upcomingCategory_id, upcomingAudience,upcomingStart_date, upcomingExpiration, upcomingTitle, upcomingDescription} = huntUpcomingDetails;
@@ -83,6 +87,7 @@ export default function AdminHunts() {
     const handleCreateHunt = (e) => {
         e.preventDefault();
         setLoadingCreateHuntBtn(true);
+        setBtnDisabledState(true);
         console.log('working');
         // setPublishLoading(true)
         let form = new FormData();
@@ -92,7 +97,7 @@ export default function AdminHunts() {
         form.append("audience", audience);
         form.append('image', image_guide);
         form.append("expiration", expiration);
-        form.append("youtube_url", hunt_youtube_url)
+        hunt_youtube_url === ''? null : form.append("youtube_url", hunt_youtube_url)
         axios.post(api + 'add-or-edit-hunt', form, {headers: {
                 Authorization: "Bearer " + sessionStorage['Admin-Token'],
                 Accept: 'application/json'
@@ -101,6 +106,7 @@ export default function AdminHunts() {
         // handle success
         // console.log(response.data.message)
         setLoadingCreateHuntBtn(false);
+        setBtnDisabledState(false);
         const createHuntNotify = () => toast(response.data.message);
         createHuntNotify();
         clearHuntFormDetails();
@@ -110,20 +116,17 @@ export default function AdminHunts() {
         })
         .catch(function (error) {
         // handle error
-        console.log('There is an error')
-        console.log(error);
         setLoadingCreateHuntBtn(false);
-        const createHuntNotify = () => toast(error.message);
-        createHuntNotify()
-        // setPublishLoading(false)
-        // setMessage(error.response.data.message)
-        // setShowAlert(true)
+        setBtnDisabledState(false);
+        const createHuntNotify = () => toast(error.response.data.message);
+        createHuntNotify();
+        
         })
     }
 
     const handleCreateUpcomingHunt = (e) => {
         e.preventDefault();
-        console.log(image_guide);
+        setBtnDisabledState(true);
         setLoadingCreateHuntBtn(true);
         console.log('working');
         // setPublishLoading(true)
@@ -141,7 +144,7 @@ export default function AdminHunts() {
         }},)
         .then(function (response) {
         // handle success
-        // console.log(response.data.message)
+        setBtnDisabledState(false);
         setLoadingCreateHuntBtn(false);
         const createHuntNotify = () => toast(response.data.message);
         createHuntNotify();
@@ -152,14 +155,11 @@ export default function AdminHunts() {
         })
         .catch(function (error) {
         // handle error
-        console.log('There is an error')
-        console.log(error);
+        setBtnDisabledState(false);
         setLoadingCreateHuntBtn(false);
-        const createHuntNotify = () => toast(error.message);
-        createHuntNotify()
-        // setPublishLoading(false)
-        // setMessage(error.response.data.message)
-        // setShowAlert(true)
+        const createHuntNotify = () => toast(error.response.data.message);
+        createHuntNotify();
+        
         })
     }
 
@@ -286,7 +286,7 @@ export default function AdminHunts() {
                         </Row>
                         <Row className='justify-content-center mb-5'>
                             <Col xs ='9' lg = '3'>
-                               <button className={`${styles.hunt_btn}`}>
+                               <button className={`${styles.hunt_btn}`} disabled = {btnDisabledState} style={{opacity:btnDisabledState ? '0.6' : '1'}}>
                                 {
                                     loadingCreateHuntBtn ? <Spinner /> :
                                     "Create Hunt"

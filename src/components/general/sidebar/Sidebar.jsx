@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import crack_it_logo from '../../../assets/images/Crack It, Find It Logo 8.png'
 
 import styles from "./Sidebar.module.css";
-import logout from '../../../assets/images/logout_side.png';
+import logout from '../../../assets/images/sidebar_logout.svg';
 
 export default function ({sidebarItems, show, handleClose, active}) {
     const [activeItem, setActiveItem] = React.useState(active);
